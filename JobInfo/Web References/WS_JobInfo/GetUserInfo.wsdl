@@ -1,0 +1,2735 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://localhost/xrogi" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://localhost/xrogi" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://localhost/xrogi">
+      <s:element name="GetConnetedTokens">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="ObjId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="type" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetConnetedTokensResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetConnetedTokensResult" type="tns:ArrayOfChatUser" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfChatUser">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ChatUser" nillable="true" type="tns:ChatUser" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ChatUser">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Login" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetTokens">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetTokensResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTokensResult" type="tns:ArrayOfToken" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfToken">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Token" nillable="true" type="tns:Token" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Token">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Date_FirstConnected" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Date_LastUpdate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReConectedCount" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="src_xml" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LoginUser" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="dev_name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="clientname" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Token_Id" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="Counter" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserId" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetConnectInfo">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetConnectInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetConnectInfoResult" type="tns:ArrayOfConnectInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfConnectInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ConnectInfo" nillable="true" type="tns:ConnectInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ConnectInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="clientWS" type="tns:WebSocket" />
+          <s:element minOccurs="0" maxOccurs="1" name="token" type="tns:Token" />
+          <s:element minOccurs="0" maxOccurs="1" name="Chats" type="tns:ArrayOfInt" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="WebSocket" abstract="true" />
+      <s:complexType name="ArrayOfInt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="About">
+        <s:complexType />
+      </s:element>
+      <s:element name="AboutResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AboutResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ClearSession">
+        <s:complexType />
+      </s:element>
+      <s:element name="ClearSessionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ClearSessionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Chat_Rename">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="ObjId" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="NewName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Chat_RenameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Chat_RenameResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Chat_GetMyStatistic">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="ObjId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Chat_GetMyStatisticResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Chat_GetMyStatisticResult" type="tns:UserChatInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="UserChatInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ChatUserInfoId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChatId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="StartShownObjId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastShownObjId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastObjId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CountNew" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CountShownEndObjId" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Chat_GetMyStatistic_old">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="ObjId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Chat_GetMyStatistic_oldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Chat_GetMyStatistic_oldResult" type="tns:tbl_ChatUserInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="tbl_ChatUserInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ChatUserInfoId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChatId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="StartShownObjId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastShownObjId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastObjId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CountNew" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="db" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="de" nillable="true" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Chat_UnSubscribeUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="chatid" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="UserId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="TypeUnSubscribeId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Chat_UnSubscribeUserResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="Chat_SubscribeUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="chatid" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="UserId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="TypeSubscribe" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Chat_SubscribeUserResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="Chat_Leave">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="ChatId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Chat_LeaveResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Chat_LeaveResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Chat_Selected">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="ChatId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Chat_SelectedResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="Chat_CreateLink">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="NewParentChatId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CurrentChatId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Chat_CreateLinkResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="Chat_CreateMainLink">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="NewParentChatId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CurrentChatId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Chat_CreateMainLinkResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="Chat_GetSelected">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Chat_GetSelectedResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Chat_GetSelectedResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Chat_AddCorporative">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="guid" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Chat_AddCorporativeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Chat_AddCorporativeResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Chat_Add">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="ParentObjId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="sgTypeId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="TextChatName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TextChatComment" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Chat_AddResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Chat_AddResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Chat_CreateAndSubscribe">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="ParentObjId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="sgTypeId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="TextChatName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TextChatComment" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UsersIdSubscribe" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Chat_CreateAndSubscribeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Chat_CreateAndSubscribeResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Chat_GetList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="ParentObjId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Chat_GetListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Chat_GetListResult" type="tns:ArrayOfObj" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfObj">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Obj" nillable="true" type="tns:Obj" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Obj">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="sgClassId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="sgTypeId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="sgGruupId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Type" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Guid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Parent_Guid" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Deep" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ObjId" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="period" type="tns:Period" />
+          <s:element minOccurs="0" maxOccurs="1" name="xml" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="links" type="tns:ArrayOfLinksObj" />
+          <s:element minOccurs="1" maxOccurs="1" name="userid" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="userCreater" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UsersInChat" type="tns:ArrayOfInt" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Period">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="dtb" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="dte" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="dtc" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="dtd" nillable="true" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfLinksObj">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="LinksObj" nillable="true" type="tns:LinksObj" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="LinksObj">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="LinkId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="objid_from" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="objid_to" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="sgLinkTypeId" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Chat_Get">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="ChatId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Chat_GetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Chat_GetResult" type="tns:ArrayOfObj" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Chat_SetPublic">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="chatId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="b_SetPubic" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Chat_SetPublicResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="Chat_GetList_PublicByType">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="ParentObjId" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="sgTypeId" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Chat_GetList_PublicByTypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Chat_GetList_PublicByTypeResult" type="tns:ArrayOfObj" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Chat_GetListCorporate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="ParentObjId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Chat_GetListCorporateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Chat_GetListCorporateResult" type="tns:ArrayOfObj" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Chat_GetTypes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Chat_GetTypesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Chat_GetTypesResult" type="tns:ArrayOfChatTypes" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfChatTypes">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ChatTypes" nillable="true" type="tns:ChatTypes" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ChatTypes">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="sgTypeId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="OrderId" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="NameHelp" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Chat_GetUsers">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="ChatId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Chat_GetUsersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Chat_GetUsersResult" type="tns:ArrayOfUser" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfUser">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="User" nillable="true" type="tns:User" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="User">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="UserId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserLogin" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="foto" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="positions" type="tns:ArrayOfUserPosition" />
+          <s:element minOccurs="1" maxOccurs="1" name="PersonalChatId" nillable="true" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfUserPosition">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="UserPosition" nillable="true" type="tns:UserPosition" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="UserPosition">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Subdiv" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UID_Subdiv" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Position" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Period" type="tns:Period" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Message_Image_Add">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="chatid" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="data" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="TypeImage" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Comment" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Message_Image_AddResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="Message_Image_Get">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="chatid" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="guid" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="TypeSize" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Message_Image_GetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Message_Image_GetResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Message_GetFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="ObjId_msg" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="guid" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="TypeSize" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Message_GetFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Message_GetFileResult" type="tns:asyncReturn_GetFile" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="asyncReturn_GetFile">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="InParam_ObjId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="InParam_userid" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Guid" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TypeRequest" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ErrorCount" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorString" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Data" type="s:base64Binary" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Message_AddParent">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="chatid" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="msgid" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="sgParentType16Id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ParentMsgList" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Message_AddParentResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="Message_Add">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="chatid" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="TextMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Message_AddResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Message_AddResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Message_AddSmile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="chatid" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="SmileName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Message_AddSmileResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="Message_ShownTime">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="ChatId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="ObjId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="ds" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="de" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Message_ShownTimeResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="Message_Shown">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="ChatId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="ObjId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="TypeEnd" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Message_ShownResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="Message_GetList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="ParentObjId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="Start" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="Stop" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="Count" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Message_GetListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Message_GetListResult" type="tns:ArrayOfObj" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Spravka_GetStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Spravka_GetStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Spravka_GetStatusResult" type="tns:ArrayOfStatusInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfStatusInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="StatusInfo" nillable="true" type="tns:StatusInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="StatusInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="SgnId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ParentSgnId" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SgnOrder" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="NameHelp" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="KeyName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Message_GetStatusHistory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="ObjId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Message_GetStatusHistoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Message_GetStatusHistoryResult" type="tns:ArrayOfView_ObjStatus_HistoryInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfView_ObjStatus_HistoryInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="view_ObjStatus_HistoryInfo" nillable="true" type="tns:view_ObjStatus_HistoryInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="view_ObjStatus_HistoryInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ObjStatusId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ObjId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PeriodId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="sgMsgStatusId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="dtb" nillable="true" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Message_GetStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="ObjId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Message_GetStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Message_GetStatusResult" type="tns:ArrayOfObjStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfObjStatus">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ObjStatus" nillable="true" type="tns:ObjStatus" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ObjStatus">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ObjStatusId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Period" type="tns:Period" />
+          <s:element minOccurs="1" maxOccurs="1" name="ObjId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="sgMsgStatusId" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Message_SetStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="ObjId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Status" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Message_SetStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Message_SetStatusResult" type="tns:ArrayOfObjStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Message_GetListArray">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="ParentObjId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ListId" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Message_GetListArrayResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Message_GetListArrayResult" type="tns:asyncReturn_Messages" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="asyncReturn_Messages">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ListMessages" type="tns:ArrayOfObj" />
+          <s:element minOccurs="1" maxOccurs="1" name="InParam_chatid" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="InParam_userid" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ErrorCount" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorString" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Message_GetListIDs">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="ParentObjId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="AfterObjId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Message_GetListIDsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Message_GetListIDsResult" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Message_GetListIDs_V2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="ParentObjId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="AfterObjId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Message_GetListIDs_V2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Message_GetListIDs_V2Result" type="tns:asyncReturn_MessagesIDs" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="asyncReturn_MessagesIDs">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ListObjID" type="tns:ArrayOfInt" />
+          <s:element minOccurs="1" maxOccurs="1" name="InParam_chatid" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="InParam_userid" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ErrorCount" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorString" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Message_GetLinks">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="ParentObjId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="LastMessageId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Message_GetLinksResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Message_GetLinksResult" type="tns:ArrayOfObj" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="User_SetParameter">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="UserId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="identityParamToServerChanged" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ParTypeId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="newValue" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="User_SetParameterResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="User_GetParameters">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="UserId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="User_GetParametersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="User_GetParametersResult" type="tns:ArrayOfFn_GetUserParametersResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfFn_GetUserParametersResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="fn_GetUserParametersResult" nillable="true" type="tns:fn_GetUserParametersResult" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="fn_GetUserParametersResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ParamId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserId" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ObjId" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PeriodId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="sgParamClass" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="sgParamVid" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ParamValue" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="sgValueType" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="User_GetListAll">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="User_GetListAllResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="User_GetListAllResult" type="tns:ArrayOfUser" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="User_GetList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="usersid" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="User_GetListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="User_GetListResult" type="tns:ArrayOfUser" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="User_GetSelf">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="User_GetSelfResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="User_GetSelfResult" type="tns:User" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="User_Get">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="userid" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="User_GetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="User_GetResult" type="tns:User" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="User_GetUsersStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="users" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="User_GetUsersStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="User_GetUsersStatusResult" type="tns:ArrayOfUserStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfUserStatus">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="UserStatus" nillable="true" type="tns:UserStatus" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="UserStatus">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="UserId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateLastWrite" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateLastConnect" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateRequest" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="User_GetFoto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="userid" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="FotoNumber" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="User_GetFotoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="User_GetFotoResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="User_FindFull">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="FIO_Like" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="User_FindFullResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="User_FindFullResult" type="tns:ArrayOfUser" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="OU_GetUsers">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="UID_Subdiv" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="OU_GetUsersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="OU_GetUsersResult" type="tns:ArrayOfUser" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Hash_Find">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="findstring" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="FindAttributeId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Hash_FindResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Hash_FindResult" type="tns:ArrayOfView_tbl_HashTag" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfView_tbl_HashTag">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="view_tbl_HashTag" nillable="true" type="tns:view_tbl_HashTag" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="view_tbl_HashTag">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="HashTagId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="HashTag" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="HashTagComment" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PeriodId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserId" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ObjId" nillable="true" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Hash_FindByUserId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="userid" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="FindAttributeId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Hash_FindByUserIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Hash_FindByUserIdResult" type="tns:ArrayOfView_tbl_HashTag" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Hash_FindByObjId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="objid" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="FindAttributeId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Hash_FindByObjIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Hash_FindByObjIdResult" type="tns:ArrayOfView_tbl_HashTag" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Hash_Update">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="h" type="tns:view_tbl_HashTag" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Hash_UpdateResponse">
+        <s:complexType />
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetConnetedTokensSoapIn">
+    <wsdl:part name="parameters" element="tns:GetConnetedTokens" />
+  </wsdl:message>
+  <wsdl:message name="GetConnetedTokensSoapOut">
+    <wsdl:part name="parameters" element="tns:GetConnetedTokensResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTokensSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTokens" />
+  </wsdl:message>
+  <wsdl:message name="GetTokensSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTokensResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetConnectInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetConnectInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetConnectInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetConnectInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="AboutSoapIn">
+    <wsdl:part name="parameters" element="tns:About" />
+  </wsdl:message>
+  <wsdl:message name="AboutSoapOut">
+    <wsdl:part name="parameters" element="tns:AboutResponse" />
+  </wsdl:message>
+  <wsdl:message name="ClearSessionSoapIn">
+    <wsdl:part name="parameters" element="tns:ClearSession" />
+  </wsdl:message>
+  <wsdl:message name="ClearSessionSoapOut">
+    <wsdl:part name="parameters" element="tns:ClearSessionResponse" />
+  </wsdl:message>
+  <wsdl:message name="Chat_RenameSoapIn">
+    <wsdl:part name="parameters" element="tns:Chat_Rename" />
+  </wsdl:message>
+  <wsdl:message name="Chat_RenameSoapOut">
+    <wsdl:part name="parameters" element="tns:Chat_RenameResponse" />
+  </wsdl:message>
+  <wsdl:message name="Chat_GetMyStatisticSoapIn">
+    <wsdl:part name="parameters" element="tns:Chat_GetMyStatistic" />
+  </wsdl:message>
+  <wsdl:message name="Chat_GetMyStatisticSoapOut">
+    <wsdl:part name="parameters" element="tns:Chat_GetMyStatisticResponse" />
+  </wsdl:message>
+  <wsdl:message name="Chat_GetMyStatistic_oldSoapIn">
+    <wsdl:part name="parameters" element="tns:Chat_GetMyStatistic_old" />
+  </wsdl:message>
+  <wsdl:message name="Chat_GetMyStatistic_oldSoapOut">
+    <wsdl:part name="parameters" element="tns:Chat_GetMyStatistic_oldResponse" />
+  </wsdl:message>
+  <wsdl:message name="Chat_UnSubscribeUserSoapIn">
+    <wsdl:part name="parameters" element="tns:Chat_UnSubscribeUser" />
+  </wsdl:message>
+  <wsdl:message name="Chat_UnSubscribeUserSoapOut">
+    <wsdl:part name="parameters" element="tns:Chat_UnSubscribeUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="Chat_SubscribeUserSoapIn">
+    <wsdl:part name="parameters" element="tns:Chat_SubscribeUser" />
+  </wsdl:message>
+  <wsdl:message name="Chat_SubscribeUserSoapOut">
+    <wsdl:part name="parameters" element="tns:Chat_SubscribeUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="Chat_LeaveSoapIn">
+    <wsdl:part name="parameters" element="tns:Chat_Leave" />
+  </wsdl:message>
+  <wsdl:message name="Chat_LeaveSoapOut">
+    <wsdl:part name="parameters" element="tns:Chat_LeaveResponse" />
+  </wsdl:message>
+  <wsdl:message name="Chat_SelectedSoapIn">
+    <wsdl:part name="parameters" element="tns:Chat_Selected" />
+  </wsdl:message>
+  <wsdl:message name="Chat_SelectedSoapOut">
+    <wsdl:part name="parameters" element="tns:Chat_SelectedResponse" />
+  </wsdl:message>
+  <wsdl:message name="Chat_CreateLinkSoapIn">
+    <wsdl:part name="parameters" element="tns:Chat_CreateLink" />
+  </wsdl:message>
+  <wsdl:message name="Chat_CreateLinkSoapOut">
+    <wsdl:part name="parameters" element="tns:Chat_CreateLinkResponse" />
+  </wsdl:message>
+  <wsdl:message name="Chat_CreateMainLinkSoapIn">
+    <wsdl:part name="parameters" element="tns:Chat_CreateMainLink" />
+  </wsdl:message>
+  <wsdl:message name="Chat_CreateMainLinkSoapOut">
+    <wsdl:part name="parameters" element="tns:Chat_CreateMainLinkResponse" />
+  </wsdl:message>
+  <wsdl:message name="Chat_GetSelectedSoapIn">
+    <wsdl:part name="parameters" element="tns:Chat_GetSelected" />
+  </wsdl:message>
+  <wsdl:message name="Chat_GetSelectedSoapOut">
+    <wsdl:part name="parameters" element="tns:Chat_GetSelectedResponse" />
+  </wsdl:message>
+  <wsdl:message name="Chat_AddCorporativeSoapIn">
+    <wsdl:part name="parameters" element="tns:Chat_AddCorporative" />
+  </wsdl:message>
+  <wsdl:message name="Chat_AddCorporativeSoapOut">
+    <wsdl:part name="parameters" element="tns:Chat_AddCorporativeResponse" />
+  </wsdl:message>
+  <wsdl:message name="Chat_AddSoapIn">
+    <wsdl:part name="parameters" element="tns:Chat_Add" />
+  </wsdl:message>
+  <wsdl:message name="Chat_AddSoapOut">
+    <wsdl:part name="parameters" element="tns:Chat_AddResponse" />
+  </wsdl:message>
+  <wsdl:message name="Chat_CreateAndSubscribeSoapIn">
+    <wsdl:part name="parameters" element="tns:Chat_CreateAndSubscribe" />
+  </wsdl:message>
+  <wsdl:message name="Chat_CreateAndSubscribeSoapOut">
+    <wsdl:part name="parameters" element="tns:Chat_CreateAndSubscribeResponse" />
+  </wsdl:message>
+  <wsdl:message name="Chat_GetListSoapIn">
+    <wsdl:part name="parameters" element="tns:Chat_GetList" />
+  </wsdl:message>
+  <wsdl:message name="Chat_GetListSoapOut">
+    <wsdl:part name="parameters" element="tns:Chat_GetListResponse" />
+  </wsdl:message>
+  <wsdl:message name="Chat_GetSoapIn">
+    <wsdl:part name="parameters" element="tns:Chat_Get" />
+  </wsdl:message>
+  <wsdl:message name="Chat_GetSoapOut">
+    <wsdl:part name="parameters" element="tns:Chat_GetResponse" />
+  </wsdl:message>
+  <wsdl:message name="Chat_SetPublicSoapIn">
+    <wsdl:part name="parameters" element="tns:Chat_SetPublic" />
+  </wsdl:message>
+  <wsdl:message name="Chat_SetPublicSoapOut">
+    <wsdl:part name="parameters" element="tns:Chat_SetPublicResponse" />
+  </wsdl:message>
+  <wsdl:message name="Chat_GetList_PublicByTypeSoapIn">
+    <wsdl:part name="parameters" element="tns:Chat_GetList_PublicByType" />
+  </wsdl:message>
+  <wsdl:message name="Chat_GetList_PublicByTypeSoapOut">
+    <wsdl:part name="parameters" element="tns:Chat_GetList_PublicByTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="Chat_GetListCorporateSoapIn">
+    <wsdl:part name="parameters" element="tns:Chat_GetListCorporate" />
+  </wsdl:message>
+  <wsdl:message name="Chat_GetListCorporateSoapOut">
+    <wsdl:part name="parameters" element="tns:Chat_GetListCorporateResponse" />
+  </wsdl:message>
+  <wsdl:message name="Chat_GetTypesSoapIn">
+    <wsdl:part name="parameters" element="tns:Chat_GetTypes" />
+  </wsdl:message>
+  <wsdl:message name="Chat_GetTypesSoapOut">
+    <wsdl:part name="parameters" element="tns:Chat_GetTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="Chat_GetUsersSoapIn">
+    <wsdl:part name="parameters" element="tns:Chat_GetUsers" />
+  </wsdl:message>
+  <wsdl:message name="Chat_GetUsersSoapOut">
+    <wsdl:part name="parameters" element="tns:Chat_GetUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="Message_Image_AddSoapIn">
+    <wsdl:part name="parameters" element="tns:Message_Image_Add" />
+  </wsdl:message>
+  <wsdl:message name="Message_Image_AddSoapOut">
+    <wsdl:part name="parameters" element="tns:Message_Image_AddResponse" />
+  </wsdl:message>
+  <wsdl:message name="Message_Image_GetSoapIn">
+    <wsdl:part name="parameters" element="tns:Message_Image_Get" />
+  </wsdl:message>
+  <wsdl:message name="Message_Image_GetSoapOut">
+    <wsdl:part name="parameters" element="tns:Message_Image_GetResponse" />
+  </wsdl:message>
+  <wsdl:message name="Message_GetFileSoapIn">
+    <wsdl:part name="parameters" element="tns:Message_GetFile" />
+  </wsdl:message>
+  <wsdl:message name="Message_GetFileSoapOut">
+    <wsdl:part name="parameters" element="tns:Message_GetFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="Message_AddParentSoapIn">
+    <wsdl:part name="parameters" element="tns:Message_AddParent" />
+  </wsdl:message>
+  <wsdl:message name="Message_AddParentSoapOut">
+    <wsdl:part name="parameters" element="tns:Message_AddParentResponse" />
+  </wsdl:message>
+  <wsdl:message name="Message_AddSoapIn">
+    <wsdl:part name="parameters" element="tns:Message_Add" />
+  </wsdl:message>
+  <wsdl:message name="Message_AddSoapOut">
+    <wsdl:part name="parameters" element="tns:Message_AddResponse" />
+  </wsdl:message>
+  <wsdl:message name="Message_AddSmileSoapIn">
+    <wsdl:part name="parameters" element="tns:Message_AddSmile" />
+  </wsdl:message>
+  <wsdl:message name="Message_AddSmileSoapOut">
+    <wsdl:part name="parameters" element="tns:Message_AddSmileResponse" />
+  </wsdl:message>
+  <wsdl:message name="Message_ShownTimeSoapIn">
+    <wsdl:part name="parameters" element="tns:Message_ShownTime" />
+  </wsdl:message>
+  <wsdl:message name="Message_ShownTimeSoapOut">
+    <wsdl:part name="parameters" element="tns:Message_ShownTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="Message_ShownSoapIn">
+    <wsdl:part name="parameters" element="tns:Message_Shown" />
+  </wsdl:message>
+  <wsdl:message name="Message_ShownSoapOut">
+    <wsdl:part name="parameters" element="tns:Message_ShownResponse" />
+  </wsdl:message>
+  <wsdl:message name="Message_GetListSoapIn">
+    <wsdl:part name="parameters" element="tns:Message_GetList" />
+  </wsdl:message>
+  <wsdl:message name="Message_GetListSoapOut">
+    <wsdl:part name="parameters" element="tns:Message_GetListResponse" />
+  </wsdl:message>
+  <wsdl:message name="Spravka_GetStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:Spravka_GetStatus" />
+  </wsdl:message>
+  <wsdl:message name="Spravka_GetStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:Spravka_GetStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="Message_GetStatusHistorySoapIn">
+    <wsdl:part name="parameters" element="tns:Message_GetStatusHistory" />
+  </wsdl:message>
+  <wsdl:message name="Message_GetStatusHistorySoapOut">
+    <wsdl:part name="parameters" element="tns:Message_GetStatusHistoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="Message_GetStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:Message_GetStatus" />
+  </wsdl:message>
+  <wsdl:message name="Message_GetStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:Message_GetStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="Message_SetStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:Message_SetStatus" />
+  </wsdl:message>
+  <wsdl:message name="Message_SetStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:Message_SetStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="Message_GetListArraySoapIn">
+    <wsdl:part name="parameters" element="tns:Message_GetListArray" />
+  </wsdl:message>
+  <wsdl:message name="Message_GetListArraySoapOut">
+    <wsdl:part name="parameters" element="tns:Message_GetListArrayResponse" />
+  </wsdl:message>
+  <wsdl:message name="Message_GetListIDsSoapIn">
+    <wsdl:part name="parameters" element="tns:Message_GetListIDs" />
+  </wsdl:message>
+  <wsdl:message name="Message_GetListIDsSoapOut">
+    <wsdl:part name="parameters" element="tns:Message_GetListIDsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Message_GetListIDs_V2SoapIn">
+    <wsdl:part name="parameters" element="tns:Message_GetListIDs_V2" />
+  </wsdl:message>
+  <wsdl:message name="Message_GetListIDs_V2SoapOut">
+    <wsdl:part name="parameters" element="tns:Message_GetListIDs_V2Response" />
+  </wsdl:message>
+  <wsdl:message name="Message_GetLinksSoapIn">
+    <wsdl:part name="parameters" element="tns:Message_GetLinks" />
+  </wsdl:message>
+  <wsdl:message name="Message_GetLinksSoapOut">
+    <wsdl:part name="parameters" element="tns:Message_GetLinksResponse" />
+  </wsdl:message>
+  <wsdl:message name="User_SetParameterSoapIn">
+    <wsdl:part name="parameters" element="tns:User_SetParameter" />
+  </wsdl:message>
+  <wsdl:message name="User_SetParameterSoapOut">
+    <wsdl:part name="parameters" element="tns:User_SetParameterResponse" />
+  </wsdl:message>
+  <wsdl:message name="User_GetParametersSoapIn">
+    <wsdl:part name="parameters" element="tns:User_GetParameters" />
+  </wsdl:message>
+  <wsdl:message name="User_GetParametersSoapOut">
+    <wsdl:part name="parameters" element="tns:User_GetParametersResponse" />
+  </wsdl:message>
+  <wsdl:message name="User_GetListAllSoapIn">
+    <wsdl:part name="parameters" element="tns:User_GetListAll" />
+  </wsdl:message>
+  <wsdl:message name="User_GetListAllSoapOut">
+    <wsdl:part name="parameters" element="tns:User_GetListAllResponse" />
+  </wsdl:message>
+  <wsdl:message name="User_GetListSoapIn">
+    <wsdl:part name="parameters" element="tns:User_GetList" />
+  </wsdl:message>
+  <wsdl:message name="User_GetListSoapOut">
+    <wsdl:part name="parameters" element="tns:User_GetListResponse" />
+  </wsdl:message>
+  <wsdl:message name="User_GetSelfSoapIn">
+    <wsdl:part name="parameters" element="tns:User_GetSelf" />
+  </wsdl:message>
+  <wsdl:message name="User_GetSelfSoapOut">
+    <wsdl:part name="parameters" element="tns:User_GetSelfResponse" />
+  </wsdl:message>
+  <wsdl:message name="User_GetSoapIn">
+    <wsdl:part name="parameters" element="tns:User_Get" />
+  </wsdl:message>
+  <wsdl:message name="User_GetSoapOut">
+    <wsdl:part name="parameters" element="tns:User_GetResponse" />
+  </wsdl:message>
+  <wsdl:message name="User_GetUsersStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:User_GetUsersStatus" />
+  </wsdl:message>
+  <wsdl:message name="User_GetUsersStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:User_GetUsersStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="User_GetFotoSoapIn">
+    <wsdl:part name="parameters" element="tns:User_GetFoto" />
+  </wsdl:message>
+  <wsdl:message name="User_GetFotoSoapOut">
+    <wsdl:part name="parameters" element="tns:User_GetFotoResponse" />
+  </wsdl:message>
+  <wsdl:message name="User_FindFullSoapIn">
+    <wsdl:part name="parameters" element="tns:User_FindFull" />
+  </wsdl:message>
+  <wsdl:message name="User_FindFullSoapOut">
+    <wsdl:part name="parameters" element="tns:User_FindFullResponse" />
+  </wsdl:message>
+  <wsdl:message name="OU_GetUsersSoapIn">
+    <wsdl:part name="parameters" element="tns:OU_GetUsers" />
+  </wsdl:message>
+  <wsdl:message name="OU_GetUsersSoapOut">
+    <wsdl:part name="parameters" element="tns:OU_GetUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="Hash_FindSoapIn">
+    <wsdl:part name="parameters" element="tns:Hash_Find" />
+  </wsdl:message>
+  <wsdl:message name="Hash_FindSoapOut">
+    <wsdl:part name="parameters" element="tns:Hash_FindResponse" />
+  </wsdl:message>
+  <wsdl:message name="Hash_FindByUserIdSoapIn">
+    <wsdl:part name="parameters" element="tns:Hash_FindByUserId" />
+  </wsdl:message>
+  <wsdl:message name="Hash_FindByUserIdSoapOut">
+    <wsdl:part name="parameters" element="tns:Hash_FindByUserIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="Hash_FindByObjIdSoapIn">
+    <wsdl:part name="parameters" element="tns:Hash_FindByObjId" />
+  </wsdl:message>
+  <wsdl:message name="Hash_FindByObjIdSoapOut">
+    <wsdl:part name="parameters" element="tns:Hash_FindByObjIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="Hash_UpdateSoapIn">
+    <wsdl:part name="parameters" element="tns:Hash_Update" />
+  </wsdl:message>
+  <wsdl:message name="Hash_UpdateSoapOut">
+    <wsdl:part name="parameters" element="tns:Hash_UpdateResponse" />
+  </wsdl:message>
+  <wsdl:portType name="GetUserInfoSoap">
+    <wsdl:operation name="GetConnetedTokens">
+      <wsdl:input message="tns:GetConnetedTokensSoapIn" />
+      <wsdl:output message="tns:GetConnetedTokensSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTokens">
+      <wsdl:input message="tns:GetTokensSoapIn" />
+      <wsdl:output message="tns:GetTokensSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetConnectInfo">
+      <wsdl:input message="tns:GetConnectInfoSoapIn" />
+      <wsdl:output message="tns:GetConnectInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="About">
+      <wsdl:input message="tns:AboutSoapIn" />
+      <wsdl:output message="tns:AboutSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ClearSession">
+      <wsdl:input message="tns:ClearSessionSoapIn" />
+      <wsdl:output message="tns:ClearSessionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Chat_Rename">
+      <wsdl:input message="tns:Chat_RenameSoapIn" />
+      <wsdl:output message="tns:Chat_RenameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Chat_GetMyStatistic">
+      <wsdl:input message="tns:Chat_GetMyStatisticSoapIn" />
+      <wsdl:output message="tns:Chat_GetMyStatisticSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Chat_GetMyStatistic_old">
+      <wsdl:input message="tns:Chat_GetMyStatistic_oldSoapIn" />
+      <wsdl:output message="tns:Chat_GetMyStatistic_oldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Chat_UnSubscribeUser">
+      <wsdl:input message="tns:Chat_UnSubscribeUserSoapIn" />
+      <wsdl:output message="tns:Chat_UnSubscribeUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Chat_SubscribeUser">
+      <wsdl:input message="tns:Chat_SubscribeUserSoapIn" />
+      <wsdl:output message="tns:Chat_SubscribeUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Chat_Leave">
+      <wsdl:input message="tns:Chat_LeaveSoapIn" />
+      <wsdl:output message="tns:Chat_LeaveSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Chat_Selected">
+      <wsdl:input message="tns:Chat_SelectedSoapIn" />
+      <wsdl:output message="tns:Chat_SelectedSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Chat_CreateLink">
+      <wsdl:input message="tns:Chat_CreateLinkSoapIn" />
+      <wsdl:output message="tns:Chat_CreateLinkSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Chat_CreateMainLink">
+      <wsdl:input message="tns:Chat_CreateMainLinkSoapIn" />
+      <wsdl:output message="tns:Chat_CreateMainLinkSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Chat_GetSelected">
+      <wsdl:input message="tns:Chat_GetSelectedSoapIn" />
+      <wsdl:output message="tns:Chat_GetSelectedSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Chat_AddCorporative">
+      <wsdl:input message="tns:Chat_AddCorporativeSoapIn" />
+      <wsdl:output message="tns:Chat_AddCorporativeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Chat_Add">
+      <wsdl:input message="tns:Chat_AddSoapIn" />
+      <wsdl:output message="tns:Chat_AddSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Chat_CreateAndSubscribe">
+      <wsdl:input message="tns:Chat_CreateAndSubscribeSoapIn" />
+      <wsdl:output message="tns:Chat_CreateAndSubscribeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Chat_GetList">
+      <wsdl:input message="tns:Chat_GetListSoapIn" />
+      <wsdl:output message="tns:Chat_GetListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Chat_Get">
+      <wsdl:input message="tns:Chat_GetSoapIn" />
+      <wsdl:output message="tns:Chat_GetSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Chat_SetPublic">
+      <wsdl:input message="tns:Chat_SetPublicSoapIn" />
+      <wsdl:output message="tns:Chat_SetPublicSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Chat_GetList_PublicByType">
+      <wsdl:input message="tns:Chat_GetList_PublicByTypeSoapIn" />
+      <wsdl:output message="tns:Chat_GetList_PublicByTypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Chat_GetListCorporate">
+      <wsdl:input message="tns:Chat_GetListCorporateSoapIn" />
+      <wsdl:output message="tns:Chat_GetListCorporateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Chat_GetTypes">
+      <wsdl:input message="tns:Chat_GetTypesSoapIn" />
+      <wsdl:output message="tns:Chat_GetTypesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Chat_GetUsers">
+      <wsdl:input message="tns:Chat_GetUsersSoapIn" />
+      <wsdl:output message="tns:Chat_GetUsersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Message_Image_Add">
+      <wsdl:input message="tns:Message_Image_AddSoapIn" />
+      <wsdl:output message="tns:Message_Image_AddSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Message_Image_Get">
+      <wsdl:input message="tns:Message_Image_GetSoapIn" />
+      <wsdl:output message="tns:Message_Image_GetSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Message_GetFile">
+      <wsdl:input message="tns:Message_GetFileSoapIn" />
+      <wsdl:output message="tns:Message_GetFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Message_AddParent">
+      <wsdl:input message="tns:Message_AddParentSoapIn" />
+      <wsdl:output message="tns:Message_AddParentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Message_Add">
+      <wsdl:input message="tns:Message_AddSoapIn" />
+      <wsdl:output message="tns:Message_AddSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Message_AddSmile">
+      <wsdl:input message="tns:Message_AddSmileSoapIn" />
+      <wsdl:output message="tns:Message_AddSmileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Message_ShownTime">
+      <wsdl:input message="tns:Message_ShownTimeSoapIn" />
+      <wsdl:output message="tns:Message_ShownTimeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Message_Shown">
+      <wsdl:input message="tns:Message_ShownSoapIn" />
+      <wsdl:output message="tns:Message_ShownSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Message_GetList">
+      <wsdl:input message="tns:Message_GetListSoapIn" />
+      <wsdl:output message="tns:Message_GetListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Spravka_GetStatus">
+      <wsdl:input message="tns:Spravka_GetStatusSoapIn" />
+      <wsdl:output message="tns:Spravka_GetStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Message_GetStatusHistory">
+      <wsdl:input message="tns:Message_GetStatusHistorySoapIn" />
+      <wsdl:output message="tns:Message_GetStatusHistorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Message_GetStatus">
+      <wsdl:input message="tns:Message_GetStatusSoapIn" />
+      <wsdl:output message="tns:Message_GetStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Message_SetStatus">
+      <wsdl:input message="tns:Message_SetStatusSoapIn" />
+      <wsdl:output message="tns:Message_SetStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Message_GetListArray">
+      <wsdl:input message="tns:Message_GetListArraySoapIn" />
+      <wsdl:output message="tns:Message_GetListArraySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Message_GetListIDs">
+      <wsdl:input message="tns:Message_GetListIDsSoapIn" />
+      <wsdl:output message="tns:Message_GetListIDsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Message_GetListIDs_V2">
+      <wsdl:input message="tns:Message_GetListIDs_V2SoapIn" />
+      <wsdl:output message="tns:Message_GetListIDs_V2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Message_GetLinks">
+      <wsdl:input message="tns:Message_GetLinksSoapIn" />
+      <wsdl:output message="tns:Message_GetLinksSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="User_SetParameter">
+      <wsdl:input message="tns:User_SetParameterSoapIn" />
+      <wsdl:output message="tns:User_SetParameterSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="User_GetParameters">
+      <wsdl:input message="tns:User_GetParametersSoapIn" />
+      <wsdl:output message="tns:User_GetParametersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="User_GetListAll">
+      <wsdl:input message="tns:User_GetListAllSoapIn" />
+      <wsdl:output message="tns:User_GetListAllSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="User_GetList">
+      <wsdl:input message="tns:User_GetListSoapIn" />
+      <wsdl:output message="tns:User_GetListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="User_GetSelf">
+      <wsdl:input message="tns:User_GetSelfSoapIn" />
+      <wsdl:output message="tns:User_GetSelfSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="User_Get">
+      <wsdl:input message="tns:User_GetSoapIn" />
+      <wsdl:output message="tns:User_GetSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="User_GetUsersStatus">
+      <wsdl:input message="tns:User_GetUsersStatusSoapIn" />
+      <wsdl:output message="tns:User_GetUsersStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="User_GetFoto">
+      <wsdl:input message="tns:User_GetFotoSoapIn" />
+      <wsdl:output message="tns:User_GetFotoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="User_FindFull">
+      <wsdl:input message="tns:User_FindFullSoapIn" />
+      <wsdl:output message="tns:User_FindFullSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="OU_GetUsers">
+      <wsdl:input message="tns:OU_GetUsersSoapIn" />
+      <wsdl:output message="tns:OU_GetUsersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Hash_Find">
+      <wsdl:input message="tns:Hash_FindSoapIn" />
+      <wsdl:output message="tns:Hash_FindSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Hash_FindByUserId">
+      <wsdl:input message="tns:Hash_FindByUserIdSoapIn" />
+      <wsdl:output message="tns:Hash_FindByUserIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Hash_FindByObjId">
+      <wsdl:input message="tns:Hash_FindByObjIdSoapIn" />
+      <wsdl:output message="tns:Hash_FindByObjIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Hash_Update">
+      <wsdl:input message="tns:Hash_UpdateSoapIn" />
+      <wsdl:output message="tns:Hash_UpdateSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="GetUserInfoSoap" type="tns:GetUserInfoSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetConnetedTokens">
+      <soap:operation soapAction="http://localhost/xrogi/GetConnetedTokens" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTokens">
+      <soap:operation soapAction="http://localhost/xrogi/GetTokens" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetConnectInfo">
+      <soap:operation soapAction="http://localhost/xrogi/GetConnectInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="About">
+      <soap:operation soapAction="http://localhost/xrogi/About" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClearSession">
+      <soap:operation soapAction="http://localhost/xrogi/ClearSession" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Chat_Rename">
+      <soap:operation soapAction="http://localhost/xrogi/Chat_Rename" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Chat_GetMyStatistic">
+      <soap:operation soapAction="http://localhost/xrogi/Chat_GetMyStatistic" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Chat_GetMyStatistic_old">
+      <soap:operation soapAction="http://localhost/xrogi/Chat_GetMyStatistic_old" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Chat_UnSubscribeUser">
+      <soap:operation soapAction="http://localhost/xrogi/Chat_UnSubscribeUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Chat_SubscribeUser">
+      <soap:operation soapAction="http://localhost/xrogi/Chat_SubscribeUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Chat_Leave">
+      <soap:operation soapAction="http://localhost/xrogi/Chat_Leave" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Chat_Selected">
+      <soap:operation soapAction="http://localhost/xrogi/Chat_Selected" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Chat_CreateLink">
+      <soap:operation soapAction="http://localhost/xrogi/Chat_CreateLink" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Chat_CreateMainLink">
+      <soap:operation soapAction="http://localhost/xrogi/Chat_CreateMainLink" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Chat_GetSelected">
+      <soap:operation soapAction="http://localhost/xrogi/Chat_GetSelected" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Chat_AddCorporative">
+      <soap:operation soapAction="http://localhost/xrogi/Chat_AddCorporative" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Chat_Add">
+      <soap:operation soapAction="http://localhost/xrogi/Chat_Add" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Chat_CreateAndSubscribe">
+      <soap:operation soapAction="http://localhost/xrogi/Chat_CreateAndSubscribe" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Chat_GetList">
+      <soap:operation soapAction="http://localhost/xrogi/Chat_GetList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Chat_Get">
+      <soap:operation soapAction="http://localhost/xrogi/Chat_Get" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Chat_SetPublic">
+      <soap:operation soapAction="http://localhost/xrogi/Chat_SetPublic" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Chat_GetList_PublicByType">
+      <soap:operation soapAction="http://localhost/xrogi/Chat_GetList_PublicByType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Chat_GetListCorporate">
+      <soap:operation soapAction="http://localhost/xrogi/Chat_GetListCorporate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Chat_GetTypes">
+      <soap:operation soapAction="http://localhost/xrogi/Chat_GetTypes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Chat_GetUsers">
+      <soap:operation soapAction="http://localhost/xrogi/Chat_GetUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Message_Image_Add">
+      <soap:operation soapAction="http://localhost/xrogi/Message_Image_Add" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Message_Image_Get">
+      <soap:operation soapAction="http://localhost/xrogi/Message_Image_Get" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Message_GetFile">
+      <soap:operation soapAction="http://localhost/xrogi/Message_GetFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Message_AddParent">
+      <soap:operation soapAction="http://localhost/xrogi/Message_AddParent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Message_Add">
+      <soap:operation soapAction="http://localhost/xrogi/Message_Add" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Message_AddSmile">
+      <soap:operation soapAction="http://localhost/xrogi/Message_AddSmile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Message_ShownTime">
+      <soap:operation soapAction="http://localhost/xrogi/Message_ShownTime" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Message_Shown">
+      <soap:operation soapAction="http://localhost/xrogi/Message_Shown" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Message_GetList">
+      <soap:operation soapAction="http://localhost/xrogi/Message_GetList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Spravka_GetStatus">
+      <soap:operation soapAction="http://localhost/xrogi/Spravka_GetStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Message_GetStatusHistory">
+      <soap:operation soapAction="http://localhost/xrogi/Message_GetStatusHistory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Message_GetStatus">
+      <soap:operation soapAction="http://localhost/xrogi/Message_GetStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Message_SetStatus">
+      <soap:operation soapAction="http://localhost/xrogi/Message_SetStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Message_GetListArray">
+      <soap:operation soapAction="http://localhost/xrogi/Message_GetListArray" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Message_GetListIDs">
+      <soap:operation soapAction="http://localhost/xrogi/Message_GetListIDs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Message_GetListIDs_V2">
+      <soap:operation soapAction="http://localhost/xrogi/Message_GetListIDs_V2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Message_GetLinks">
+      <soap:operation soapAction="http://localhost/xrogi/Message_GetLinks" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="User_SetParameter">
+      <soap:operation soapAction="http://localhost/xrogi/User_SetParameter" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="User_GetParameters">
+      <soap:operation soapAction="http://localhost/xrogi/User_GetParameters" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="User_GetListAll">
+      <soap:operation soapAction="http://localhost/xrogi/User_GetListAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="User_GetList">
+      <soap:operation soapAction="http://localhost/xrogi/User_GetList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="User_GetSelf">
+      <soap:operation soapAction="http://localhost/xrogi/User_GetSelf" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="User_Get">
+      <soap:operation soapAction="http://localhost/xrogi/User_Get" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="User_GetUsersStatus">
+      <soap:operation soapAction="http://localhost/xrogi/User_GetUsersStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="User_GetFoto">
+      <soap:operation soapAction="http://localhost/xrogi/User_GetFoto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="User_FindFull">
+      <soap:operation soapAction="http://localhost/xrogi/User_FindFull" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OU_GetUsers">
+      <soap:operation soapAction="http://localhost/xrogi/OU_GetUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Hash_Find">
+      <soap:operation soapAction="http://localhost/xrogi/Hash_Find" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Hash_FindByUserId">
+      <soap:operation soapAction="http://localhost/xrogi/Hash_FindByUserId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Hash_FindByObjId">
+      <soap:operation soapAction="http://localhost/xrogi/Hash_FindByObjId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Hash_Update">
+      <soap:operation soapAction="http://localhost/xrogi/Hash_Update" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="GetUserInfoSoap12" type="tns:GetUserInfoSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetConnetedTokens">
+      <soap12:operation soapAction="http://localhost/xrogi/GetConnetedTokens" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTokens">
+      <soap12:operation soapAction="http://localhost/xrogi/GetTokens" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetConnectInfo">
+      <soap12:operation soapAction="http://localhost/xrogi/GetConnectInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="About">
+      <soap12:operation soapAction="http://localhost/xrogi/About" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClearSession">
+      <soap12:operation soapAction="http://localhost/xrogi/ClearSession" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Chat_Rename">
+      <soap12:operation soapAction="http://localhost/xrogi/Chat_Rename" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Chat_GetMyStatistic">
+      <soap12:operation soapAction="http://localhost/xrogi/Chat_GetMyStatistic" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Chat_GetMyStatistic_old">
+      <soap12:operation soapAction="http://localhost/xrogi/Chat_GetMyStatistic_old" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Chat_UnSubscribeUser">
+      <soap12:operation soapAction="http://localhost/xrogi/Chat_UnSubscribeUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Chat_SubscribeUser">
+      <soap12:operation soapAction="http://localhost/xrogi/Chat_SubscribeUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Chat_Leave">
+      <soap12:operation soapAction="http://localhost/xrogi/Chat_Leave" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Chat_Selected">
+      <soap12:operation soapAction="http://localhost/xrogi/Chat_Selected" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Chat_CreateLink">
+      <soap12:operation soapAction="http://localhost/xrogi/Chat_CreateLink" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Chat_CreateMainLink">
+      <soap12:operation soapAction="http://localhost/xrogi/Chat_CreateMainLink" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Chat_GetSelected">
+      <soap12:operation soapAction="http://localhost/xrogi/Chat_GetSelected" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Chat_AddCorporative">
+      <soap12:operation soapAction="http://localhost/xrogi/Chat_AddCorporative" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Chat_Add">
+      <soap12:operation soapAction="http://localhost/xrogi/Chat_Add" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Chat_CreateAndSubscribe">
+      <soap12:operation soapAction="http://localhost/xrogi/Chat_CreateAndSubscribe" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Chat_GetList">
+      <soap12:operation soapAction="http://localhost/xrogi/Chat_GetList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Chat_Get">
+      <soap12:operation soapAction="http://localhost/xrogi/Chat_Get" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Chat_SetPublic">
+      <soap12:operation soapAction="http://localhost/xrogi/Chat_SetPublic" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Chat_GetList_PublicByType">
+      <soap12:operation soapAction="http://localhost/xrogi/Chat_GetList_PublicByType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Chat_GetListCorporate">
+      <soap12:operation soapAction="http://localhost/xrogi/Chat_GetListCorporate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Chat_GetTypes">
+      <soap12:operation soapAction="http://localhost/xrogi/Chat_GetTypes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Chat_GetUsers">
+      <soap12:operation soapAction="http://localhost/xrogi/Chat_GetUsers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Message_Image_Add">
+      <soap12:operation soapAction="http://localhost/xrogi/Message_Image_Add" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Message_Image_Get">
+      <soap12:operation soapAction="http://localhost/xrogi/Message_Image_Get" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Message_GetFile">
+      <soap12:operation soapAction="http://localhost/xrogi/Message_GetFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Message_AddParent">
+      <soap12:operation soapAction="http://localhost/xrogi/Message_AddParent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Message_Add">
+      <soap12:operation soapAction="http://localhost/xrogi/Message_Add" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Message_AddSmile">
+      <soap12:operation soapAction="http://localhost/xrogi/Message_AddSmile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Message_ShownTime">
+      <soap12:operation soapAction="http://localhost/xrogi/Message_ShownTime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Message_Shown">
+      <soap12:operation soapAction="http://localhost/xrogi/Message_Shown" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Message_GetList">
+      <soap12:operation soapAction="http://localhost/xrogi/Message_GetList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Spravka_GetStatus">
+      <soap12:operation soapAction="http://localhost/xrogi/Spravka_GetStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Message_GetStatusHistory">
+      <soap12:operation soapAction="http://localhost/xrogi/Message_GetStatusHistory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Message_GetStatus">
+      <soap12:operation soapAction="http://localhost/xrogi/Message_GetStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Message_SetStatus">
+      <soap12:operation soapAction="http://localhost/xrogi/Message_SetStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Message_GetListArray">
+      <soap12:operation soapAction="http://localhost/xrogi/Message_GetListArray" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Message_GetListIDs">
+      <soap12:operation soapAction="http://localhost/xrogi/Message_GetListIDs" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Message_GetListIDs_V2">
+      <soap12:operation soapAction="http://localhost/xrogi/Message_GetListIDs_V2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Message_GetLinks">
+      <soap12:operation soapAction="http://localhost/xrogi/Message_GetLinks" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="User_SetParameter">
+      <soap12:operation soapAction="http://localhost/xrogi/User_SetParameter" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="User_GetParameters">
+      <soap12:operation soapAction="http://localhost/xrogi/User_GetParameters" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="User_GetListAll">
+      <soap12:operation soapAction="http://localhost/xrogi/User_GetListAll" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="User_GetList">
+      <soap12:operation soapAction="http://localhost/xrogi/User_GetList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="User_GetSelf">
+      <soap12:operation soapAction="http://localhost/xrogi/User_GetSelf" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="User_Get">
+      <soap12:operation soapAction="http://localhost/xrogi/User_Get" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="User_GetUsersStatus">
+      <soap12:operation soapAction="http://localhost/xrogi/User_GetUsersStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="User_GetFoto">
+      <soap12:operation soapAction="http://localhost/xrogi/User_GetFoto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="User_FindFull">
+      <soap12:operation soapAction="http://localhost/xrogi/User_FindFull" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OU_GetUsers">
+      <soap12:operation soapAction="http://localhost/xrogi/OU_GetUsers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Hash_Find">
+      <soap12:operation soapAction="http://localhost/xrogi/Hash_Find" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Hash_FindByUserId">
+      <soap12:operation soapAction="http://localhost/xrogi/Hash_FindByUserId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Hash_FindByObjId">
+      <soap12:operation soapAction="http://localhost/xrogi/Hash_FindByObjId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Hash_Update">
+      <soap12:operation soapAction="http://localhost/xrogi/Hash_Update" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GetUserInfo">
+    <wsdl:port name="GetUserInfoSoap" binding="tns:GetUserInfoSoap">
+      <soap:address location="http://localhost:53847/GetUserInfo.asmx" />
+    </wsdl:port>
+    <wsdl:port name="GetUserInfoSoap12" binding="tns:GetUserInfoSoap12">
+      <soap12:address location="http://localhost:53847/GetUserInfo.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
