@@ -47,8 +47,11 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.персональноеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Device_MenuItems = new System.Windows.Forms.ToolStripMenuItem();
+            this.добавитьЧерезQRСсылкуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.информацияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SetupMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem20 = new System.Windows.Forms.ToolStripSeparator();
+            this.отправитьЛогОшибокРазработчикуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.новыйToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemSetup = new System.Windows.Forms.ToolStripMenuItem();
             this.параметрыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -78,17 +81,25 @@
             this.мояToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.тестТрансформацииToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SendTestMessage = new System.Windows.Forms.ToolStripMenuItem();
+            this.перерисоватьОкнаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainChatName_Cmd = new System.Windows.Forms.ToolStripMenuItem();
             this.подписатьПользователяToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.сайтыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.автоToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lockalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.jobInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ghpsqlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DisconnectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripSeparator();
             this.AutoConnect = new System.Windows.Forms.ToolStripMenuItem();
             this.статусПодключенияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ShowStatusConnect = new System.Windows.Forms.ToolStripMenuItem();
-            this.v121ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.VersionMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.мышьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.настройкиПокаНеСохраняютсяToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Wheel_inverse = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.StatusLabel_Main = new System.Windows.Forms.ToolStripStatusLabel();
             this.StripSplitButton_status = new System.Windows.Forms.ToolStripSplitButton();
@@ -137,39 +148,48 @@
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.panel_inText = new System.Windows.Forms.Panel();
+            this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
+            this.userControl11 = new XWpfControlLibrary.UserControl1();
             this.button15 = new System.Windows.Forms.Button();
             this.button_Send = new System.Windows.Forms.Button();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.button20 = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.ButtonHaveNewMessages = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.imageList_btn = new System.Windows.Forms.ImageList(this.components);
             this.button_Down_ShowNewMsg = new System.Windows.Forms.Button();
             this.button_Up_ShowOldersMsg = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.button8 = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
             this.imageList_smile = new System.Windows.Forms.ImageList(this.components);
-            this.button6 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.directorySearcher1 = new System.DirectoryServices.DirectorySearcher();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.button17 = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.up = new JobInfo.XUsersCtrl();
             this.tabPage_Svod = new System.Windows.Forms.TabPage();
+            this.label9 = new System.Windows.Forms.Label();
             this.textBox_filter = new System.Windows.Forms.TextBox();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button13 = new System.Windows.Forms.Button();
             this.button16 = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
             this.panel_msg = new System.Windows.Forms.Panel();
+            this.elementHost4 = new System.Windows.Forms.Integration.ElementHost();
+            this.xwpF_User3 = new JobInfo.XWPF_User();
+            this.elementHost3 = new System.Windows.Forms.Integration.ElementHost();
+            this.xwpF_User2 = new JobInfo.XWPF_User();
+            this.elementHost2 = new System.Windows.Forms.Integration.ElementHost();
+            this.xwpF_User1 = new JobInfo.XWPF_User();
+            this.button12 = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.button_HashSave = new System.Windows.Forms.Button();
             this.button_HashRemove = new System.Windows.Forms.Button();
@@ -177,6 +197,7 @@
             this.pictureBox_image = new System.Windows.Forms.PictureBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.checkBox5 = new System.Windows.Forms.CheckBox();
             this.contextMenu_user = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.информацияОПользователеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.написатьВЛичныйЧатToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -237,7 +258,6 @@
             this.добавитьВВыбранныйЧатToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer_UpdateTreeNodeAfterChange = new System.Windows.Forms.Timer(this.components);
             this.Ping_Server = new System.Windows.Forms.Timer(this.components);
-            this.SendTestMessage = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.context_msg.SuspendLayout();
@@ -251,7 +271,6 @@
             this.panel1.SuspendLayout();
             this.panel_inText.SuspendLayout();
             this.panel4.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -270,6 +289,7 @@
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.contextMenu_userchat.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -289,7 +309,8 @@
             this.ToolStripMenuItemSetup,
             this.MainChatName_Cmd,
             this.сайтыToolStripMenuItem,
-            this.v121ToolStripMenuItem});
+            this.VersionMenu,
+            this.настройкиToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1283, 24);
@@ -300,8 +321,11 @@
             // 
             this.персональноеToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Device_MenuItems,
+            this.добавитьЧерезQRСсылкуToolStripMenuItem,
             this.информацияToolStripMenuItem,
-            this.SetupMenuItem});
+            this.SetupMenuItem,
+            this.toolStripMenuItem20,
+            this.отправитьЛогОшибокРазработчикуToolStripMenuItem});
             this.персональноеToolStripMenuItem.Name = "персональноеToolStripMenuItem";
             this.персональноеToolStripMenuItem.Size = new System.Drawing.Size(23, 20);
             this.персональноеToolStripMenuItem.Text = "⋮";
@@ -309,21 +333,41 @@
             // Device_MenuItems
             // 
             this.Device_MenuItems.Name = "Device_MenuItems";
-            this.Device_MenuItems.Size = new System.Drawing.Size(148, 22);
+            this.Device_MenuItems.Size = new System.Drawing.Size(281, 22);
             this.Device_MenuItems.Text = "Устройства";
             this.Device_MenuItems.Click += new System.EventHandler(this.Device_MenuItems_Click);
+            // 
+            // добавитьЧерезQRСсылкуToolStripMenuItem
+            // 
+            this.добавитьЧерезQRСсылкуToolStripMenuItem.Name = "добавитьЧерезQRСсылкуToolStripMenuItem";
+            this.добавитьЧерезQRСсылкуToolStripMenuItem.Size = new System.Drawing.Size(281, 22);
+            this.добавитьЧерезQRСсылкуToolStripMenuItem.Text = "Добавить через QR ссылку";
+            this.добавитьЧерезQRСсылкуToolStripMenuItem.Click += new System.EventHandler(this.ДобавитьЧерезQRСсылкуToolStripMenuItem_Click_1);
             // 
             // информацияToolStripMenuItem
             // 
             this.информацияToolStripMenuItem.Name = "информацияToolStripMenuItem";
-            this.информацияToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.информацияToolStripMenuItem.Size = new System.Drawing.Size(281, 22);
             this.информацияToolStripMenuItem.Text = "Информация";
             // 
             // SetupMenuItem
             // 
             this.SetupMenuItem.Name = "SetupMenuItem";
-            this.SetupMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.SetupMenuItem.Size = new System.Drawing.Size(281, 22);
             this.SetupMenuItem.Text = "Настройки...";
+            this.SetupMenuItem.Click += new System.EventHandler(this.SetupMenuItem_Click);
+            // 
+            // toolStripMenuItem20
+            // 
+            this.toolStripMenuItem20.Name = "toolStripMenuItem20";
+            this.toolStripMenuItem20.Size = new System.Drawing.Size(278, 6);
+            // 
+            // отправитьЛогОшибокРазработчикуToolStripMenuItem
+            // 
+            this.отправитьЛогОшибокРазработчикуToolStripMenuItem.Name = "отправитьЛогОшибокРазработчикуToolStripMenuItem";
+            this.отправитьЛогОшибокРазработчикуToolStripMenuItem.Size = new System.Drawing.Size(281, 22);
+            this.отправитьЛогОшибокРазработчикуToolStripMenuItem.Text = "Отправить лог ошибок разработчику";
+            this.отправитьЛогОшибокРазработчикуToolStripMenuItem.Click += new System.EventHandler(this.ОтправитьЛогОшибокРазработчикуToolStripMenuItem_Click);
             // 
             // новыйToolStripMenuItem
             // 
@@ -353,7 +397,8 @@
             this.idcheck,
             this.toolStripMenuItem17,
             this.тестТрансформацииToolStripMenuItem,
-            this.SendTestMessage});
+            this.SendTestMessage,
+            this.перерисоватьОкнаToolStripMenuItem});
             this.ToolStripMenuItemSetup.Name = "ToolStripMenuItemSetup";
             this.ToolStripMenuItemSetup.Size = new System.Drawing.Size(121, 20);
             this.ToolStripMenuItemSetup.Text = "Запросы тестовые";
@@ -391,16 +436,19 @@
             // 
             this.iusmirnovToolStripMenuItem.CheckOnClick = true;
             this.iusmirnovToolStripMenuItem.Name = "iusmirnovToolStripMenuItem";
-            this.iusmirnovToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.iusmirnovToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.iusmirnovToolStripMenuItem.Text = "iu.smirnov";
             this.iusmirnovToolStripMenuItem.CheckedChanged += new System.EventHandler(this.iusmirnovToolStripMenuItem_CheckedChanged);
+            this.iusmirnovToolStripMenuItem.Click += new System.EventHandler(this.IusmirnovToolStripMenuItem_Click);
             // 
             // botToolStripMenuItem
             // 
             this.botToolStripMenuItem.CheckOnClick = true;
             this.botToolStripMenuItem.Name = "botToolStripMenuItem";
-            this.botToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.botToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.botToolStripMenuItem.Text = "bot";
+            this.botToolStripMenuItem.CheckedChanged += new System.EventHandler(this.iusmirnovToolStripMenuItem_CheckedChanged);
+            this.botToolStripMenuItem.Click += new System.EventHandler(this.BotToolStripMenuItem_Click);
             // 
             // defaultToolStripMenuItem
             // 
@@ -408,8 +456,10 @@
             this.defaultToolStripMenuItem.CheckOnClick = true;
             this.defaultToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.defaultToolStripMenuItem.Name = "defaultToolStripMenuItem";
-            this.defaultToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
-            this.defaultToolStripMenuItem.Text = "Default";
+            this.defaultToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.defaultToolStripMenuItem.Text = "i.malykhina";
+            this.defaultToolStripMenuItem.CheckedChanged += new System.EventHandler(this.iusmirnovToolStripMenuItem_CheckedChanged);
+            this.defaultToolStripMenuItem.Click += new System.EventHandler(this.DefaultToolStripMenuItem_Click);
             // 
             // mashineNameToolStripMenuItem
             // 
@@ -493,7 +543,7 @@
             // обновитьВсеЧатыToolStripMenuItem
             // 
             this.обновитьВсеЧатыToolStripMenuItem.Name = "обновитьВсеЧатыToolStripMenuItem";
-            this.обновитьВсеЧатыToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
+            this.обновитьВсеЧатыToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F5)));
             this.обновитьВсеЧатыToolStripMenuItem.Size = new System.Drawing.Size(339, 22);
             this.обновитьВсеЧатыToolStripMenuItem.Text = "Обновить все чаты";
             this.обновитьВсеЧатыToolStripMenuItem.Click += new System.EventHandler(this.обновитьВсеЧатыToolStripMenuItem_Click);
@@ -514,6 +564,7 @@
             this.DebugForm.Name = "DebugForm";
             this.DebugForm.Size = new System.Drawing.Size(339, 22);
             this.DebugForm.Text = "Отладка Forma Сообщиниq";
+            this.DebugForm.Click += new System.EventHandler(this.DebugForm_Click);
             // 
             // idcheck
             // 
@@ -552,6 +603,21 @@
             this.тестТрансформацииToolStripMenuItem.Text = "Тест трансформации";
             this.тестТрансформацииToolStripMenuItem.Click += new System.EventHandler(this.ТестТрансформацииToolStripMenuItem_Click);
             // 
+            // SendTestMessage
+            // 
+            this.SendTestMessage.CheckOnClick = true;
+            this.SendTestMessage.Name = "SendTestMessage";
+            this.SendTestMessage.Size = new System.Drawing.Size(339, 22);
+            this.SendTestMessage.Text = "Отправлять Тестовое сообщение в чат времени";
+            // 
+            // перерисоватьОкнаToolStripMenuItem
+            // 
+            this.перерисоватьОкнаToolStripMenuItem.Name = "перерисоватьОкнаToolStripMenuItem";
+            this.перерисоватьОкнаToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
+            this.перерисоватьОкнаToolStripMenuItem.Size = new System.Drawing.Size(339, 22);
+            this.перерисоватьОкнаToolStripMenuItem.Text = "Перерисовать окна";
+            this.перерисоватьОкнаToolStripMenuItem.Click += new System.EventHandler(this.ПерерисоватьОкнаToolStripMenuItem_Click);
+            // 
             // MainChatName_Cmd
             // 
             this.MainChatName_Cmd.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -565,13 +631,16 @@
             this.подписатьПользователяToolStripMenuItem.Name = "подписатьПользователяToolStripMenuItem";
             this.подписатьПользователяToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
             this.подписатьПользователяToolStripMenuItem.Text = "Подписать пользователя..";
+            this.подписатьПользователяToolStripMenuItem.Visible = false;
             this.подписатьПользователяToolStripMenuItem.Click += new System.EventHandler(this.OnUserAddToChat);
             // 
             // сайтыToolStripMenuItem
             // 
             this.сайтыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.автоToolStripMenuItem,
             this.lockalToolStripMenuItem,
             this.jobInfoToolStripMenuItem,
+            this.ghpsqlToolStripMenuItem,
             this.DisconnectToolStripMenuItem,
             this.toolStripMenuItem10,
             this.AutoConnect,
@@ -580,40 +649,55 @@
             this.сайтыToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.сайтыToolStripMenuItem.Text = "Сайты";
             // 
+            // автоToolStripMenuItem
+            // 
+            this.автоToolStripMenuItem.Checked = true;
+            this.автоToolStripMenuItem.CheckOnClick = true;
+            this.автоToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.автоToolStripMenuItem.Name = "автоToolStripMenuItem";
+            this.автоToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.автоToolStripMenuItem.Text = "Авто";
+            // 
             // lockalToolStripMenuItem
             // 
             this.lockalToolStripMenuItem.Name = "lockalToolStripMenuItem";
-            this.lockalToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.lockalToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.lockalToolStripMenuItem.Text = "Local";
             this.lockalToolStripMenuItem.Click += new System.EventHandler(this.lockalToolStripMenuItem_Click);
             // 
             // jobInfoToolStripMenuItem
             // 
-            this.jobInfoToolStripMenuItem.Checked = true;
-            this.jobInfoToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.jobInfoToolStripMenuItem.Name = "jobInfoToolStripMenuItem";
-            this.jobInfoToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.jobInfoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.jobInfoToolStripMenuItem.Text = "JobInfo";
             this.jobInfoToolStripMenuItem.Click += new System.EventHandler(this.jobInfoToolStripMenuItem_Click);
+            // 
+            // ghpsqlToolStripMenuItem
+            // 
+            this.ghpsqlToolStripMenuItem.CheckOnClick = true;
+            this.ghpsqlToolStripMenuItem.Name = "ghpsqlToolStripMenuItem";
+            this.ghpsqlToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ghpsqlToolStripMenuItem.Text = "ghp-sql";
+            this.ghpsqlToolStripMenuItem.Click += new System.EventHandler(this.GhpsqlToolStripMenuItem_Click);
             // 
             // DisconnectToolStripMenuItem
             // 
             this.DisconnectToolStripMenuItem.Name = "DisconnectToolStripMenuItem";
-            this.DisconnectToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.DisconnectToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.DisconnectToolStripMenuItem.Text = "Отключиться";
             this.DisconnectToolStripMenuItem.Click += new System.EventHandler(this.отключитьсяToolStripMenuItem_Click);
             // 
             // toolStripMenuItem10
             // 
             this.toolStripMenuItem10.Name = "toolStripMenuItem10";
-            this.toolStripMenuItem10.Size = new System.Drawing.Size(173, 6);
+            this.toolStripMenuItem10.Size = new System.Drawing.Size(177, 6);
             // 
             // AutoConnect
             // 
             this.AutoConnect.Checked = true;
             this.AutoConnect.CheckState = System.Windows.Forms.CheckState.Checked;
             this.AutoConnect.Name = "AutoConnect";
-            this.AutoConnect.Size = new System.Drawing.Size(176, 22);
+            this.AutoConnect.Size = new System.Drawing.Size(180, 22);
             this.AutoConnect.Text = "Автоподключение";
             this.AutoConnect.Click += new System.EventHandler(this.AutoConnect_Click);
             // 
@@ -622,7 +706,7 @@
             this.статусПодключенияToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ShowStatusConnect});
             this.статусПодключенияToolStripMenuItem.Name = "статусПодключенияToolStripMenuItem";
-            this.статусПодключенияToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.статусПодключенияToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.статусПодключенияToolStripMenuItem.Text = "Уведомить";
             // 
             // ShowStatusConnect
@@ -633,12 +717,45 @@
             this.ShowStatusConnect.Text = "О статусе подключения";
             this.ShowStatusConnect.Click += new System.EventHandler(this.ShowStatusConnect_Click);
             // 
-            // v121ToolStripMenuItem
+            // VersionMenu
             // 
-            this.v121ToolStripMenuItem.Enabled = false;
-            this.v121ToolStripMenuItem.Name = "v121ToolStripMenuItem";
-            this.v121ToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
-            this.v121ToolStripMenuItem.Text = "v. 1.2.1";
+            this.VersionMenu.Enabled = false;
+            this.VersionMenu.Name = "VersionMenu";
+            this.VersionMenu.Size = new System.Drawing.Size(55, 20);
+            this.VersionMenu.Text = "v. 1.2.1";
+            // 
+            // настройкиToolStripMenuItem
+            // 
+            this.настройкиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.мышьToolStripMenuItem});
+            this.настройкиToolStripMenuItem.Name = "настройкиToolStripMenuItem";
+            this.настройкиToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
+            this.настройкиToolStripMenuItem.Text = "Настройки";
+            // 
+            // мышьToolStripMenuItem
+            // 
+            this.мышьToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.настройкиПокаНеСохраняютсяToolStripMenuItem,
+            this.Wheel_inverse});
+            this.мышьToolStripMenuItem.Name = "мышьToolStripMenuItem";
+            this.мышьToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
+            this.мышьToolStripMenuItem.Text = "Мышь";
+            // 
+            // настройкиПокаНеСохраняютсяToolStripMenuItem
+            // 
+            this.настройкиПокаНеСохраняютсяToolStripMenuItem.Enabled = false;
+            this.настройкиПокаНеСохраняютсяToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
+            this.настройкиПокаНеСохраняютсяToolStripMenuItem.Name = "настройкиПокаНеСохраняютсяToolStripMenuItem";
+            this.настройкиПокаНеСохраняютсяToolStripMenuItem.Size = new System.Drawing.Size(271, 22);
+            this.настройкиПокаНеСохраняютсяToolStripMenuItem.Text = "!!!Настройки пока не сохраняются!!!";
+            // 
+            // Wheel_inverse
+            // 
+            this.Wheel_inverse.CheckOnClick = true;
+            this.Wheel_inverse.Name = "Wheel_inverse";
+            this.Wheel_inverse.Size = new System.Drawing.Size(271, 22);
+            this.Wheel_inverse.Text = "Инверсия колеса прокрутки";
+            this.Wheel_inverse.Click += new System.EventHandler(this.Wheel_inverse_Click);
             // 
             // statusStrip1
             // 
@@ -934,15 +1051,14 @@
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(3, 3);
+            this.textBox1.Location = new System.Drawing.Point(28, 309);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(882, 32);
+            this.textBox1.Size = new System.Drawing.Size(217, 84);
             this.textBox1.TabIndex = 7;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
-            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             this.textBox1.MouseEnter += new System.EventHandler(this.textBox1_MouseEnter);
             // 
             // imageList32_32
@@ -977,7 +1093,7 @@
             this.panel_inMesages.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_inMesages.Location = new System.Drawing.Point(0, 0);
             this.panel_inMesages.Name = "panel_inMesages";
-            this.panel_inMesages.Size = new System.Drawing.Size(984, 445);
+            this.panel_inMesages.Size = new System.Drawing.Size(984, 393);
             this.panel_inMesages.TabIndex = 12;
             this.panel_inMesages.TabStop = true;
             this.panel_inMesages.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_inMesages_Paint);
@@ -996,8 +1112,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.mp);
-            this.splitContainer1.Size = new System.Drawing.Size(932, 445);
-            this.splitContainer1.SplitterDistance = 69;
+            this.splitContainer1.Size = new System.Drawing.Size(932, 393);
+            this.splitContainer1.SplitterDistance = 60;
             this.splitContainer1.TabIndex = 10;
             // 
             // panel_users
@@ -1008,13 +1124,15 @@
             this.panel_users.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_users.Location = new System.Drawing.Point(0, 0);
             this.panel_users.Name = "panel_users";
-            this.panel_users.Size = new System.Drawing.Size(932, 69);
+            this.panel_users.Size = new System.Drawing.Size(932, 60);
             this.panel_users.TabIndex = 8;
             this.panel_users.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_users_Paint);
             // 
             // mp
             // 
             this.mp.Angle = 30F;
+            this.mp.Chat = null;
+            this.mp.Chat_selected = null;
             this.mp.Color1 = System.Drawing.Color.LightYellow;
             this.mp.Color2 = System.Drawing.Color.Orange;
             this.mp.ContextMenuStripMessage = this.context_msg;
@@ -1024,10 +1142,11 @@
             this.mp.ImageListMsg = this.imageList_msg;
             this.mp.Location = new System.Drawing.Point(0, 0);
             this.mp.Name = "mp";
-            this.mp.Size = new System.Drawing.Size(932, 372);
+            this.mp.Size = new System.Drawing.Size(932, 329);
             this.mp.TabIndex = 9;
             this.mp.Text = "chatMessagesPanel1";
             this.mp.OnMouseMessageClick += new JobInfo.XROGi_Class.ChatMessagesPanel.OnMouseMessageClickDelegate(this.Mp_OnMouseMessageClick);
+            this.mp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Mp_MouseDown);
             this.mp.MouseEnter += new System.EventHandler(this.mp_MouseEnter);
             this.mp.MouseLeave += new System.EventHandler(this.mp_MouseLeave);
             // 
@@ -1059,23 +1178,26 @@
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.LightYellow;
             this.panel1.Controls.Add(this.checkBox2);
             this.panel1.Controls.Add(this.checkBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(52, 445);
+            this.panel1.Size = new System.Drawing.Size(52, 393);
             this.panel1.TabIndex = 10;
             // 
             // checkBox2
             // 
             this.checkBox2.Appearance = System.Windows.Forms.Appearance.Button;
+            this.checkBox2.Enabled = false;
             this.checkBox2.ImageKey = "file";
             this.checkBox2.ImageList = this.imageList32_32;
             this.checkBox2.Location = new System.Drawing.Point(2, 46);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(43, 43);
             this.checkBox2.TabIndex = 2;
+            this.toolTip1.SetToolTip(this.checkBox2, "Вся мультимедиа переписки...");
             this.checkBox2.UseVisualStyleBackColor = true;
             this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
@@ -1093,22 +1215,33 @@
             // 
             // panel_inText
             // 
+            this.panel_inText.Controls.Add(this.elementHost1);
             this.panel_inText.Controls.Add(this.button15);
-            this.panel_inText.Controls.Add(this.textBox1);
             this.panel_inText.Controls.Add(this.button_Send);
             this.panel_inText.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel_inText.Location = new System.Drawing.Point(0, 445);
+            this.panel_inText.Location = new System.Drawing.Point(0, 393);
             this.panel_inText.Name = "panel_inText";
-            this.panel_inText.Size = new System.Drawing.Size(984, 38);
+            this.panel_inText.Size = new System.Drawing.Size(984, 90);
             this.panel_inText.TabIndex = 0;
+            // 
+            // elementHost1
+            // 
+            this.elementHost1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.elementHost1.Location = new System.Drawing.Point(3, 4);
+            this.elementHost1.Name = "elementHost1";
+            this.elementHost1.Size = new System.Drawing.Size(659, 83);
+            this.elementHost1.TabIndex = 10;
+            this.elementHost1.Text = "elementHost1";
+            this.elementHost1.ChildChanged += new System.EventHandler<System.Windows.Forms.Integration.ChildChangedEventArgs>(this.ElementHost1_ChildChanged_2);
+            this.elementHost1.Child = this.userControl11;
             // 
             // button15
             // 
-            this.button15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button15.ForeColor = System.Drawing.SystemColors.InactiveBorder;
             this.button15.ImageKey = "file";
             this.button15.ImageList = this.imageList32_32;
-            this.button15.Location = new System.Drawing.Point(936, 4);
+            this.button15.Location = new System.Drawing.Point(714, 3);
             this.button15.Name = "button15";
             this.button15.Size = new System.Drawing.Size(43, 32);
             this.button15.TabIndex = 9;
@@ -1118,10 +1251,9 @@
             // 
             // button_Send
             // 
-            this.button_Send.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button_Send.ImageIndex = 2;
             this.button_Send.ImageList = this.imageList32_32;
-            this.button_Send.Location = new System.Drawing.Point(888, 4);
+            this.button_Send.Location = new System.Drawing.Point(666, 3);
             this.button_Send.Margin = new System.Windows.Forms.Padding(0);
             this.button_Send.Name = "button_Send";
             this.button_Send.Size = new System.Drawing.Size(45, 32);
@@ -1130,23 +1262,15 @@
             this.button_Send.UseVisualStyleBackColor = true;
             this.button_Send.Click += new System.EventHandler(this.button3_Click);
             // 
-            // flowLayoutPanel1
+            // button20
             // 
-            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(6, 238);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(265, 163);
-            this.flowLayoutPanel1.TabIndex = 9;
-            this.flowLayoutPanel1.TabStop = true;
-            this.flowLayoutPanel1.WrapContents = false;
-            this.flowLayoutPanel1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.flowLayoutPanel1_Scroll);
-            this.flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel1_Paint);
-            this.flowLayoutPanel1.MouseEnter += new System.EventHandler(this.flowLayoutPanel1_MouseEnter);
-            this.flowLayoutPanel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.flowLayoutPanel1_MouseMove);
+            this.button20.Location = new System.Drawing.Point(8, 277);
+            this.button20.Name = "button20";
+            this.button20.Size = new System.Drawing.Size(75, 23);
+            this.button20.TabIndex = 12;
+            this.button20.Text = "button20";
+            this.button20.UseVisualStyleBackColor = true;
+            this.button20.Click += new System.EventHandler(this.Button20_Click);
             // 
             // panel4
             // 
@@ -1170,14 +1294,13 @@
             this.ButtonHaveNewMessages.TabIndex = 15;
             this.toolTip1.SetToolTip(this.ButtonHaveNewMessages, "Новых сообщений");
             this.ButtonHaveNewMessages.UseVisualStyleBackColor = true;
-            this.ButtonHaveNewMessages.Click += new System.EventHandler(this.ButtonHaveNewMessages_Click_1);
             this.ButtonHaveNewMessages.Paint += new System.Windows.Forms.PaintEventHandler(this.ButtonHaveNewMessages_Paint);
             // 
             // button9
             // 
             this.button9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button9.Image = global::JobInfo.Properties.Resources.down;
+            this.button9.Image = ((System.Drawing.Image)(resources.GetObject("button9.Image")));
             this.button9.Location = new System.Drawing.Point(3, 35);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(40, 23);
@@ -1212,66 +1335,12 @@
             // button_Up_ShowOldersMsg
             // 
             this.button_Up_ShowOldersMsg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_Up_ShowOldersMsg.Location = new System.Drawing.Point(155, 163);
+            this.button_Up_ShowOldersMsg.Location = new System.Drawing.Point(131, 120);
             this.button_Up_ShowOldersMsg.Name = "button_Up_ShowOldersMsg";
             this.button_Up_ShowOldersMsg.Size = new System.Drawing.Size(20, 51);
             this.button_Up_ShowOldersMsg.TabIndex = 1;
             this.button_Up_ShowOldersMsg.UseVisualStyleBackColor = true;
             this.button_Up_ShowOldersMsg.Click += new System.EventHandler(this.button_Up_ShowOldersMsg_Click);
-            // 
-            // panel3
-            // 
-            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel3.Controls.Add(this.button8);
-            this.panel3.Controls.Add(this.richTextBox1);
-            this.panel3.Controls.Add(this.button4);
-            this.panel3.Controls.Add(this.button7);
-            this.panel3.Controls.Add(this.button6);
-            this.panel3.Controls.Add(this.button5);
-            this.panel3.Location = new System.Drawing.Point(43, 195);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(202, 37);
-            this.panel3.TabIndex = 6;
-            // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(134, 7);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(26, 23);
-            this.button8.TabIndex = 3;
-            this.button8.Text = "button8";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Location = new System.Drawing.Point(108, 7);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(18, 21);
-            this.richTextBox1.TabIndex = 4;
-            this.richTextBox1.Text = "";
-            this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(166, 7);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(31, 23);
-            this.button4.TabIndex = 5;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // button7
-            // 
-            this.button7.ImageIndex = 2;
-            this.button7.ImageList = this.imageList_smile;
-            this.button7.Location = new System.Drawing.Point(73, 3);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(29, 31);
-            this.button7.TabIndex = 2;
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button5_Click);
             // 
             // imageList_smile
             // 
@@ -1280,28 +1349,6 @@
             this.imageList_smile.Images.SetKeyName(0, "mig");
             this.imageList_smile.Images.SetKeyName(1, "smile");
             this.imageList_smile.Images.SetKeyName(2, "M3");
-            // 
-            // button6
-            // 
-            this.button6.ImageIndex = 0;
-            this.button6.ImageList = this.imageList_smile;
-            this.button6.Location = new System.Drawing.Point(38, 3);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(29, 31);
-            this.button6.TabIndex = 1;
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // button5
-            // 
-            this.button5.ImageIndex = 1;
-            this.button5.ImageList = this.imageList_smile;
-            this.button5.Location = new System.Drawing.Point(3, 3);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(29, 31);
-            this.button5.TabIndex = 0;
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // openFileDialog1
             // 
@@ -1321,6 +1368,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Left;
             this.tabControl1.Location = new System.Drawing.Point(0, 24);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(285, 515);
@@ -1329,15 +1377,56 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.linkLabel3);
+            this.tabPage4.Controls.Add(this.linkLabel2);
+            this.tabPage4.Controls.Add(this.linkLabel1);
             this.tabPage4.Controls.Add(this.panel5);
             this.tabPage4.Controls.Add(this.up);
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
+            this.tabPage4.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.tabPage4.Size = new System.Drawing.Size(277, 486);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Люди";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // linkLabel3
+            // 
+            this.linkLabel3.AutoSize = true;
+            this.linkLabel3.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            this.linkLabel3.Location = new System.Drawing.Point(99, 27);
+            this.linkLabel3.Name = "linkLabel3";
+            this.linkLabel3.Size = new System.Drawing.Size(37, 13);
+            this.linkLabel3.TabIndex = 7;
+            this.linkLabel3.TabStop = true;
+            this.linkLabel3.Text = "Online";
+            this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel2_LinkClicked);
+            // 
+            // linkLabel2
+            // 
+            this.linkLabel2.AutoSize = true;
+            this.linkLabel2.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            this.linkLabel2.LinkVisited = true;
+            this.linkLabel2.Location = new System.Drawing.Point(36, 27);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(57, 13);
+            this.linkLabel2.TabIndex = 6;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "Подписки";
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel2_LinkClicked);
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            this.linkLabel1.Location = new System.Drawing.Point(4, 27);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(26, 13);
+            this.linkLabel1.TabIndex = 5;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Все";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel2_LinkClicked);
             // 
             // panel5
             // 
@@ -1346,13 +1435,13 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(3, 3);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(271, 23);
+            this.panel5.Size = new System.Drawing.Size(274, 23);
             this.panel5.TabIndex = 4;
             // 
             // button17
             // 
             this.button17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button17.Location = new System.Drawing.Point(252, -1);
+            this.button17.Location = new System.Drawing.Point(255, -1);
             this.button17.Name = "button17";
             this.button17.Size = new System.Drawing.Size(17, 23);
             this.button17.TabIndex = 4;
@@ -1367,7 +1456,7 @@
             this.textBox3.BackColor = System.Drawing.SystemColors.Info;
             this.textBox3.Location = new System.Drawing.Point(1, 1);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(251, 20);
+            this.textBox3.Size = new System.Drawing.Size(254, 20);
             this.textBox3.TabIndex = 3;
             this.textBox3.TextChanged += new System.EventHandler(this.TextBox3_TextChanged);
             // 
@@ -1376,14 +1465,16 @@
             this.up.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.up.Location = new System.Drawing.Point(4, 30);
+            this.up.Location = new System.Drawing.Point(4, 43);
+            this.up.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.up.Name = "up";
-            this.up.Size = new System.Drawing.Size(270, 453);
+            this.up.Size = new System.Drawing.Size(273, 440);
             this.up.TabIndex = 0;
             this.up.OnUserSelected += new JobInfo.XUsersCtrl.OnUserSelectedDelegate(this.Up_OnUserSelected);
             // 
             // tabPage_Svod
             // 
+            this.tabPage_Svod.Controls.Add(this.label9);
             this.tabPage_Svod.Controls.Add(this.textBox_filter);
             this.tabPage_Svod.Controls.Add(this.treeView1);
             this.tabPage_Svod.Location = new System.Drawing.Point(4, 25);
@@ -1393,6 +1484,19 @@
             this.tabPage_Svod.TabIndex = 1;
             this.tabPage_Svod.Text = "Свод ДУ";
             this.tabPage_Svod.UseVisualStyleBackColor = true;
+            // 
+            // label9
+            // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label9.ForeColor = System.Drawing.Color.Red;
+            this.label9.Location = new System.Drawing.Point(27, 90);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(221, 162);
+            this.label9.TabIndex = 3;
+            this.label9.Text = "Окно в рамках тестирования временно отключено. ";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // textBox_filter
             // 
@@ -1413,6 +1517,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.treeView1.DrawMode = System.Windows.Forms.TreeViewDrawMode.OwnerDrawText;
+            this.treeView1.Enabled = false;
             this.treeView1.FullRowSelect = true;
             this.treeView1.ImageIndex = 0;
             this.treeView1.ImageList = this.imageList_msg;
@@ -1475,14 +1580,20 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.panel3);
+            this.tabPage1.Controls.Add(this.button4);
+            this.tabPage1.Controls.Add(this.button20);
+            this.tabPage1.Controls.Add(this.button13);
             this.tabPage1.Controls.Add(this.panel4);
-            this.tabPage1.Controls.Add(this.flowLayoutPanel1);
+            this.tabPage1.Controls.Add(this.textBox1);
             this.tabPage1.Controls.Add(this.button16);
             this.tabPage1.Controls.Add(this.button14);
             this.tabPage1.Controls.Add(this.panel_msg);
-            this.tabPage1.Controls.Add(this.panel3);
             this.tabPage1.Controls.Add(this.button_Down_ShowNewMsg);
             this.tabPage1.Controls.Add(this.button_Up_ShowOldersMsg);
+            this.tabPage1.Controls.Add(this.elementHost4);
+            this.tabPage1.Controls.Add(this.elementHost3);
+            this.tabPage1.Controls.Add(this.elementHost2);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -1490,6 +1601,34 @@
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabPage1.Click += new System.EventHandler(this.TabPage1_Click);
+            // 
+            // panel3
+            // 
+            this.panel3.Location = new System.Drawing.Point(22, 406);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(200, 100);
+            this.panel3.TabIndex = 23;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(196, 177);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 22;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.Button4_Click_1);
+            // 
+            // button13
+            // 
+            this.button13.Location = new System.Drawing.Point(99, 277);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(75, 23);
+            this.button13.TabIndex = 18;
+            this.button13.Text = "button13";
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.Button13_Click_1);
             // 
             // button16
             // 
@@ -1523,8 +1662,46 @@
             this.panel_msg.MouseEnter += new System.EventHandler(this.panel4_MouseEnter);
             this.panel_msg.MouseLeave += new System.EventHandler(this.panel4_MouseLeave);
             // 
+            // elementHost4
+            // 
+            this.elementHost4.Location = new System.Drawing.Point(28, 148);
+            this.elementHost4.Name = "elementHost4";
+            this.elementHost4.Size = new System.Drawing.Size(117, 100);
+            this.elementHost4.TabIndex = 21;
+            this.elementHost4.Text = "elementHost4";
+            this.elementHost4.Child = this.xwpF_User3;
+            // 
+            // elementHost3
+            // 
+            this.elementHost3.Location = new System.Drawing.Point(-27, -95);
+            this.elementHost3.Name = "elementHost3";
+            this.elementHost3.Size = new System.Drawing.Size(200, 100);
+            this.elementHost3.TabIndex = 20;
+            this.elementHost3.Text = "elementHost3";
+            this.elementHost3.Child = this.xwpF_User2;
+            // 
+            // elementHost2
+            // 
+            this.elementHost2.Location = new System.Drawing.Point(-27, -95);
+            this.elementHost2.Name = "elementHost2";
+            this.elementHost2.Size = new System.Drawing.Size(200, 100);
+            this.elementHost2.TabIndex = 19;
+            this.elementHost2.Text = "elementHost2";
+            this.elementHost2.Child = this.xwpF_User1;
+            // 
+            // button12
+            // 
+            this.button12.Location = new System.Drawing.Point(127, 14);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(75, 23);
+            this.button12.TabIndex = 19;
+            this.button12.Text = "button12";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.Button12_Click_1);
+            // 
             // button_HashSave
             // 
+            this.button_HashSave.Enabled = false;
             this.button_HashSave.FlatAppearance.BorderSize = 0;
             this.button_HashSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_HashSave.ImageIndex = 7;
@@ -1539,6 +1716,7 @@
             // 
             // button_HashRemove
             // 
+            this.button_HashRemove.Enabled = false;
             this.button_HashRemove.FlatAppearance.BorderSize = 0;
             this.button_HashRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_HashRemove.ImageIndex = 6;
@@ -1553,6 +1731,7 @@
             // 
             // button_HashAdd
             // 
+            this.button_HashAdd.Enabled = false;
             this.button_HashAdd.FlatAppearance.BorderSize = 0;
             this.button_HashAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_HashAdd.ImageIndex = 0;
@@ -1582,6 +1761,7 @@
             // checkBox3
             // 
             this.checkBox3.Appearance = System.Windows.Forms.Appearance.Button;
+            this.checkBox3.Enabled = false;
             this.checkBox3.ImageKey = "send2.png";
             this.checkBox3.ImageList = this.imageList32_32;
             this.checkBox3.Location = new System.Drawing.Point(5, 5);
@@ -1604,6 +1784,19 @@
             this.toolTip1.SetToolTip(this.checkBox4, "Вернуться в панель чата");
             this.checkBox4.UseVisualStyleBackColor = true;
             this.checkBox4.CheckedChanged += new System.EventHandler(this.CheckBox4_CheckedChanged);
+            // 
+            // checkBox5
+            // 
+            this.checkBox5.Appearance = System.Windows.Forms.Appearance.Button;
+            this.checkBox5.ImageKey = "send2.png";
+            this.checkBox5.ImageList = this.imageList32_32;
+            this.checkBox5.Location = new System.Drawing.Point(6, 14);
+            this.checkBox5.Name = "checkBox5";
+            this.checkBox5.Size = new System.Drawing.Size(43, 43);
+            this.checkBox5.TabIndex = 14;
+            this.toolTip1.SetToolTip(this.checkBox5, "Вернуться в панель чата");
+            this.checkBox5.UseVisualStyleBackColor = true;
+            this.checkBox5.CheckedChanged += new System.EventHandler(this.CheckBox5_CheckedChanged);
             // 
             // contextMenu_user
             // 
@@ -1889,6 +2082,7 @@
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column8,
             this.Column9});
+            this.dataGridView1.Enabled = false;
             this.dataGridView1.Location = new System.Drawing.Point(174, 347);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(544, 133);
@@ -2030,6 +2224,7 @@
             // 
             // button11
             // 
+            this.button11.Enabled = false;
             this.button11.Location = new System.Drawing.Point(6, 327);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(137, 23);
@@ -2039,6 +2234,7 @@
             // 
             // button10
             // 
+            this.button10.Enabled = false;
             this.button10.Location = new System.Drawing.Point(6, 298);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(137, 23);
@@ -2049,6 +2245,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Enabled = false;
             this.label1.Location = new System.Drawing.Point(171, 331);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(365, 13);
@@ -2061,7 +2258,6 @@
             this.pictureBox1.Location = new System.Drawing.Point(6, 128);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(137, 160);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -2091,6 +2287,8 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.button12);
+            this.tabPage3.Controls.Add(this.checkBox5);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -2098,13 +2296,15 @@
             this.tabPage3.TabIndex = 4;
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
+            this.tabPage3.Click += new System.EventHandler(this.TabPage3_Click);
             // 
             // splitter1
             // 
-            this.splitter1.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.splitter1.BackColor = System.Drawing.Color.Orange;
             this.splitter1.Location = new System.Drawing.Point(285, 24);
+            this.splitter1.Margin = new System.Windows.Forms.Padding(0);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(5, 515);
+            this.splitter1.Size = new System.Drawing.Size(4, 515);
             this.splitter1.TabIndex = 13;
             this.splitter1.TabStop = false;
             // 
@@ -2175,13 +2375,6 @@
             this.Ping_Server.Interval = 7000;
             this.Ping_Server.Tick += new System.EventHandler(this.Ping_Server_Tick);
             // 
-            // SendTestMessage
-            // 
-            this.SendTestMessage.CheckOnClick = true;
-            this.SendTestMessage.Name = "SendTestMessage";
-            this.SendTestMessage.Size = new System.Drawing.Size(339, 22);
-            this.SendTestMessage.Text = "Отправлять Тестовое сообщение в чат времени";
-            // 
             // JI_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2221,16 +2414,16 @@
             this.splitContainer1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel_inText.ResumeLayout(false);
-            this.panel_inText.PerformLayout();
             this.panel4.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             this.tabPage_Svod.ResumeLayout(false);
             this.tabPage_Svod.PerformLayout();
             this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_image)).EndInit();
             this.contextMenu_user.ResumeLayout(false);
             this.contextMenu_useradd.ResumeLayout(false);
@@ -2249,6 +2442,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
             this.contextMenu_userchat.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -2312,15 +2506,8 @@
         private System.Windows.Forms.ToolStripMenuItem DisconnectToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel_chat_selectedInfo;
         private System.Windows.Forms.ToolStripMenuItem переименоватьToolStripMenuItem;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button button7;
         private System.Windows.Forms.ImageList imageList_smile;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button8;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.DirectoryServices.DirectorySearcher directorySearcher1;
         private System.Windows.Forms.ToolStripMenuItem обновитьРазмерToolStripMenuItem;
@@ -2336,7 +2523,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem13;
         private System.Windows.Forms.Button button_Down_ShowNewMsg;
         private System.Windows.Forms.Button button_Up_ShowOldersMsg;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Panel panel_msg;
         private System.Windows.Forms.ImageList imageList_foto;
@@ -2436,7 +2622,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.ToolStripMenuItem v121ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem VersionMenu;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Button button17;
@@ -2452,6 +2638,34 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem19;
         private System.Windows.Forms.ToolStripMenuItem добавитьВВыбранныйЧатToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem SendTestMessage;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ToolStripMenuItem перерисоватьОкнаToolStripMenuItem;
+        private System.Windows.Forms.LinkLabel linkLabel2;
+        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.LinkLabel linkLabel3;
+        private System.Windows.Forms.ToolStripMenuItem настройкиToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem мышьToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Wheel_inverse;
+        private System.Windows.Forms.ToolStripMenuItem настройкиПокаНеСохраняютсяToolStripMenuItem;
+        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.CheckBox checkBox5;
+        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Integration.ElementHost elementHost1;
+        private XWpfControlLibrary.UserControl1 userControl11;
+        private System.Windows.Forms.ToolStripMenuItem ghpsqlToolStripMenuItem;
+        private System.Windows.Forms.Button button20;
+        private System.Windows.Forms.Integration.ElementHost elementHost3;
+        private XWPF_User xwpF_User2;
+        private System.Windows.Forms.Integration.ElementHost elementHost2;
+        private XWPF_User xwpF_User1;
+        private System.Windows.Forms.Integration.ElementHost elementHost4;
+        private XWPF_User xwpF_User3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.ToolStripMenuItem добавитьЧерезQRСсылкуToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem20;
+        private System.Windows.Forms.ToolStripMenuItem отправитьЛогОшибокРазработчикуToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem автоToolStripMenuItem;
     }
 }
 

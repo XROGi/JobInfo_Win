@@ -52,6 +52,7 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.button10 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -259,11 +260,22 @@
             this.label7.Text = "label7";
             this.label7.Visible = false;
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(219, 130);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 94;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.Button2_Click_1);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(470, 173);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.button10);
             this.Controls.Add(this.label5);
@@ -315,6 +327,7 @@
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.ToolStripMenuItem телДляСправок4296ToolStripMenuItem;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button button2;
     }
 }
 

@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:Ji.Models"
+             mc:Ignorable="d"
+             x:Class="Ji.Views.UpdateServerPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:HtmlLabelConverter x:Key="HtmlLabelConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    
+    <ContentPage.Content>
+        
+        <StackLayout HorizontalOptions="Center">
+            <!--<Label Text="Welcome to Xamarin.Forms!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />-->
+            <!--<Label HorizontalOptions="Center"
+       VerticalOptions="CenterAndExpand">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Для получения последней версии приложения " />
+                        <Span Text="нажите тут "
+                  TextColor="Blue"
+                  TextDecorations="Underline">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ClickCommand}"
+                                          CommandParameter="https://194.192.100.194/jinstall.html" />
+                            </Span.GestureRecognizers>
+                        </Span>
+                        <Span Text=" Произойдет скачивание последней версии с сервера предприятия." />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>-->
+
+            <Label x:Name="label1"  VerticalTextAlignment="End"   FormattedText="{Binding HTML, Converter={StaticResource HtmlLabelConverter}}"/>
+            <!--<Label x:Name="label2" FormattedText="{Binding HTML, Converter={StaticResource HtmlLabelConverter}}" />   Text="{Binding Text}" -->
+
+            <!--<Label Text="Проверка моего майла &#128513; нет проблем!!!"  FontSize="Large"/>-->
+            <!--var myEmoji = "\U0001F600";
+MyButton.SetTitle(myEmoji, UIControlState.Normal);-->
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

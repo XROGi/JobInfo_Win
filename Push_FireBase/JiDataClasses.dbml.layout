@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="JiDataClasses">
+  <DataContextMoniker Name="/JiDataClassesDataContext" />
+  <nestedChildShapes>
+    <classShape Id="89d143fa-36f8-42b6-b84d-8da1a1753833" absoluteBounds="2.625, 1.5, 2, 2.5401025390625">
+      <DataClassMoniker Name="/JiDataClassesDataContext/tbl_FB_SendLog" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b9000e99-5b7b-4542-9556-801123400459" absoluteBounds="2.6399999999999997, 1.96, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

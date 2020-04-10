@@ -1,7 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://localhost/xrogi" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://localhost/xrogi" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">chat API XROGi</wsdl:documentation>
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://localhost/xrogi">
+      <s:element name="Setup_Params">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="clientname" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Setup_ParamsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Setup_ParamsResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Parking_Test1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="Data" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Parking_Test1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Parking_Test1Result" type="tns:ParkResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ParkResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ParkingNumber" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateIn" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Place_In" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateOut" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Out_Who_UserId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Out_Who" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Out_Reason" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Out_CarType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Out_CarNumber" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Parking_CancelTiket">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="Data" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="out_Who" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Out_CarType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Out_CarNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Out_Reason" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Parking_CancelTiketResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Parking_CancelTiketResult" type="tns:ParkResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="GetConnetedTokens">
         <s:complexType>
           <s:sequence>
@@ -50,11 +120,11 @@
           <s:element minOccurs="1" maxOccurs="1" name="Date_FirstConnected" type="s:dateTime" />
           <s:element minOccurs="1" maxOccurs="1" name="Date_LastUpdate" type="s:dateTime" />
           <s:element minOccurs="1" maxOccurs="1" name="ReConectedCount" type="s:int" />
-          <s:element minOccurs="0" maxOccurs="1" name="src_xml" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="LoginUser" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="dev_name" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="PID" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="clientname" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="clientvers" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="Token_Id" type="s:long" />
           <s:element minOccurs="1" maxOccurs="1" name="Counter" type="s:long" />
           <s:element minOccurs="1" maxOccurs="1" name="UserId" type="s:int" />
@@ -77,12 +147,12 @@
       </s:complexType>
       <s:complexType name="ConnectInfo">
         <s:sequence>
-          <s:element minOccurs="0" maxOccurs="1" name="clientWS" type="tns:WebSocket" />
           <s:element minOccurs="0" maxOccurs="1" name="token" type="tns:Token" />
+          <s:element minOccurs="1" maxOccurs="1" name="Selected_ChatId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Selected_Chat_MaxObjId" type="s:int" />
           <s:element minOccurs="0" maxOccurs="1" name="Chats" type="tns:ArrayOfInt" />
         </s:sequence>
       </s:complexType>
-      <s:complexType name="WebSocket" abstract="true" />
       <s:complexType name="ArrayOfInt">
         <s:sequence>
           <s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int" />
@@ -95,6 +165,26 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="AboutResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AboutEncr">
+        <s:complexType />
+      </s:element>
+      <s:element name="AboutEncrResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AboutEncrResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="__now__">
+        <s:complexType />
+      </s:element>
+      <s:element name="__now__Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="__now__Result" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -125,6 +215,51 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="Chat_GetStatistic">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Chat_GetStatisticResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Chat_GetStatisticResult" type="tns:asyncReturn_Statistic" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="asyncReturn_Statistic">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ListChatStatistic" type="tns:ArrayOfUserChatInfo" />
+          <s:element minOccurs="1" maxOccurs="1" name="InParam_userid" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="dts" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="dte" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ErrorCount" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorString" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfUserChatInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="UserChatInfo" nillable="true" type="tns:UserChatInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="UserChatInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ChatUserInfoId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChatId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="StartShownObjId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastShownObjId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastObjId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CountNew" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CountShownEndObjId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PageLastObj" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PageLastShownObj" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastObjIdDateCreate" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="Chat_GetMyStatistic">
         <s:complexType>
           <s:sequence>
@@ -141,47 +276,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:complexType name="UserChatInfo">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="ChatUserInfoId" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="ChatId" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="UserId" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="StartShownObjId" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="LastShownObjId" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="LastObjId" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="CountNew" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="CountShownEndObjId" type="s:int" />
-        </s:sequence>
-      </s:complexType>
-      <s:element name="Chat_GetMyStatistic_old">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
-            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
-            <s:element minOccurs="1" maxOccurs="1" name="ObjId" type="s:long" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Chat_GetMyStatistic_oldResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Chat_GetMyStatistic_oldResult" type="tns:tbl_ChatUserInfo" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:complexType name="tbl_ChatUserInfo">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="ChatUserInfoId" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="ChatId" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="UserId" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="StartShownObjId" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="LastShownObjId" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="LastObjId" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="CountNew" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="db" nillable="true" type="s:dateTime" />
-          <s:element minOccurs="1" maxOccurs="1" name="de" nillable="true" type="s:dateTime" />
-        </s:sequence>
-      </s:complexType>
       <s:element name="Chat_UnSubscribeUser">
         <s:complexType>
           <s:sequence>
@@ -371,6 +465,8 @@
           <s:element minOccurs="1" maxOccurs="1" name="userid" type="s:int" />
           <s:element minOccurs="0" maxOccurs="1" name="userCreater" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="UsersInChat" type="tns:ArrayOfInt" />
+          <s:element minOccurs="1" maxOccurs="1" name="MessageNum" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PageNum" type="s:int" />
         </s:sequence>
       </s:complexType>
       <s:complexType name="Period">
@@ -514,6 +610,7 @@
           <s:element minOccurs="0" maxOccurs="1" name="foto" type="s:base64Binary" />
           <s:element minOccurs="0" maxOccurs="1" name="positions" type="tns:ArrayOfUserPosition" />
           <s:element minOccurs="1" maxOccurs="1" name="PersonalChatId" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Params" type="tns:ArrayOfString" />
         </s:sequence>
       </s:complexType>
       <s:complexType name="ArrayOfUserPosition">
@@ -794,6 +891,33 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="Message_GetPage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="ChatObjId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="PageNumber" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Message_GetPageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Message_GetPageResult" type="tns:asyncReturn_Messages" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="asyncReturn_Messages">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ListMessages" type="tns:ArrayOfObj" />
+          <s:element minOccurs="1" maxOccurs="1" name="InParam_chatid" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="InParam_userid" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="InParam_PageNum" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ErrorCount" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorString" type="s:string" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="Message_GetListArray">
         <s:complexType>
           <s:sequence>
@@ -811,15 +935,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:complexType name="asyncReturn_Messages">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="1" name="ListMessages" type="tns:ArrayOfObj" />
-          <s:element minOccurs="1" maxOccurs="1" name="InParam_chatid" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="InParam_userid" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="ErrorCount" type="s:int" />
-          <s:element minOccurs="0" maxOccurs="1" name="ErrorString" type="s:string" />
-        </s:sequence>
-      </s:complexType>
       <s:element name="Message_GetListIDs">
         <s:complexType>
           <s:sequence>
@@ -861,8 +976,28 @@
           <s:element minOccurs="1" maxOccurs="1" name="InParam_userid" type="s:int" />
           <s:element minOccurs="1" maxOccurs="1" name="ErrorCount" type="s:int" />
           <s:element minOccurs="0" maxOccurs="1" name="ErrorString" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Direction" type="s:int" />
         </s:sequence>
       </s:complexType>
+      <s:element name="Message_GetListIDs_V3">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tiket" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nmessage" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="ParentObjId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ObjId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Direction" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="nMaxCount" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Message_GetListIDs_V3Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Message_GetListIDs_V3Result" type="tns:asyncReturn_MessagesIDs" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="Message_GetLinks">
         <s:complexType>
           <s:sequence>
@@ -1148,6 +1283,24 @@
       </s:element>
     </s:schema>
   </wsdl:types>
+  <wsdl:message name="Setup_ParamsSoapIn">
+    <wsdl:part name="parameters" element="tns:Setup_Params" />
+  </wsdl:message>
+  <wsdl:message name="Setup_ParamsSoapOut">
+    <wsdl:part name="parameters" element="tns:Setup_ParamsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Parking_Test1SoapIn">
+    <wsdl:part name="parameters" element="tns:Parking_Test1" />
+  </wsdl:message>
+  <wsdl:message name="Parking_Test1SoapOut">
+    <wsdl:part name="parameters" element="tns:Parking_Test1Response" />
+  </wsdl:message>
+  <wsdl:message name="Parking_CancelTiketSoapIn">
+    <wsdl:part name="parameters" element="tns:Parking_CancelTiket" />
+  </wsdl:message>
+  <wsdl:message name="Parking_CancelTiketSoapOut">
+    <wsdl:part name="parameters" element="tns:Parking_CancelTiketResponse" />
+  </wsdl:message>
   <wsdl:message name="GetConnetedTokensSoapIn">
     <wsdl:part name="parameters" element="tns:GetConnetedTokens" />
   </wsdl:message>
@@ -1172,6 +1325,18 @@
   <wsdl:message name="AboutSoapOut">
     <wsdl:part name="parameters" element="tns:AboutResponse" />
   </wsdl:message>
+  <wsdl:message name="AboutEncrSoapIn">
+    <wsdl:part name="parameters" element="tns:AboutEncr" />
+  </wsdl:message>
+  <wsdl:message name="AboutEncrSoapOut">
+    <wsdl:part name="parameters" element="tns:AboutEncrResponse" />
+  </wsdl:message>
+  <wsdl:message name="__now__SoapIn">
+    <wsdl:part name="parameters" element="tns:__now__" />
+  </wsdl:message>
+  <wsdl:message name="__now__SoapOut">
+    <wsdl:part name="parameters" element="tns:__now__Response" />
+  </wsdl:message>
   <wsdl:message name="ClearSessionSoapIn">
     <wsdl:part name="parameters" element="tns:ClearSession" />
   </wsdl:message>
@@ -1184,17 +1349,17 @@
   <wsdl:message name="Chat_RenameSoapOut">
     <wsdl:part name="parameters" element="tns:Chat_RenameResponse" />
   </wsdl:message>
+  <wsdl:message name="Chat_GetStatisticSoapIn">
+    <wsdl:part name="parameters" element="tns:Chat_GetStatistic" />
+  </wsdl:message>
+  <wsdl:message name="Chat_GetStatisticSoapOut">
+    <wsdl:part name="parameters" element="tns:Chat_GetStatisticResponse" />
+  </wsdl:message>
   <wsdl:message name="Chat_GetMyStatisticSoapIn">
     <wsdl:part name="parameters" element="tns:Chat_GetMyStatistic" />
   </wsdl:message>
   <wsdl:message name="Chat_GetMyStatisticSoapOut">
     <wsdl:part name="parameters" element="tns:Chat_GetMyStatisticResponse" />
-  </wsdl:message>
-  <wsdl:message name="Chat_GetMyStatistic_oldSoapIn">
-    <wsdl:part name="parameters" element="tns:Chat_GetMyStatistic_old" />
-  </wsdl:message>
-  <wsdl:message name="Chat_GetMyStatistic_oldSoapOut">
-    <wsdl:part name="parameters" element="tns:Chat_GetMyStatistic_oldResponse" />
   </wsdl:message>
   <wsdl:message name="Chat_UnSubscribeUserSoapIn">
     <wsdl:part name="parameters" element="tns:Chat_UnSubscribeUser" />
@@ -1376,6 +1541,12 @@
   <wsdl:message name="Message_SetStatusSoapOut">
     <wsdl:part name="parameters" element="tns:Message_SetStatusResponse" />
   </wsdl:message>
+  <wsdl:message name="Message_GetPageSoapIn">
+    <wsdl:part name="parameters" element="tns:Message_GetPage" />
+  </wsdl:message>
+  <wsdl:message name="Message_GetPageSoapOut">
+    <wsdl:part name="parameters" element="tns:Message_GetPageResponse" />
+  </wsdl:message>
   <wsdl:message name="Message_GetListArraySoapIn">
     <wsdl:part name="parameters" element="tns:Message_GetListArray" />
   </wsdl:message>
@@ -1393,6 +1564,12 @@
   </wsdl:message>
   <wsdl:message name="Message_GetListIDs_V2SoapOut">
     <wsdl:part name="parameters" element="tns:Message_GetListIDs_V2Response" />
+  </wsdl:message>
+  <wsdl:message name="Message_GetListIDs_V3SoapIn">
+    <wsdl:part name="parameters" element="tns:Message_GetListIDs_V3" />
+  </wsdl:message>
+  <wsdl:message name="Message_GetListIDs_V3SoapOut">
+    <wsdl:part name="parameters" element="tns:Message_GetListIDs_V3Response" />
   </wsdl:message>
   <wsdl:message name="Message_GetLinksSoapIn">
     <wsdl:part name="parameters" element="tns:Message_GetLinks" />
@@ -1485,6 +1662,18 @@
     <wsdl:part name="parameters" element="tns:Hash_UpdateResponse" />
   </wsdl:message>
   <wsdl:portType name="GetUserInfoSoap">
+    <wsdl:operation name="Setup_Params">
+      <wsdl:input message="tns:Setup_ParamsSoapIn" />
+      <wsdl:output message="tns:Setup_ParamsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Parking_Test1">
+      <wsdl:input message="tns:Parking_Test1SoapIn" />
+      <wsdl:output message="tns:Parking_Test1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Parking_CancelTiket">
+      <wsdl:input message="tns:Parking_CancelTiketSoapIn" />
+      <wsdl:output message="tns:Parking_CancelTiketSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetConnetedTokens">
       <wsdl:input message="tns:GetConnetedTokensSoapIn" />
       <wsdl:output message="tns:GetConnetedTokensSoapOut" />
@@ -1498,8 +1687,17 @@
       <wsdl:output message="tns:GetConnectInfoSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="About">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">О сервисе</wsdl:documentation>
       <wsdl:input message="tns:AboutSoapIn" />
       <wsdl:output message="tns:AboutSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AboutEncr">
+      <wsdl:input message="tns:AboutEncrSoapIn" />
+      <wsdl:output message="tns:AboutEncrSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="__now__">
+      <wsdl:input message="tns:__now__SoapIn" />
+      <wsdl:output message="tns:__now__SoapOut" />
     </wsdl:operation>
     <wsdl:operation name="ClearSession">
       <wsdl:input message="tns:ClearSessionSoapIn" />
@@ -1509,13 +1707,13 @@
       <wsdl:input message="tns:Chat_RenameSoapIn" />
       <wsdl:output message="tns:Chat_RenameSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="Chat_GetStatistic">
+      <wsdl:input message="tns:Chat_GetStatisticSoapIn" />
+      <wsdl:output message="tns:Chat_GetStatisticSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="Chat_GetMyStatistic">
       <wsdl:input message="tns:Chat_GetMyStatisticSoapIn" />
       <wsdl:output message="tns:Chat_GetMyStatisticSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="Chat_GetMyStatistic_old">
-      <wsdl:input message="tns:Chat_GetMyStatistic_oldSoapIn" />
-      <wsdl:output message="tns:Chat_GetMyStatistic_oldSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Chat_UnSubscribeUser">
       <wsdl:input message="tns:Chat_UnSubscribeUserSoapIn" />
@@ -1637,6 +1835,10 @@
       <wsdl:input message="tns:Message_SetStatusSoapIn" />
       <wsdl:output message="tns:Message_SetStatusSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="Message_GetPage">
+      <wsdl:input message="tns:Message_GetPageSoapIn" />
+      <wsdl:output message="tns:Message_GetPageSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="Message_GetListArray">
       <wsdl:input message="tns:Message_GetListArraySoapIn" />
       <wsdl:output message="tns:Message_GetListArraySoapOut" />
@@ -1648,6 +1850,10 @@
     <wsdl:operation name="Message_GetListIDs_V2">
       <wsdl:input message="tns:Message_GetListIDs_V2SoapIn" />
       <wsdl:output message="tns:Message_GetListIDs_V2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Message_GetListIDs_V3">
+      <wsdl:input message="tns:Message_GetListIDs_V3SoapIn" />
+      <wsdl:output message="tns:Message_GetListIDs_V3SoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Message_GetLinks">
       <wsdl:input message="tns:Message_GetLinksSoapIn" />
@@ -1712,6 +1918,33 @@
   </wsdl:portType>
   <wsdl:binding name="GetUserInfoSoap" type="tns:GetUserInfoSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Setup_Params">
+      <soap:operation soapAction="http://localhost/xrogi/Setup_Params" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Parking_Test1">
+      <soap:operation soapAction="http://localhost/xrogi/Parking_Test1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Parking_CancelTiket">
+      <soap:operation soapAction="http://localhost/xrogi/Parking_CancelTiket" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetConnetedTokens">
       <soap:operation soapAction="http://localhost/xrogi/GetConnetedTokens" style="document" />
       <wsdl:input>
@@ -1748,6 +1981,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="AboutEncr">
+      <soap:operation soapAction="http://localhost/xrogi/AboutEncr" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="__now__">
+      <soap:operation soapAction="http://localhost/xrogi/__now__" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ClearSession">
       <soap:operation soapAction="http://localhost/xrogi/ClearSession" style="document" />
       <wsdl:input>
@@ -1766,8 +2017,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Chat_GetMyStatistic">
-      <soap:operation soapAction="http://localhost/xrogi/Chat_GetMyStatistic" style="document" />
+    <wsdl:operation name="Chat_GetStatistic">
+      <soap:operation soapAction="http://localhost/xrogi/Chat_GetStatistic" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1775,8 +2026,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Chat_GetMyStatistic_old">
-      <soap:operation soapAction="http://localhost/xrogi/Chat_GetMyStatistic_old" style="document" />
+    <wsdl:operation name="Chat_GetMyStatistic">
+      <soap:operation soapAction="http://localhost/xrogi/Chat_GetMyStatistic" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -2054,6 +2305,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Message_GetPage">
+      <soap:operation soapAction="http://localhost/xrogi/Message_GetPage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Message_GetListArray">
       <soap:operation soapAction="http://localhost/xrogi/Message_GetListArray" style="document" />
       <wsdl:input>
@@ -2074,6 +2334,15 @@
     </wsdl:operation>
     <wsdl:operation name="Message_GetListIDs_V2">
       <soap:operation soapAction="http://localhost/xrogi/Message_GetListIDs_V2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Message_GetListIDs_V3">
+      <soap:operation soapAction="http://localhost/xrogi/Message_GetListIDs_V3" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -2219,6 +2488,33 @@
   </wsdl:binding>
   <wsdl:binding name="GetUserInfoSoap12" type="tns:GetUserInfoSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Setup_Params">
+      <soap12:operation soapAction="http://localhost/xrogi/Setup_Params" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Parking_Test1">
+      <soap12:operation soapAction="http://localhost/xrogi/Parking_Test1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Parking_CancelTiket">
+      <soap12:operation soapAction="http://localhost/xrogi/Parking_CancelTiket" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetConnetedTokens">
       <soap12:operation soapAction="http://localhost/xrogi/GetConnetedTokens" style="document" />
       <wsdl:input>
@@ -2255,6 +2551,24 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="AboutEncr">
+      <soap12:operation soapAction="http://localhost/xrogi/AboutEncr" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="__now__">
+      <soap12:operation soapAction="http://localhost/xrogi/__now__" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ClearSession">
       <soap12:operation soapAction="http://localhost/xrogi/ClearSession" style="document" />
       <wsdl:input>
@@ -2273,8 +2587,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Chat_GetMyStatistic">
-      <soap12:operation soapAction="http://localhost/xrogi/Chat_GetMyStatistic" style="document" />
+    <wsdl:operation name="Chat_GetStatistic">
+      <soap12:operation soapAction="http://localhost/xrogi/Chat_GetStatistic" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -2282,8 +2596,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Chat_GetMyStatistic_old">
-      <soap12:operation soapAction="http://localhost/xrogi/Chat_GetMyStatistic_old" style="document" />
+    <wsdl:operation name="Chat_GetMyStatistic">
+      <soap12:operation soapAction="http://localhost/xrogi/Chat_GetMyStatistic" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -2561,6 +2875,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Message_GetPage">
+      <soap12:operation soapAction="http://localhost/xrogi/Message_GetPage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Message_GetListArray">
       <soap12:operation soapAction="http://localhost/xrogi/Message_GetListArray" style="document" />
       <wsdl:input>
@@ -2581,6 +2904,15 @@
     </wsdl:operation>
     <wsdl:operation name="Message_GetListIDs_V2">
       <soap12:operation soapAction="http://localhost/xrogi/Message_GetListIDs_V2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Message_GetListIDs_V3">
+      <soap12:operation soapAction="http://localhost/xrogi/Message_GetListIDs_V3" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -2725,6 +3057,7 @@
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="GetUserInfo">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">chat API XROGi</wsdl:documentation>
     <wsdl:port name="GetUserInfoSoap" binding="tns:GetUserInfoSoap">
       <soap:address location="http://localhost:53847/GetUserInfo.asmx" />
     </wsdl:port>

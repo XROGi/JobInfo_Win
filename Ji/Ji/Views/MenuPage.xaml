@@ -2,16 +2,24 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Ji.Views.MenuPage"
+             BackgroundColor="#e15600"
              Title="Menu">
-             
-    <StackLayout VerticalOptions="FillAndExpand">
-        <ListView x:Name="ListViewMenu"
-                    HasUnevenRows="True">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Primary">#00AC6B</Color>
+            <Color x:Key="Accent">#20815D</Color>
+            <Color x:Key="LightTextColor">#999999</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <!--https://colorscheme.ru/#3511Tw0w0w0w0-->
+    
+    <StackLayout VerticalOptions="FillAndExpand" >
+        <ListView x:Name="ListViewMenu"  ItemsSource="{Binding MenuItems}" HasUnevenRows="True" SeparatorVisibility="Default" SeparatorColor="LightGreen" >
             <ListView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate >
                     <ViewCell>
                         <Grid Padding="10">
-                            <Label Text="{Binding Title}" FontSize="20"/>
+                            <Label   Text="{Binding Title}" FontSize="Default"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

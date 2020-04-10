@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             mc:Ignorable="d"
+             x:Class="Ji.Views.JobCreatePage"
+             Title="Новая задача"
+             >
+
+    <ScrollView Orientation="Vertical">
+
+        <StackLayout >
+
+        <ActivityIndicator IsRunning="{Binding  bBusy}"></ActivityIndicator>
+            <Label Text="Сообщение-причина для создания задачи:" TextColor="Gray" ></Label>
+            <Frame CornerRadius="5" Margin="5" BackgroundColor="LightGoldenrodYellow" BorderColor="Gray">
+                <Label Text="{Binding Msg.Text, Mode=TwoWay}" d:Text="Проба сообщение" TextColor="Gray" ></Label>
+            </Frame>
+
+            <Picker Title="Класс задачи"     SelectedItem="{Binding ClassType, Mode=TwoWay}"  >
+                <Picker.Items>
+                    <x:String>Разовая сегодня</x:String>
+                    <x:String>Добавить в план работ</x:String>
+                    <x:String>Периодическая задача</x:String>
+                    <x:String>Плановая работа</x:String>
+                    <x:String>Внеплановая срочная</x:String>
+                    <x:String>Срочная VIP(+контроль)</x:String>
+                </Picker.Items>
+            </Picker>
+            
+            <Entry Text="{Binding NewMsg.Text, Mode=TwoWay}" Placeholder="Краткое название задачи" d:Placeholder="Задача тестирования" />
+
+            <Entry Text="{Binding NewMsg.Description, Mode=TwoWay}" Placeholder="Описание задачи" d:Placeholder="Задача тестирования" />
+
+            <StackLayout Orientation="Horizontal">
+                <Switch  IsToggled="{Binding b_JobNative , Mode=TwoWay}" />
+                <Label Text="Задачу контролирует мессенджер" VerticalOptions="Center"></Label>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Switch  IsToggled="{Binding b_JobSvod , Mode=TwoWay}"  IsEnabled="False"/>
+                <Label Text="Создать задачу в задачнике" VerticalOptions="Center"></Label>
+            </StackLayout>
+
+
+
+            <Label Text="Создатель:" TextColor="Green" ></Label>
+            <StackLayout Orientation="Horizontal" >
+                <Label Text="Ответственные за выполнение:" VerticalOptions="Center" TextColor="Blue" ></Label>
+                <Button Text="Люди.."  Clicked="OnUserAdd"></Button>
+                <Button Text="Группы.."  Command="{Binding UserGroupAdd}" IsEnabled="False"></Button>
+            </StackLayout>
+            <!--<TableView>
+            <TableSection Title="Создать новую">
+                <ViewCell>
+                    
+                    <ContentView >
+                        
+                    </ContentView>
+                </ViewCell>
+                <ViewCell>
+                    <ContentView >
+                       
+                        <StackLayout Orientation="Horizontal">
+                            <Switch  IsToggled="true" />
+                            <Label Text="Задачу контролирует мессенджер" VerticalOptions="Center"></Label>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal">
+                            <Switch  IsToggled="false"  IsEnabled="False"/>
+                            <Label Text="Создать задачу в задачнике" VerticalOptions="Center"></Label>
+                        </StackLayout>
+                    </ContentView>
+                </ViewCell>
+
+
+            </TableSection>
+            <TableSection Title="Присоединить к другой"></TableSection>
+        </TableView>-->
+
+            <CarouselView HeightRequest="120" ItemsSource="{Binding ListUser}">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Frame HasShadow="True"
+                       BorderColor="DarkGray"
+                       CornerRadius="5"
+                       Margin="4"
+                       HeightRequest="50"
+                       HorizontalOptions="Center"
+                       VerticalOptions="CenterAndExpand">
+                                <StackLayout>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="30" />
+                                            <RowDefinition Height="25" />
+                                        </Grid.RowDefinitions>
+
+                                        <ffimageloading:CachedImage  Grid.Row="0" Grid.Column="0" Source="{Binding ImageURL}"
+                                
+                                    LoadingPlaceholder= "wait48.png"
+                                    ErrorPlaceholder= "error48.png"
+                                    CacheDuration= "0"
+                                    CacheType="None"
+                                    RetryCount= "3"
+                                    RetryDelay= "600"
+                                    DownsampleToViewSize = "true"
+                                    Aspect="AspectFit"
+                                    />
+                                        <Label Text="{Binding Famil}" 
+                                        FontSize="Small"  LineBreakMode="TailTruncation" TextColor="Blue" Grid.Row="1" Grid.Column="0"
+                                        />
+
+                                    </Grid>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+
+            <!--<ContentView  IsVisible="True" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <CarouselView ItemsSource="{Binding ListUser}">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Text="{Binding FIO}" />
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+        </ContentView>-->
+
+
+            <!--<ListView IsVisible="False" x:Name="AllUsersList"
+                ItemsSource="{Binding ListUser}"
+                VerticalOptions="FillAndExpand"
+             
+                  >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                     
+                        <StackLayout Padding="10">
+ 
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="45" />
+                                    <RowDefinition Height="30" />
+                                </Grid.RowDefinitions>
+ 
+
+                                <ffimageloading:CachedImage  Grid.Row="0" Grid.Column="0" Source="{Binding ImageURL}"
+                                
+                                    LoadingPlaceholder= "wait48.png"
+                                    ErrorPlaceholder= "error48.png"
+                                    CacheDuration= "0"
+                                    CacheType="None"
+                                    RetryCount= "3"
+                                    RetryDelay= "600"
+                                    DownsampleToViewSize = "true"
+                                    Aspect="AspectFit"
+                                    />
+                                <Label  Text="{Binding Famil}"  FontSize="Small"  LineBreakMode="TailTruncation" TextColor="Blue" Grid.Row="1" Grid.Column="0" />
+        
+                              
+                            </Grid>
+
+                         </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>-->
+
+          
+            <StackLayout Orientation="Horizontal">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Контрольный срок" VerticalOptions="Center"></Label>
+                    <DatePicker  Date="{Binding DateEnd}"></DatePicker>
+                </StackLayout>
+            </StackLayout>
+
+            <Button x:Name="createbtn" Text="Создать задачу" Clicked="Button_Clicked" IsVisible="True" ></Button>
+        
+    </StackLayout>
+    </ScrollView>
+</ContentPage>

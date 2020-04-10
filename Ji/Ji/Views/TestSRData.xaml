@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:Ji.Views"
+             xmlns:classsr="clr-namespace:Ji.ClassSR"
+             mc:Ignorable="d"
+             Title="SingleR"
+             x:Class="Ji.Views.TestSRData"
+             >
+    <StackLayout>
+        <Button Text="Соединиться" Command="{Binding CommandConnect}"></Button>
+        <Button Text="Получить токен" Command="{Binding CommandGetToken}"></Button>
+        <Label Text="{Binding ClassName}"></Label>
+        <ListView x:Name="MyListView"
+            ItemsSource="{Binding MsgsLog}"
+            ItemTapped="Handle_ItemTapped"
+            CachingStrategy="RecycleElement"
+                  RowHeight="90"
+                  >
+    <d:ListView.ItemsSource>
+                <x:Array Type="{x:Type classsr:SRMessageLog}">
+                    <classsr:SRMessageLog TimeCreate="Steve" FunctionParam="21" FunctionName="USA" />
+                    <classsr:SRMessageLog TimeCreate="John" FunctionParam="37" FunctionName="USA" />
+                    <classsr:SRMessageLog TimeCreate="Tom" FunctionParam="42" FunctionName="UK" />
+                    <classsr:SRMessageLog TimeCreate="Lucas" FunctionParam="29" FunctionName="Germany" />
+                    <classsr:SRMessageLog TimeCreate="Tariq" FunctionParam="39" FunctionName="UK" />
+                    <classsr:SRMessageLog TimeCreate="Jane" FunctionParam="30" FunctionName="USA" />
+                </x:Array>
+            </d:ListView.ItemsSource>
+    <!--Built in Cells-->
+    <ListView.ItemTemplate >
+                <DataTemplate x:DataType="classsr:SRMessageLog" >
+
+                    <ViewCell >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"></ColumnDefinition>
+                                <ColumnDefinition Width="50"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                            <Label  Grid.Column="0"  Text="{Binding TimeCreate}" FontAttributes="Bold" />
+                            <Label Grid.Column="1" Text="{Binding FunctionName}" HorizontalTextAlignment="Center"  />
+                            <Label Grid.Column="2" Text="{Binding FunctionParam}"  HorizontalTextAlignment="Start" TextColor="White" />
+                        </Grid>
+                    </ViewCell>
+
+
+                </DataTemplate>
+    </ListView.ItemTemplate>
+    
+    <!--Custom View Cells-->
+    <!--
+    <ListView.ItemTemplate>
+      <DataTemplate>
+        <ViewCell>
+          <StackLayout>
+            <Label Text="{Binding Text}" 
+                   d:Text="{Binding .}"
+                   Style="{DynamicResource ListItemTextStyle}" />
+            <Label Text="{Binding Detail}" 
+                   d:Text="Detail"
+                   Style="{DynamicResource ListItemDetailTextStyle}"/>
+          </StackLayout>
+        </ViewCell>
+      </DataTemplate>
+    </ListView.ItemTemplate>
+    -->
+  </ListView>
+    </StackLayout>
+</ContentPage>

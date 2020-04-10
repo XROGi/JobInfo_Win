@@ -5,5 +5,13 @@
     <Setting Name="JobInfo_WS_JobInfo_GetUserInfo" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">http://localhost:53847/GetUserInfo.asmx</Value>
     </Setting>
+    <Setting Name="JIConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=ghp-sql;Initial Catalog=JI;Persist Security Info=True;User ID=QR_Domain;Password="R*8=7NT?6_!!!"&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=ghp-sql;Initial Catalog=JI;Persist Security Info=True;User ID=QR_Domain;Password="R*8=7NT?6_!!!"</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

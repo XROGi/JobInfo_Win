@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Ji.Views.MessageInfoViewPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Сообщение " />
+                <Label x:Name="id" Text=""  HorizontalOptions="End"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Содержимое:" />
+                <Label Text="{Binding obj.Text}"  HorizontalOptions="End"/>
+            </StackLayout>
+
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Включить оповещения" VerticalOptions="Center"/>
+                <Switch IsToggled="false"   HorizontalOptions="End"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Создатель" VerticalOptions="Center"/>
+                <Label Text="{Binding obj.userCreater}"  HorizontalOptions="End"/>
+            </StackLayout>
+
+            <!--Custom View Cells-->
+            <!--
+    <ListView.ItemTemplate>
+      <DataTemplate>
+        <ViewCell>
+          <StackLayout>
+            <Label Text="{Binding Text}" 
+                   d:Text="{Binding .}"
+                   Style="{DynamicResource ListItemTextStyle}" />
+            <Label Text="{Binding Detail}" 
+                   d:Text="Detail"
+                   Style="{DynamicResource ListItemDetailTextStyle}"/>
+          </StackLayout>
+        </ViewCell>
+      </DataTemplate>
+    </ListView.ItemTemplate></ListView>
+    -->
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

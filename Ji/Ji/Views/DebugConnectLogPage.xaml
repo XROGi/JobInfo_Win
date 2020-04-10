@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:xrogi="clr-namespace:Ji.ClassSR"
+             mc:Ignorable="d"
+             Title="Связь"
+             x:Class="Ji.Views.DebugConnectLogPage">
+   
+
+        <ListView x:Name="MyListView"
+            ItemsSource="{Binding Items}"
+          
+            CachingStrategy="RecycleElement">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="xrogi:ConnectionLog">
+                    <ViewCell>
+                    <StackLayout Orientation="Vertical">
+                        <StackLayout Orientation="Horizontal" Spacing="5">
+                            <Label Text="DateCreate"  />
+                            <Label Text="DateBeginConnect" />
+                            <Label Text="DateConnected"  />
+                            <Label Text="DateDisConnected"  />
+                            <Label Text="DateErrorConnected"  />
+                            <Label Text="ErrorException"  />
+                            <Label Text="nReConnected"  />
+                            <Label Text="Event"  />
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal" Spacing="5">
+                            <Label Text="{Binding DateCreate, Mode=TwoWay , StringFormat='{}{0:hh\\:mm}'}"  />
+                            <Label Text="{Binding DateBeginConnect, Mode=TwoWay, StringFormat='{}{0:hh\\:mm}'}" />
+                            <Label Text="{Binding DateConnected, Mode=TwoWay, StringFormat='{}{0:hh\\:mm}'}"  />
+                            <Label Text="{Binding DateDisConnected, Mode=TwoWay, StringFormat='{}{0:hh\\:mm}'}"  />
+                            <Label Text="{Binding DateErrorConnected, Mode=TwoWay, StringFormat='{}{0:hh\\:mm}'}"  />
+                            <Label Text="{Binding ErrorException, Mode=TwoWay}"  />
+                            <Label Text="{Binding nReConnected, Mode=TwoWay}"  />
+                            <Label Text="{Binding Event, Mode=TwoWay}"  />
+                        </StackLayout>
+                    </StackLayout>
+                </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+</ContentPage>

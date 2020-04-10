@@ -1,4 +1,6 @@
-﻿using JobInfo;
+﻿//using JobInfo;
+//using JobInfo.XROGi_Class;
+using JobInfo;
 using JobInfo.XROGi_Class;
 using System;
 using System.Collections.Generic;
@@ -72,8 +74,11 @@ namespace JIcon
             cClose = true;
             if (Environment.UserName=="iu.smirnov")
             {
-   //             b_ShowConnectInfo = true;
+                //             b_ShowConnectInfo = true;
+                button2.Visible = true;
             }
+            else
+                button2.Visible = false;
         }
 
         private void Button1_Click(object sender, EventArgs e)
@@ -85,8 +90,20 @@ namespace JIcon
 
         private void StartMain()
         {
-            ShowInfoBallon("Информация", "Запуск мессенджера временно недоступен.\r\n Инф тел. 4296");
-            return;
+            //    
+            bool RunWinClient = false;
+            foreach (string par in job.Setup_Params)
+            {
+                if (par == "RunWinClient=true")
+                {
+                    RunWinClient = true;
+                }
+            }
+            if (RunWinClient==false)
+            {
+                ShowInfoBallon("Информация", "Запуск мессенджера временно недоступен.\r\n Инф тел. 4296");
+                return;
+            }
             try
             {
                 try
@@ -199,86 +216,74 @@ namespace JIcon
         private void Button2_Click(object sender, EventArgs e)
         {
             ConnectedNow();
-            
-
+ 
         }
-      
+
         private void ConnectedNow()
         {
+            string prif = GetServer_ChatURL();
+            Job_Run1(prif);
+        }
+
+        int AntiRecurse = 0;
+        private void Job_Run1(string prif)
+        { 
             bool b_FirstRun; //e170f42b-b55d-46bd-ba07-a6b9625a2ece
             string guid = Marshal.GetTypeLibGuidForAssembly(Assembly.GetExecutingAssembly()).ToString();
             Mutex mutexObj = new Mutex(true, guid, out b_FirstRun);
             if (b_FirstRun == true)
             {
-
-
-
-                job = new Job(GetServer_ChatURL());
-                // job.ConnectToServer();
-                Setup.MachineName = Environment.MachineName;
-                Setup.UserLogin = Environment.UserName;
-
-      
-                string Prif = GetServer_ChatURL();
-
-                job.OnConneced += OnConnected;
-
-
-
-
-                job.OnConneced += OnConnecedToJobServerCompleat;
-
-                job.OnDisconneced += OnDiscnnecedJobServer;
-
-                job.OnTokenRecive += OnTokenRecive;
-
-                job.OnMsgRecive += OnMsgRecive;
-
-                job.OnChatListChanged += OnChatListChanged;
-
-                job.OnJobClassEvent += ShowJobLogEvents;
-
-                job.OnChatUpdateRecive += OnChatUpdateRecive;
-
-                job.OnSocketSend += OnSocketSend;
-
-                //            job.ConnectToServer(Environment.MachineName, Environment.UserName);
-
-                Setup.MachineName = Environment.MachineName;
-
-                Setup.UserLogin = Environment.UserName;
-               Job_Run(GetServer_ChatURL());
-                job.ConnectToServer(Setup.MachineName, Setup.UserLogin);
-                //if (defaultToolStripMenuItem.Checked != true)
-
-                //{
-
-                //    if (botToolStripMenuItem.Checked)
-
-                //    {
-
-                //        Setup.UserLogin = "bot";
-
-                //    }
-
-                //}
-
-                //   mp.SetJob(job);
-
-                //////job.OnDisconneced += mp.On_Job_Disconneced;
-
-                //////job.OnTokenRecive += mp.On_Job_TokenRecive;
-
-                //////job.OnConneced += mp.On_Job_Conneced;
-
-                ///            job.OnChatUpdateRecive += mp.On_Job_ChatUpdateRecive;
-
+                MainJobStart(prif);
             }
             else
             {
                 ShowInfoBallon("Внимание", "Уже запущенн процесс");
             }
 
+        }
+
+        private void MainJobStart(string prif)
+        {
+            while (true)
+            {
+                job = new Job(prif);
+                // job.ConnectToServer();
+                Setup.MachineName = Environment.MachineName;
+                Setup.UserLogin = Environment.UserName;
+                string Prif = GetServer_ChatURL();
+                job.OnConneced += OnConnected;
+                //job.OnConneced += OnConnecedToJobServerCompleat;
+                job.OnDisconneced += OnDiscnnecedJobServer;
+                job.OnTokenRecive += OnTokenRecive;
+                job.OnMsgRecive += OnMsgRecive;
+                job.OnChatListChanged += OnChatListChanged;
+                job.OnJobClassEvent += ShowJobLogEvents;
+                job.OnChatUpdateRecive += OnChatUpdateRecive;
+                job.OnSocketSend += OnSocketSend;
+                Setup.MachineName = Environment.MachineName;
+                Setup.UserLogin = Environment.UserName;
+                string returl = job.GetServerName();
+                job.ConnectToServer(returl ,Setup.MachineName, Setup.UserLogin);
+               
+                if (returl != prif && AntiRecurse != 1)
+                {
+                    job.Close();
+                    Setup.URLServer = returl;
+                    try
+                    {
+                        AntiRecurse = 1;
+                        //Job_Run1(Setup.URLServer);
+                        job = null;
+                        continue;
+                    }
+                    catch (Exception err)
+                    {
+
+                    }
+                }
+                AntiRecurse = 0;
+                return;
+            }
         }
 
         private void ShowInfoBallon(string Caption, string _Text)
@@ -572,9 +577,21 @@ namespace JIcon
           
 
                 label5.Text = "Соединён с сервером.Идентификация";
-                job.ConnectToServer(Environment.MachineName, Environment.UserName);
-                //    RequestChats(job);
 
+                job.ConnectToServer(job.GetServerName(), Environment.MachineName, Environment.UserName);
+
+                //    RequestChats(job);
+                foreach (string par in job.Setup_Params)
+                {
+                    if (par == "RunWinClient=false")
+                    {
+                        button1.Enabled = false;
+                    }
+                    if (par == "RunWinClient=true")
+                    {
+                        button1.Enabled = true;
+                    }
+                }
 
             }
             catch (ChatWsFunctionException err) { E(err); }
@@ -607,81 +624,15 @@ namespace JIcon
             string Prif = "ws://localhost:53847/";
 
             
-               Prif = "ws://jobinfo/xml/";
+              Prif = "ws://jobinfo/xml/";
+            Prif = "ws://ghp-sql/xml/";
             //http://jobinfo/xml/xml/GetUserInfo.asmx
-           
-           //     Prif = "ws://localhost:53847/";
+
+            //          Prif = "ws://localhost:53847/";
             Setup.URLServer = Prif;
             return Prif;
         }
-        private void Job_Run(string prif)
-        {
-            return;
-            if (prif == "")// неверолятно
-                prif = Setup.URLServer;
-
-            if (String.IsNullOrEmpty(prif))
-                return;
-      //      toolStripStatusLabel2.Text = "Подключение к серверу..";
-            if (job != null)
-            {
-                //job.ReconnectNow()
-                //      job.ReconnectBegin();
-                job.Close();
-             /*   job.OnConneced -= OnConnecedToJobServerCompleat;
-                job.OnDisconneced -= OnDiscnnecedJobServer;
-                job.OnTokenRecive -= OnTokenRecive;
-                job.OnMsgRecive -= OnMsgRecive;
-                job.OnChatListChanged -= OnChatListChanged;
-
-                job.OnJobClassEvent -= ShowJobLogEvents;
-                job.OnChatUpdateRecive -= OnChatUpdateRecive;
-                job.OnSocketSend -= OnSocketSend;
-                job = null;
-                           */
-            }
-            else
-            {
-          
-                job = new Job(prif);
-         /*
-                job.OnConneced += OnConnecedToJobServerCompleat;
-                job.OnDisconneced += OnDiscnnecedJobServer;
-                job.OnTokenRecive += OnTokenRecive;
-                job.OnMsgRecive += OnMsgRecive;
-                job.OnChatListChanged += OnChatListChanged;
-
-                job.OnJobClassEvent += ShowJobLogEvents;
-                job.OnChatUpdateRecive += OnChatUpdateRecive;
-                job.OnSocketSend += OnSocketSend;
-                */
-                //            job.ConnectToServer(Environment.MachineName, Environment.UserName);
-                Setup.MachineName = Environment.MachineName;
-                Setup.UserLogin = Environment.UserName;
-           // /    if (defaultToolStripMenuItem.Checked != true)
-                {
-           //         if (botToolStripMenuItem.Checked)
-                    {
-                        Setup.UserLogin = "bot";
-                    }
-                }
-           //     mp.SetJob(job);
-         /*       job.OnDisconneced += mp.On_Job_Disconneced;
-                job.OnTokenRecive += mp.On_Job_TokenRecive;
-                job.OnConneced += mp.On_Job_Conneced;
-                job.OnChatUpdateRecive += mp.On_Job_ChatUpdateRecive;
-
-                job.OnChatEvent += ForTree_OnChatEvent;
-                //
-                job.ConnectToServer(Setup.MachineName, Setup.UserLogin);*/
-            }
-
-
-            //        JobLastShow last = job.Job_GetMsgLast();
-            //            int nScrollMsgCount = 2;
-
-
-        }
+      
 
         private void NotifyIcon_ji_Click(object sender, EventArgs e)
         {
@@ -753,12 +704,31 @@ namespace JIcon
                         cClose = false;
                         Close();
                     }
+                    if (File.Exists(@"\\soft\svoddocs$\StopApp\JIcon_Reconnect.txt"))
+                    {
+                        if (job != null)
+                        {
+                            if (job.StatusConnect == xConnectStatus.b_Created
+                                    ||
+                                    job.StatusConnect == xConnectStatus.b_Disconnected
+                                    )
+                            {
+                                //string prif = job.GetServerName();
+                                //MainJobStart(prif);
+                                job.SetupParam_GetList();
+                                job?.ReconnectBegin();
+                                return;
+                            }
+                        }
+
+                    }
                 }
                 catch (Exception err)
                 {
 
                 }
                 //Проверяем на наличие мутекса в системе
+                //Если запущен основной мессенджер, то не показыват сообщения
                 using (Mutex m = Mutex.OpenExisting("JobInfo"))
                 {
                  //   m.ReleaseMutex();
@@ -821,6 +791,11 @@ namespace JIcon
                 //СводИнтернешнл\SvodDocs.appref - ms
                 Process.Start("file://soft/svoddocs$/Help/jobinfo/help1.docx");
             //\\soft\svoddocs$\Help\jobinfo
+        }
+
+        private void Button2_Click_1(object sender, EventArgs e)
+        {
+            job.CloseWS();
         }
     }
 }

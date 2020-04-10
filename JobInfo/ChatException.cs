@@ -37,6 +37,9 @@ namespace JobInfo
         static public string GetDepartament(this WS_JobInfo.User u)
         {
             //if (u.positions == null) return "нет данных";
+            if (u.positions == null) return "нет данных";
+            return String.Join("\r\n", u.positions.Select(s => s.Subdiv).ToArray());
+
             return "";
         }
         static public Image GetFoto(this WS_JobInfo.User u)

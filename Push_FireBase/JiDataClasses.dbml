@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="JI" Class="JiDataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=ghp-sql;Initial Catalog=JI;Persist Security Info=True;User ID=JobInfo_IIS_User" SettingsObjectName="Push_FireBase.Properties.Settings" SettingsPropertyName="JIConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.tbl_FB_SendLog" Member="tbl_FB_SendLog">
+    <Type Name="tbl_FB_SendLog">
+      <Column Name="FB_SendLogId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FB_SendLogDateAdd" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FB_SendLogDateSend" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="userid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[key]" Member="key" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Title" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Body" Type="System.String" DbType="VarChar(1024)" CanBeNull="true" />
+      <Column Name="userid_whosend" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ObjId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Function Name="dbo.proc_FB_SendCommited" Method="proc_FB_SendCommited">
+    <Parameter Name="FB_SendLogId" Parameter="fB_SendLogId" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.proc_User_ParamFBClear" Method="proc_User_ParamFBClear">
+    <Parameter Name="userid" Type="System.Int32" DbType="Int" />
+    <Parameter Name="key" Type="System.String" DbType="VarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>

@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Net.WebSockets;
 using System.Reflection;
+using System.Resources;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using JobInfo.WS_JobInfo;
 using JobInfo.XROGi_Class;
+using JobInfo.XROGi_Extensions;
 using WebSocket4Net;
 
 namespace JobInfo
@@ -22,6 +25,7 @@ namespace JobInfo
         public DateTime _DateCreateObject = DateTime.Now;//private
         public DateTime _DatePing;
         public DateTime _DatePong;
+        public string[]  Setup_Params;
 
         public WS_JobInfo.StatusInfo[] statusInfo = null;
 
@@ -36,19 +40,15 @@ namespace JobInfo
         WS_JobInfo.User user_self = null;
 
         public List<ObjOu> ou_data = new List<ObjOu>();
-
-        //public bool isConnected() {  }
+        ImageList il = new ImageList();
+        
 
         public bool b_ReciveLoop = false;
 
         public Device this_device;
         User this_user;
         public List<Chat> Chats;
-        //List<Obj> ChatList;
-
-        public long LastMessageAdd;
         public List<WS_JobInfo.Obj> MessgesList;
-        long MessgesListChatId;
 
         public List<WS_JobInfo.User> users = new List<WS_JobInfo.User>();
 
@@ -63,6 +63,10 @@ namespace JobInfo
 
         public delegate void OnJobClassEventDelegate(Job _job, string FunctionName);
         public event OnJobClassEventDelegate OnJobClassEvent = delegate { };
+
+        public delegate void OnDebugClassEventDelegate(object sender, string FunctionName, string param_values);
+        public event OnDebugClassEventDelegate OnDebugClassEvent = delegate { };
+
 
         public delegate void OnChatListChangedDelegate(Job _job);
         public event OnChatListChangedDelegate OnChatListChanged = delegate { };
@@ -107,6 +111,9 @@ namespace JobInfo
         public delegate void Message_GetListIDDelegate(int ChatId, int[] MessageArray);
         public event Message_GetListIDDelegate onMessage_GetListID = delegate { };
 
+        public delegate void Message_ReciveListObjIdDelegate(asyncReturn_Messages ret);
+        public event Message_ReciveListObjIdDelegate Message_ReciveListObjId = delegate { };
+
 
         public delegate void OnPingPongDelegate(Job job, DateTime Ping, DateTime Pong);
         public event OnPingPongDelegate OnPingPong = delegate { };
@@ -117,6 +124,12 @@ namespace JobInfo
 
 
          */
+        public delegate void OnBackWorkBeginDelegate(string Message);
+        public event OnBackWorkBeginDelegate OnBackWorkBegin = delegate { };
+
+        public delegate void OnObjStatusChangedDelegate(ObjStatus[] ObjStatus);
+        public event OnObjStatusChangedDelegate OnObjStatusChanged = delegate { };
+
         public Job(string url)
         {
             b_Connected = false;
@@ -133,10 +146,16 @@ namespace JobInfo
             net.onMessage_GetListArray += Net_onMessage_GetListArray;
             net.OnMessage_GetFileAsync += Net_OnMessage_GetFileAsync;
             net.OnUser_GetListAllAsync += Net_OnUser_GetListAllAsync;
+            net.OnErrorAsyncFunctionRun += Net_OnErrorAsyncFunctionRun;
             MessgesList = new List<WS_JobInfo.Obj>();
             Chats = new List<Chat>();
-            LastMessageAdd = 0;
             b_ReconnectAutomatical = true;
+            il.ImageSize = new Size(64, 64);
+        }
+
+        private void Net_OnErrorAsyncFunctionRun(Exception err, string Message)
+        {
+            OnJobClassEvent(this, string.Format("- Catch\t{0}. Debug\t{1} \t{2}", MethodBase.GetCurrentMethod().Name, Message,err.Message.ToString()));
         }
 
         private void Net_OnUser_GetListAllAsync(object sender, User_GetListAllCompletedEventArgs e)
@@ -160,20 +179,15 @@ namespace JobInfo
         private void Net_onMessage_GetListArray(asyncReturn_Messages ret)
         {
             
-            Chat c = Chats.Find(s => s.chatId == ret.InParam_chatid);
-            if (c==null)
-            {
-                // Пришли сообщения, а чата нет
-            }
-            else
-            c?.MessageDataArrayAddRange(ret);
+            Message_ReciveListObjId(ret);
+
         }
 
         private void Net_onMessage_GetListID(int ChatId, int[] MessageArray)
         {
 
-            Chat c = Chats.Find(s => s.chatId == ChatId);
-            c?.MessageArrayAddRange(MessageArray);
+  //          Chat c = Chats.Find(s => s.chatId == ChatId);
+  //          c?.MessageArrayAddRange(MessageArray);
             onMessage_GetListID(ChatId, MessageArray);
         }
 
@@ -224,7 +238,7 @@ namespace JobInfo
         internal UserStatus [] User_GetUsersStatus(int[] users)
         {
             OnJobClassEvent(this, string.Format("{0}.{1}", MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name));
-           return net.User_GetUsersStatus(this_device.TokenId, this_device.Token_Counter, users);
+            return net.User_GetUsersStatus(this_device.TokenId, this_device.Token_Counter, users);
         }
 
         public  void ReconnectBegin()
@@ -307,8 +321,9 @@ namespace JobInfo
                                 {//  подгрузить новый чат
                                     RequestChat(val);
                                 }
-                      
-                                OnChatUpdateRecive(this, cmd, val, 0); //long (text
+
+                                if (val!=0)
+                                    OnChatUpdateRecive(this, cmd, val, 0); //long (text
                             }catch (Exception err)
                             {
 
@@ -426,11 +441,13 @@ namespace JobInfo
         {
 
         }*/
-        internal void Message_SetStatus(int ObjId, int Status)
+        internal ObjStatus[] Message_SetStatus(int ObjId, int Status)
         {
             OnJobClassEvent(this, string.Format("{0}.{1}", MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name));
 
-            net.Message_SetStatus(this_device.TokenId, this_device.Token_Counter, ObjId, Status);
+            ObjStatus[] ret =net.Message_SetStatus(this_device.TokenId, this_device.Token_Counter, ObjId, Status);
+            OnObjStatusChanged(ret);
+            return ret; 
         }
 
         internal void Spravka_GetStatus()
@@ -500,10 +517,29 @@ namespace JobInfo
                 this_device = d;
                 StatusConnect = xConnectStatus.b_Identity;
                 Task ff = net.ConnectToToken(this_user, d);
-
+                SetupParam_GetList();
+               
             }
             return false;
         }
+
+        public string []   SetupParam_GetList()
+        {
+            try
+            {
+                if (net != null)
+                {
+                    Setup_Params = net.Get_Setup_Params();
+                    return Setup_Params;
+                }
+            }
+            catch (Exception err)
+            {
+                //       throw err;
+            }
+            return null;
+        }
+
         internal int GetMyUserId()
         {
             if (this_user.isValid)
@@ -608,11 +644,17 @@ namespace JobInfo
             {
                 foreach (WS_JobInfo.Obj chat in os)
                 {
-
-                    Chat_RegisterInList(chat);
-
+                    string ChatName = chat.GetText();
+                    OnBackWorkBegin("Запрос сообщений для чата: " + ChatName);
+                    if (chat.ObjId == 158)
+                        continue;
+                    Chat c = Chat_RegisterInList(chat);
                     
+        
+
+
                 }
+                OnBackWorkBegin("");
             }
             else
                 return false;
@@ -622,7 +664,7 @@ namespace JobInfo
 
         }
 
-        private void Chat_RegisterInList(WS_JobInfo.Obj chat)
+        private Chat Chat_RegisterInList(WS_JobInfo.Obj chat)
         {
             
             if (Chats.Where(s => s.chatId == chat.ObjId).Any())
@@ -633,27 +675,80 @@ namespace JobInfo
                 var stat = net.Chat_GetMyStatistic(this_device.TokenId, this_device.Token_Counter, chat.ObjId);
                 c.statistic = stat;
                 //Chats.Add(c);
-                Message_GetListIDsNow(c);
+     //20190627            Message_GetListIDsNow(c);
+                return c;
             }
             else
             {
-                var stat = net.Chat_GetMyStatistic(this_device.TokenId, this_device.Token_Counter, chat.ObjId);
-                Chat c = new Chat(chat, stat);
+            //    var stat = net.Chat_GetMyStatistic(this_device.TokenId, this_device.Token_Counter, chat.ObjId);
+            //    if (Chats.Where(s => s.ObjId == (int)chat.ObjId).Any() == false)
+                Chat c = new Chat(chat);//, stat);
                 c.OnChatEvent += JobOnChatEvent;
                 c.OnChatSelectedChanged += JobOnChatSelectedChangedEvent;
                 c.OnChatRequestLastStatistic += OnChatRequestLastStatistic;
-    //            c.statistic = stat;
+                c.OnChatRequestListIDs += Chat_OnChatRequestListIDs;
+                //            c.statistic = stat;
                 Chats.Add(c);
-                Message_GetListIDsNow(c);
-                
+                c.GetLastStatistic();
+                //20190627           Message_GetListIDsNow(c);
+                return c;
+            }
+        }
+
+
+        public String ManualServerName = "";
+        public string GetServerName()
+        {
+            if (ManualServerName == "")
+            {
+                string g = Setup_Params.Where(s => s.StartsWith("MainWEBServer=")).FirstOrDefault().Substring("MainWEBServer=".Length);
+
+                return g;
+            }
+            else
+                return ManualServerName;
+        }
+
+
+        /// <summary>
+        /// Запросить список сообщений
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="showMsgObjId"></param>
+        /// <param name="showDirection"></param>
+        /// <param name="b_async"></param>
+        private void Chat_OnChatRequestListIDs(Chat sender, int showMsgObjId, ShowMessagePosition showDirection, bool b_async)
+        {
+            if (sender != null)
+            {
+                OnJobClassEvent(this, string.Format("{0}.{1}\tChatid={2}", MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name, sender.chatId));
+                int Direction = 0;
+                int maxCount = 0;// 0  - all
+                if (showDirection == ShowMessagePosition.LastOnBootom) Direction = -1;
+                if (showDirection == ShowMessagePosition.LastInTop) Direction = 1;
+
+                net.Message_GetListIDs(this_device.TokenId, this_device.Token_Counter, sender.chatId, showMsgObjId, Direction , maxCount ,!b_async);
             }
         }
 
         private void OnChatRequestLastStatistic(Chat sender)
         {
+            OnJobClassEvent(this, string.Format("{0}.{1}\tChatid={2}", MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name, sender.chatId));
+
             var stat = net.Chat_GetMyStatistic(this_device.TokenId, this_device.Token_Counter, sender.chatId);
-            if (stat!=null && sender.chatId== sender.chatId)
-            sender.statistic = stat;
+
+            if (stat != null && sender.chatId == sender.chatId)
+            {
+                sender.statistic = stat;
+                if (sender.statistic == stat)
+                { //пои идее не нужно
+                    OnChatEvent(sender, ChatEventType.onChatStatisticChanged, stat);
+                }
+                else
+                {
+
+                }
+            }
         }
 
         private void JobOnChatSelectedChangedEvent(Chat sender, bool SelectedState)
@@ -676,13 +771,12 @@ namespace JobInfo
             if (new_chat != null)
             {
                 Chat_RegisterInList(new_chat);
-                
-
             };
         }
 
         private void  JobOnChatEvent(Chat chat, ChatEventType et, object Tag)
         {
+            OnJobClassEvent(this, string.Format("{0}.{1}", MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name+"\t"+et.ToString()+"\t"+Tag.ToString()));
             OnChatEvent(chat, et, Tag);
         }
 
@@ -786,22 +880,28 @@ namespace JobInfo
             
             return null;
         }
-        
-        internal void Message_GetListArray(int ParentChatId,  int [] msgids)
+
+         internal void Message_GetListArray(int ParentChatId,  int [] msgids)
         {
-            Cursor c = Cursor.Current;
+      //      Cursor c = Cursor.Current;
             try
             {
                 try
                 {
-                    Chat_GetMyStatistic(ParentChatId);
-                    Cursor.Current = Cursors.AppStarting;
+             //       Chat_GetMyStatistic(ParentChatId);
+            //        Cursor.Current = Cursors.AppStarting;
                     string s = String.Join(",", msgids);
 
                     OnJobClassEvent(this, string.Format("{0}.{1}", MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name + "\t" + s));
 
-                    MessgesListChatId = ParentChatId;//?
-                    net.Message_GetListArray(this_device.TokenId, this_device.Token_Counter, ParentChatId, msgids);
+
+
+                //    await Task.Run(() => {
+                        //await
+                        net.Message_GetListArray(this_device.TokenId, this_device.Token_Counter, ParentChatId, msgids);
+//                    });
+
+                    
                 }catch (Exception err)
                 {
 
@@ -809,9 +909,10 @@ namespace JobInfo
             }
             finally
             {
-                Cursor.Current = c;
+             //   Cursor.Current = c;
             }
         }
+        /*
         internal WS_JobInfo.ObjStatus[] Message_GetListArray(int ObjId)
         {
             Cursor c = Cursor.Current;
@@ -825,7 +926,7 @@ namespace JobInfo
             {
                 Cursor.Current = c;
             }
-        }
+        }*/
         internal WS_JobInfo.view_ObjStatus_HistoryInfo[] Message_GetStatusHistory(int ObjId)
         {
             Cursor c = Cursor.Current;
@@ -852,8 +953,6 @@ namespace JobInfo
 
                 OnJobClassEvent(this, string.Format("{0}.{1}", MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name));
                 //        MessgesList.Clear();
-                MessgesListChatId = ParentChatId;
-
 
                 WS_JobInfo.Obj[] os = net.GetMessages(this_device.TokenId, this_device.Token_Counter, ParentChatId, Get_AfterMesageId, CountDelta);
 
@@ -879,7 +978,6 @@ namespace JobInfo
         {
             OnJobClassEvent(this, string.Format("{0}.{1}", MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name));
             //        MessgesList.Clear();
-            MessgesListChatId = ParentChatId;
             bool b_change = false;
             long CurrentPosition = 0;
             if (cui != null)
@@ -904,7 +1002,7 @@ namespace JobInfo
         internal void Message_GetListIDs(int ParentChatId, int afterId)
         {
             OnJobClassEvent(this, string.Format("{0}.{1}", MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name));
-            net.Message_GetListIDs(this_device.TokenId, this_device.Token_Counter, ParentChatId, afterId,false);
+            net.Message_GetListIDs(this_device.TokenId, this_device.Token_Counter, ParentChatId, afterId,1,0,false);
         }
 
 
@@ -913,20 +1011,20 @@ namespace JobInfo
             int last = c.Hash_GetMessagesLast();
             OnJobClassEvent(this, string.Format("{0}.{1}", MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name+" "+last.ToString()));
      
-            net.Message_GetListIDs(this_device.TokenId, this_device.Token_Counter, c.chatId, last, false);
+            net.Message_GetListIDs(this_device.TokenId, this_device.Token_Counter, c.chatId, last,1,0, false);
         }
 
         internal void Message_GetListIDsNow(int chatid, int LastObjId)
         {
             OnJobClassEvent(this, string.Format("{0}.{1}", MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name));
-            net.Message_GetListIDs(this_device.TokenId, this_device.Token_Counter, chatid, LastObjId, true);
+            net.Message_GetListIDs(this_device.TokenId, this_device.Token_Counter, chatid, LastObjId,1,0, true);
         }
         internal void Message_GetListIDsNow(Chat c)
         {
             if (c != null)
             {
                 OnJobClassEvent(this, string.Format("{0}.{1}\tChatid={2}", MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name,c.chatId));
-                net.Message_GetListIDs(this_device.TokenId, this_device.Token_Counter, c.chatId, c.Hash_GetMessagesLast(), true);
+                net.Message_GetListIDs(this_device.TokenId, this_device.Token_Counter, c.chatId, c.Hash_GetMessagesLast(),1,0, true);
             }
         }
         internal void Message_GetListIDsNow(int chatid)
@@ -939,11 +1037,9 @@ namespace JobInfo
         {
             OnJobClassEvent(this, string.Format("{0}.{1}", MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name));
 
-            ///if (MessgesListChatId != ParentChatId)
             {
 
    //             MessgesList.Clear();
-                MessgesListChatId = ParentChatId;
                 bool b_change = false;
                 long CurrentPosition = 0;
                 try
@@ -1059,12 +1155,12 @@ namespace JobInfo
             net?.Job_Leave(this_device.TokenId, this_device.Token_Counter, chatid);
         }
 
-        internal void GetUsers()
+      async  public    Task GetUsers()
         {
             if (users.Count == 0)
             {
                 //var ee =  
-                    net.Get_UserListAsync(this_device.TokenId, this_device.Token_Counter);
+                     net.Get_UserListAsync(this_device.TokenId, this_device.Token_Counter);
                 /*if (ee != null)
                 {
                     users.AddRange(ee);
@@ -1221,7 +1317,6 @@ namespace JobInfo
             if (Selected_Chat != null && Selected_Chat.ObjId!=null &&  Selected_Chat.ObjId.ObjId!=id)
             {
                 b_changed = true;
-                LastMessageAdd = 0;
                 MessgesList.Clear();
             }
             net.Chat_Selected(this_device.TokenId, this_device.Token_Counter,id);
@@ -1252,7 +1347,8 @@ namespace JobInfo
             WS_JobInfo.UserChatInfo cui = net.Chat_GetMyStatistic(this_device.TokenId, this_device.Token_Counter, c.chatId, b_Now);
             c.statistic = cui;
             if (cui !=null && (LastObjId != cui.LastObjId || cui.LastObjId == cui.StartShownObjId)
-                || LastObjId != c.MessMessageArray.Last().Key
+                ||
+                (c.MessMessageArray.Count>0 && c.MessMessageArray?.Last()!=null &&    LastObjId != c.MessMessageArray?.Last().Key)
                 )
             {
                 if (b_Now)
@@ -1547,11 +1643,54 @@ namespace JobInfo
         }
 
 
+
+        static public byte[] BitmapDataFromBitmap(Bitmap objBitmap, ImageFormat imageFormat)
+
+        {
+
+            MemoryStream ms = new MemoryStream();
+
+            objBitmap.Save(ms, imageFormat);
+
+            return (ms.GetBuffer());
+
+        }
+
+        static public byte[] BitmapDataFromBitmap(Image objBitmap, ImageFormat imageFormat)
+
+        {
+
+            MemoryStream ms = new MemoryStream();
+
+            objBitmap.Save(ms, imageFormat);
+
+            return (ms.GetBuffer());
+
+        }
         internal bool User_GetFoto(WS_JobInfo.User u)
         {
             if (u.foto == null)
             {
                 u.foto = net.User_GetFoto(this_device.TokenId, this_device.Token_Counter ,u.UserId);
+                if (u.foto==null)
+                {
+                    try
+                    {
+                        if (!(il.Images.IndexOfKey("X_user_50px") >= 0))
+                        {
+                            var bmp = new Bitmap(JobInfo.Properties.Resources.X_user_50px);
+                            u.foto = BitmapDataFromBitmap(bmp, ImageFormat.Png);
+                            il.Images.Add("X_user_50px", bmp);
+                            
+                        }
+                        else
+                        u.foto = BitmapDataFromBitmap(il.Images["X_user_50px"], ImageFormat.Png);  
+                    }
+                    catch (Exception err)
+                    {
+
+                    }
+                }
                 return true;
             }
             else
@@ -1610,7 +1749,17 @@ namespace JobInfo
             ///net.MessageReplayAdd(newmsg);
         }
 
-        internal Chat FindPrivateChat(int userId)
+
+
+
+        internal Chat[] Get_PrivateChats()
+        {
+            int sgTypeId = 8;
+            return Chats.Where(s => s.ObjId.sgTypeId == sgTypeId
+                             //      && s.ObjId.UsersInChat.Where(s2 => s2 == !=null)
+                             ).ToArray();
+        }
+    internal Chat FindPrivateChat(int userId)
         {
 
       

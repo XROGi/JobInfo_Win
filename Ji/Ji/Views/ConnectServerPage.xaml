@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Ji.Views.ConnectServerPage">
+    <ContentPage.Content>
+        <ScrollView VerticalScrollBarVisibility="Default">
+        <StackLayout Spacing="10" >
+            
+                
+                <Button Text="Сканировать QR код подключения"  Margin="10"  x:Name="btnScan" Clicked="btnScan_Clicked"/>
+            <Label Margin="20"
+                   Text="Получить одноразовый QR код на подключение, пользователь может в меню Desktop версии мессенджера."></Label>
+            <Entry x:Name="txtBarcode"  Margin="20"  Placeholder="" Text=""/>
+                <Grid Margin="10" x:Name="ConnectInfo">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="90" />
+                    </Grid.RowDefinitions>
+                    <Label Grid.Column="0" Grid.Row="1"  Text="Статус подключения сервера WS"></Label>
+                    <Label x:Name="StatusWS" TextColor="Blue" Grid.Column="1" Grid.Row="1"  Margin="0,0,0,0" Text="Отключено"></Label>
+                    <Label Grid.Column="0" Grid.Row="2" Text="Версия сервера WS"></Label>
+                    <Label x:Name="AboutWS"  TextColor="Blue"  Grid.Column="1" Grid.Row="2"  Margin="0,0,0,0" Text="нет данных"></Label>
+                    <Label Grid.Column="0" Grid.Row="3" Text="Версия сервера SOAP"></Label>
+                    <Label x:Name="AboutSOAP"  TextColor="Blue" Grid.Column="1" Grid.Row="3"  Margin="0,0,0,0" Text="нет данных"></Label>
+                    <Label Grid.Column="0" Grid.Row="4" Text="URL"></Label>
+                    <Label x:Name="URLSOAP"  TextColor="Blue" Grid.Column="1" Grid.Row="4"  Margin="0,0,0,0" Text="нет данных"></Label>
+                   
+
+                    <Label Grid.Column="0" Grid.Row="5" Text="fb_token"></Label>
+                    <Label x:Name="fb_token"  TextColor="Blue" Grid.Column="1" Grid.Row="5"  Margin="0,0,0,0" Text="нет данных"></Label>
+                    <Button Text="Очистить кэш"  IsEnabled="False" HeightRequest="90" Margin="0"  Grid.Row="6"  Grid.Column="1"     x:Name="btnClear"  Clicked="BtnClear_Clicked"/>
+                    
+                </Grid>
+
+
+                
+                <Button Text="Отключиться от сервера"  Margin="0"       x:Name="btnExit"  Clicked="BtnExit_Clicked"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

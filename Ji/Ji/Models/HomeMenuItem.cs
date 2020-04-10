@@ -1,13 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Ji.Models
+﻿namespace Ji.Models
 {
     public enum MenuItemType
     {
         Browse,
-        About
+        About,
+        Contacts,
+        ConnectServer,
+        MessageList,
+        ParkingPass,
+        UpdateServerPage
+            , SetupPage
+            , DebugPage
     }
     public class HomeMenuItem
     {

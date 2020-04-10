@@ -12,7 +12,9 @@ namespace Ji.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>() ?? new MockDataStore();
+    //    public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>() ?? new MockDataStore();
+        public IDataStore<GroupChat> DataStore => DependencyService.Get<IDataStore<GroupChat>>() ?? new MockDataStore();
+        //
 
         bool isBusy = false;
         public bool IsBusy

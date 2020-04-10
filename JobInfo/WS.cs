@@ -24,6 +24,9 @@ namespace JobInfo
         public delegate void OnIncomeMessageDelegate(string Message);
         public event OnIncomeMessageDelegate OnIncomeMessage = delegate { };
 
+        public delegate void OnExceptionErrorDelegate(Exception error);
+        public event OnExceptionErrorDelegate OnExceptionError = delegate { };
+
         public void Send(string id)
         {
             WebSocket webSocket = ClientWebSocket;
@@ -102,7 +105,8 @@ namespace JobInfo
 
         private void webSocket_Error(object sender, ErrorEventArgs e)
         {
-            
+            if (OnExceptionError!=null)
+            OnExceptionError(e.Exception);
         }
 
         private Uri ServerUri()
@@ -126,3 +130,4 @@ namespace JobInfo
         }
     }
 }
+

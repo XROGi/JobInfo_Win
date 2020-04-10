@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 using Ji.Models;
 
 namespace Ji.ViewModels

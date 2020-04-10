@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Ji.Views.MainTabbedPage"
+            
+            CurrentPageChanged="TabbedPage_CurrentPageChanged"
+      
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+    
+            android:TabbedPage.ToolbarPlacement="Bottom"
+             BarBackgroundColor="#9b2800"
+           SelectedTabColor="White"
+    BarTextColor="White"
+             android:TabbedPage.BarItemColor="#66FFFFFF"
+    android:TabbedPage.BarSelectedItemColor="Black"
+                   
+    
+    >
+    
+
+    <!--    xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+    android:TabbedPage.ToolbarPlacement="Bottom"
+             BarBackgroundColor="#2196F3"
+    BarTextColor="White"
+             android:TabbedPage.BarItemColor="#66FFFFFF"
+    android:TabbedPage.BarSelectedItemColor="White" -->
+
+
+
+    <TabbedPage.ToolbarItems >
+        <ToolbarItem x:Name="StatusConnectIcon" IconImageSource="IconNotOnline512x512.png" Text="test"  Clicked="StatusConnectIcon_Clicked" Priority="0" Order="Primary" ></ToolbarItem>
+      <!-- <ToolbarItem  IconImageSource="addgroup48.png" Clicked="AddItem_Clicked" />-->
+        <!--<ToolbarItem Text="Clear" Clicked="ClearItem_Clicked" />-->
+    </TabbedPage.ToolbarItems>
+     <!-- <TabbedPage.ToolbarItems >
+       <ToolbarItem Name="MenuItem1" Order="Primary"  Icon="Microsoft.png" Text="Item 1" Priority="0" />
+         <ToolbarItem Name="MenuItem2" Order="Primary" Icon="Xamarin.png" Text="Item 2" Priority="1" />
+    </TabbedPage.ToolbarItems>-->
+    <!--Pages can be added as references or inline-->
+
+</TabbedPage>

@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Ji.Views.ParkingPassPage">
+    <ContentPage.Content>
+
+        <ScrollView>
+            <StackLayout x:Name="stack">
+                <Label Text="Введите последние 6 символов номера парковочного абонимента"
+                HorizontalOptions="CenterAndExpand" />
+                <Entry x:Name="PassNumber" Text="123" MaxLength="6" Keyboard="Numeric" />
+                <Button x:Name="btnStep1" Text="Проверить номер"  Clicked="BtnStep1_Clicked"/>
+                <Grid x:Name="ResultStatus">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <Label Grid.Column="0" Grid.Row="0"  TextColor="Blue"                       Text="Статус проверки:"  />
+                    <Label Grid.Column="1" Grid.Row="0" TextColor="Blue"  x:Name="Status"    Text="12334567890 - Возможно dsd sd sd sdsd s" LineBreakMode="WordWrap"   />
+                </Grid>
+                <Grid x:Name="Result">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+                    <!--<Label Grid.Column="0" Grid.Row="0"                         Text="Статус проверки:"  />-->
+                    <Label Grid.Column="0" Grid.Row="1" x:Name="DateInL"        Text="Дата въезда:"         />
+                    <Label Grid.Column="0" Grid.Row="2" x:Name="Place_InL"      Text="Место въезда:"   />
+                    <Label Grid.Column="0" Grid.Row="3" x:Name="Out_WhoL"       Text="ФИО/Организация выезжающего"    />
+                    <Label Grid.Column="0" Grid.Row="4" x:Name="Out_CarTypeL"   Text="Марка и модель авто"   >
+
+                    </Label>
+                    <Label Grid.Column="0" Grid.Row="5" x:Name="Out_CarNumberL" Text="Госномер авто"   >
+                    
+                    </Label>
+                    <Label Grid.Column="0" Grid.Row="6" x:Name="Out_ReasonL"    Text="Основание выезда"   />
+
+                    <!--<Label Grid.Column="1" Grid.Row="0"  x:Name="Status"    Text="12334567890 - Возможно"   />-->
+                    <Label Grid.Column="1" Grid.Row="1"  x:Name="DateIn"    Text=""   />
+                    <Label Grid.Column="1" Grid.Row="2"  x:Name="Place_In"  Text=""   />
+                    <Entry Margin="0" Grid.Column="1" Grid.Row="3"   x:Name="Out_Who"      MaxLength="255" Text=""  TextChanged="TestValues"/>
+                    <Entry  Margin="0" Grid.Column="1" Grid.Row="4"  x:Name="Out_CarType"  MaxLength="50" Text="" IsVisible="true" TextChanged="TestValues">
+                        <!--<Entry.Triggers>
+                            <DataTrigger TargetType="Entry" Binding="{Binding Source={x:Reference Out_Who},Path=Text.Length,Mode=TwoWay}" Value="0" >
+                                <Setter Property="IsVisible" Value="False"/>
+                            </DataTrigger>
+                        </Entry.Triggers>-->
+                    </Entry>
+                    <Entry  Margin="0" Grid.Column="1" Grid.Row="5"  x:Name="Out_CarNumber" MaxLength="25" Text="" IsVisible="False" TextChanged="TestValues">
+                        <!--<Entry.Triggers>
+                            <DataTrigger TargetType="Entry" Binding="{Binding Source={x:Reference Out_CarType},Path=Text.Length,Mode=TwoWay}" Value="0" >
+                                <Setter Property="IsVisible" Value="False"/>
+                            </DataTrigger>
+                            <DataTrigger TargetType="Entry" Binding="{Binding Source={x:Reference Out_CarTypeL},Path=Text.Length,Mode=TwoWay}" Value="0" >
+                                <Setter Property="IsVisible" Value="False"/>
+                            </DataTrigger>
+                        </Entry.Triggers>-->
+                    </Entry>
+
+                    <Entry  Margin="0" Grid.Column="1" Grid.Row="6"  x:Name="Out_Reason"  MaxLength="255"   Text="" IsVisible="False" TextChanged="TestValues">
+                        <!--<Entry.Triggers>
+                            <DataTrigger TargetType="Entry" Binding="{Binding Source={x:Reference Out_CarNumber},Path=Text.Length,Mode=TwoWay}" Value="0" >
+                                <Setter Property="IsVisible" Value="False"/>
+                            </DataTrigger>
+                            <DataTrigger TargetType="Entry" Binding="{Binding Source={x:Reference Out_CarNumberL},Path=Text.Length,Mode=TwoWay}" Value="0" >
+                                <Setter Property="IsVisible" Value="False"/>
+                            </DataTrigger>
+                        </Entry.Triggers>-->
+                    </Entry>
+
+                    <Button BackgroundColor="Green" TextColor="White" Grid.ColumnSpan="2" Grid.Row="7" x:Name="btnStep2" Text="Аннулировать билет"  Clicked="BtnStep2_Clicked" IsVisible="False">
+                        <!--IsEnabled="{Binding Source=Out_Reason,Path=Text.Length,UpdateSourceEventName=PropertyChanged}"-->
+                            
+                        <!--<Button.Triggers>
+                            <DataTrigger TargetType="Entry" Binding="{Binding Source={x:Reference Out_Reason},Path=Text.Length,Mode=TwoWay}" Value="0">
+                                <Setter Property="IsVisible" Value="False"/>
+                            </DataTrigger>
+                        </Button.Triggers>-->
+                    </Button>
+                       
+
+                </Grid>
+                <Grid x:Name="Compleat">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+                    <Label Grid.Column="0" Grid.Row="0" Text="Статус :"  />
+                    <Label Grid.Column="0" Grid.Row="1" Text="Разрешён выезд до:"  />
+
+                    <Label Grid.Column="1" Grid.Row="0" x:Name="StatusStep2" Text="Выполнено"  TextColor="Red"  HorizontalTextAlignment="Center" BackgroundColor="LightGreen"/>
+                    <Label Grid.Column="1" Grid.Row="1"  x:Name="DateOut" Text=""   />
+
+                    <Button  TextColor="White" Grid.ColumnSpan="2" Grid.Row="2" x:Name="btnStepClose" Text="Закрыть"  Clicked="BtnClose_Clicked"/>
+
+                </Grid>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

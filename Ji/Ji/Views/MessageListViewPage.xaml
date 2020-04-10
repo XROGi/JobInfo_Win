@@ -1,0 +1,642 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:Ji.Models"
+             x:Class="Ji.Views.MessageListViewPage"
+             xmlns:local="clr-namespace:Ji;assembly=Ji"
+             
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:viewmodels="clr-namespace:Ji.ViewModels">
+
+     
+    
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem  IconImageSource="addusergroup64px.png" Clicked="ToolbarItem_Clicked"  />
+
+        <ToolbarItem  IconImageSource="ref48.png" Clicked="Refresh" />
+         
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Primary">#00AC6B</Color>
+            <Color x:Key="Accent">#20815D</Color>
+            <Color x:Key="LightTextColor">#999999</Color>
+        </ResourceDictionary>
+        <ResourceDictionary>
+            <converters:HtmlSourceConverter x:Key="HtmlSourceConverter" x:FieldModifier="MultiChat" />
+
+
+            <!--<DataTemplate x:Key="messgeTextTemplate">
+                <ViewCell>
+                    <Label Text="I'm a normal tweet MessgeTextTemplate" />
+                </ViewCell>-->
+
+            <DataTemplate x:Key="messgeTextTemplateChat">
+                    <ViewCell IsEnabled="False">
+                        <ViewCell.View>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition  Height="35" ></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition Height="25" ></RowDefinition>
+                                    <!--<RowDefinition Height="45" ></RowDefinition>-->
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <Frame CornerRadius="5" OutlineColor="LightGray"   Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"  Grid.RowSpan="2" BackgroundColor="White" Padding="0" Margin = "2,2,2,2" IsClippedToBounds="True">
+                                    <!--   <Label Text="{Binding Data}"  FontSize="Small" />        WidthRequest="1000"      -->
+                                    <WebView  x:Name="WebViewName" Source="{Binding Data , Converter={StaticResource HtmlSourceConverter}}"  MinimumHeightRequest="50"   HeightRequest="100"></WebView>
+                                    <!--"https://www.freibad-eckbusch.de/wp-content/uploads/2016/03/avatar-1577909_640.png"-->
+                                </Frame>
+                                <Frame CornerRadius="5" OutlineColor="LightGray" Grid.Row="0" Grid.RowSpan="2" Padding="0" Margin = "2,2,2,2" >
+                                    <Image  x:Name="uimage" Aspect="AspectFit" VerticalOptions="Start" Source="{Binding ImageURL}"/>
+                                </Frame>
+                                <!--BackgroundColor="Honeydew"-->
+
+                                <!--<Label Text="{Binding WebViewName.Width}" BackgroundColor="Gold" Grid.Row="3" Grid.Column="0"  FontSize="Micro" />-->
+
+                                <Frame CornerRadius="5" OutlineColor="LightGray" Grid.Row="2" Grid.Column="0"  Grid.ColumnSpan="3" BackgroundColor="LightYellow" Padding="0" Margin = "2,2,2,2" >
+                                    <Label Text="{Binding userCreater}"   FontSize="Micro" />
+                                </Frame>
+                            </Grid>
+                        </ViewCell.View>
+                    </ViewCell>
+
+                </DataTemplate>
+
+
+            <DataTemplate x:Key="messgeTextTemplateMy">
+                <ViewCell >
+                    <ViewCell.ContextActions>
+                        <MenuItem Text="Inform" />
+                        <MenuItem Text="Make Job" />
+                        <MenuItem Text="SendTo" />
+                    </ViewCell.ContextActions>
+                    <ViewCell.View >
+                        <!--<Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Frame HorizontalOptions="End" CornerRadius="5" BackgroundColor="LightYellow" Grid.Row="0"  Grid.Column="0" Padding="0" Margin = "40,2,2,2" >
+                                <Label HorizontalTextAlignment="End" Text="{Binding MessageImage_GetImageText}"   FontSize="Default" Margin="10" />
+                            </Frame>
+                            <Label Text="15:10"  HorizontalOptions="End" VerticalOptions="End"  AnchorX="10" AnchorY="300"  FontSize="Micro" TextColor="Blue"  Margin="0" />
+                        </Grid>-->
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Frame  HorizontalOptions="End" CornerRadius="5" BackgroundColor="LightYellow" Grid.Row="0"  Grid.Column="0" Padding="0" Margin = "40,2,2,2" >
+                               
+                                <StackLayout>
+                                    <!--<StackLayout.GestureRecognizers>
+                                        --><!--<TapGestureRecognizer  Tapped="{Binding BindingContext.GoDetailCommand,Source={x:Reference MyListView}}" CommandParameter="{Binding ImageURL}" />-->
+                                        <!--<TapGestureRecognizer   Command="{Binding SelectedItemMsg,Source={x:Reference MyListView},Mode=TwoWay}" NumberOfTapsRequired="1"   />--><!--
+                                        <TapGestureRecognizer   Command="{Binding Path=TapImageCommand, Mode=TwoWay}" NumberOfTapsRequired="1"   />
+                                        
+                                    </StackLayout.GestureRecognizers>-->
+                                    <!--<StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="onStackCitizenReporterTapped2" NumberOfTapsRequired="1" />
+                                    </StackLayout.GestureRecognizers>-->
+                                    <!--<Label HorizontalTextAlignment="End" Text="!!!"   FontSize="Default" Margin="3" >
+                                    </Label>-->
+                                    <Label HorizontalTextAlignment="End" Text="{Binding MessageImage_GetImageText}"   FontSize="Default" Margin="3" >
+                                    </Label>
+                                    <!--BackgroundColor="GreenYellow"-->
+                                    
+                                        <Grid HorizontalOptions="EndAndExpand"  BackgroundColor="LightYellow" IsClippedToBounds="False"  Grid.Row="0"  Grid.Column="0" Padding="0" Margin = "2,2,2,2" >
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" x:Name="ColumnFIO"></ColumnDefinition>
+                                                <ColumnDefinition Width="Auto" x:Name="ColumnDate"></ColumnDefinition>
+                                                <ColumnDefinition Width="Auto"  x:Name="ColumnTime" ></ColumnDefinition>
+                                                <ColumnDefinition Width="Auto"  x:Name="ColumnReadeble"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <!--<Label x:Name="lbFIO"           Text="{Binding Message_GetFIO}"     Grid.Column="0" Grid.Row="0" HorizontalOptions="Start" FontSize="Micro" TextColor="Blue"  Margin="0" />
+                                            <Label x:Name="lbDate"          Text="{Binding Message_GetDate}"    Grid.Column="1" Grid.Row="0" TextColor="Gray" HorizontalOptions="End" FontSize="Micro" Margin="0" />-->
+                                        <Label Text="{Binding  PageNum}"    Grid.Column="1" Grid.Row="0" TextColor="Red" HorizontalOptions="End" FontSize="Micro" Margin="0" />
+                                        <Label x:Name="lbTime"          Text="{Binding Message_GetTime}"    Grid.Column="2" Grid.Row="0" TextColor="Gray" HorizontalOptions="Start" FontSize="Micro" Margin="0" />
+                                            <Label x:Name="lbSendState"     Text="{Binding Message_GetSendState}" Grid.Column="3" Grid.Row="0" TextColor="Gray" HorizontalOptions="Start" FontSize="Micro" Margin="0" />
+                                        </Grid>
+                                    <!--<Frame  IsVisible="True" HorizontalOptions="EndAndExpand"  BackgroundColor="LightYellow" IsClippedToBounds="False"   CornerRadius="2" Grid.Row="0"  Grid.Column="0" Padding="0" Margin = "2,2,2,2" ></Frame>-->
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+
+
+
+                    </ViewCell.View>
+                </ViewCell>
+
+            </DataTemplate>
+
+            <DataTemplate x:Key="messgeTextTemplate">
+                <ViewCell IsEnabled="False">
+                    <ViewCell.View>
+                        <!--<Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Frame CornerRadius="5" HorizontalOptions="Start" BackgroundColor="White" Grid.Row="0"  Grid.Column="0" Padding="0" Margin = "2,2,40,2" >
+                                <StackLayout Orientation="Vertical">
+                                    <Label HorizontalTextAlignment="Start" Text="{Binding MessageImage_GetImageText}"   FontSize="Default"  Margin="7" />
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label  HorizontalTextAlignment="End" Text="02:45"  HorizontalOptions="End" VerticalOptions="End"  FontSize="Micro" TextColor="Blue"  Margin="0" />
+                                     
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </Grid>-->
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Frame HorizontalOptions="Start" CornerRadius="5" BackgroundColor="LightYellow" Grid.Row="0"  Grid.Column="0" Padding="0" Margin = "2,2,40,2" >
+                                <StackLayout>
+                                    <Label HorizontalTextAlignment="End" Text="{Binding MessageImage_GetImageText}"   FontSize="Default" Margin="3" >
+                                    </Label>
+
+                                    <Grid HorizontalOptions="EndAndExpand"  BackgroundColor="LightYellow" IsClippedToBounds="False"  Grid.Row="0"  Grid.Column="0" Padding="0" Margin = "2,0,2,2">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" x:Name="ColumnFIO"></ColumnDefinition>
+                                                <ColumnDefinition Width="Auto" x:Name="ColumnDate"></ColumnDefinition>
+                                                <ColumnDefinition Width="Auto"  x:Name="ColumnTime" ></ColumnDefinition>
+                                                <ColumnDefinition Width="Auto"  x:Name="ColumnReadeble"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <!--<Label x:Name="lbFIO"           Text="{Binding Message_GetFIO}"     Grid.Column="0" Grid.Row="0" HorizontalOptions="Start" FontSize="Micro" TextColor="Blue"  Margin="0" />
+                                            <Label x:Name="lbDate"          Text="{Binding Message_GetDate}"    Grid.Column="1" Grid.Row="0" TextColor="Gray" HorizontalOptions="End" FontSize="Micro" Margin="0" />-->
+                                        <Label Text="{Binding  PageNum}"    Grid.Column="1" Grid.Row="0" TextColor="Red" HorizontalOptions="End" FontSize="Micro" Margin="0" />
+
+                                        <Label x:Name="lbTime"          Text="{Binding Message_GetTime}"    Grid.Column="2" Grid.Row="0" TextColor="Gray" HorizontalOptions="Start" FontSize="Micro" Margin="0" />
+                                            <Label x:Name="lbSendState"     Text="{Binding Message_GetSendState}" Grid.Column="3" Grid.Row="0" TextColor="Gray" HorizontalOptions="Start" FontSize="Micro" Margin="0" />
+                                        </Grid>
+                                    <!--<Frame  IsVisible="True" HorizontalOptions="EndAndExpand"  BackgroundColor="LightYellow" CornerRadius="2" Grid.Row="0"  Grid.Column="0" Padding="0" Margin = "2,2,2,2" >                                    </Frame>-->
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+
+                    </ViewCell.View>
+                </ViewCell>
+
+            </DataTemplate>
+
+            <DataTemplate x:Key="messgeImageTemplate">
+                <!--<DataTemplate x:FieldModifier="MultiChat" x:Key="messgeTextTemplate">-->
+                <ViewCell IsEnabled="False">
+                    <ViewCell.View>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition  Height="35" ></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition Height="25" ></RowDefinition>
+                                <!--<RowDefinition Height="45" ></RowDefinition>-->
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Frame CornerRadius="5" OutlineColor="LightGray"   Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"  Grid.RowSpan="2" BackgroundColor="White" Padding="0" Margin = "2,2,2,2" IsClippedToBounds="True">
+                                
+                                    <StackLayout>
+
+                                    <!--<Image  BackgroundColor="LightGray" x:Name="imageMsgMain" Aspect="AspectFit" VerticalOptions="Start"   Source="{Binding MessageImage_GetImageURL}"/>-->
+
+                                    <ffimageloading:CachedImage 
+                                   Source="{Binding MessageImage_GetImageURL}"
+                                    LoadingPlaceholder= "wait48.png"
+                                    ErrorPlaceholder= "error48.png"
+                                    CacheDuration= "50"
+                                    RetryCount= "7"
+                                  
+                                    RetryDelay= "600"
+                                    DownsampleToViewSize = "true"
+                                    Aspect="AspectFit"
+                                    />
+ <!--HeightRequest="25 CacheKeyFactory="{Binding MessageImage_KeyName}""-->  
+                                    <Label Text="{Binding MessageImage_GetImageText}" FontSize="Micro" />
+                                </StackLayout>
+                                <!--https://www.rec.uk.com/__data/assets/image/0003/316083/REC-Web-Header-Banners-Compliance-test.jpg-->
+                                <!--<WebView  x:Name="WebViewName" Source="{Binding Data , Converter={StaticResource HtmlSourceConverter}}"  MinimumHeightRequest="50"   HeightRequest="100"></WebView>-->
+                                <!--"https://www.freibad-eckbusch.de/wp-content/uploads/2016/03/avatar-1577909_640.png"-->
+                            </Frame>
+                            <Frame CornerRadius="5" OutlineColor="LightGray" Grid.Row="0" Grid.RowSpan="2" Padding="0" Margin = "2,2,2,2" >
+                                <Image  x:Name="uimage" Aspect="AspectFit" VerticalOptions="Start" Source="{Binding ImageURL}"/>
+                            </Frame>
+                            <!--BackgroundColor="Honeydew"-->
+
+                            <!--<Label Text="{Binding WebViewName.Width}" BackgroundColor="Gold" Grid.Row="3" Grid.Column="0"  FontSize="Micro" />-->
+
+                            <Frame CornerRadius="5" OutlineColor="LightGray" Grid.Row="2" Grid.Column="0"  Grid.ColumnSpan="3" BackgroundColor="LightYellow" Padding="0" Margin = "2,2,2,2" >
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Автор:"   FontSize="Micro" />
+                                    <Label Text="{Binding userCreater}"   FontSize="Micro" />
+                                    <Label Text="#2"   FontSize="Micro" />
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+                    </ViewCell.View>
+                </ViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="messgeImageTemplateMy">
+                <!--<DataTemplate x:FieldModifier="MultiChat" x:Key="messgeTextTemplate">-->
+                <ViewCell IsEnabled="False">
+                    <ViewCell.View>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition  Height="35" ></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition Height="25" ></RowDefinition>
+                                <!--<RowDefinition Height="45" ></RowDefinition>-->
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Frame CornerRadius="5" OutlineColor="LightGray"   Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"  Grid.RowSpan="2" BackgroundColor="White" Padding="0" Margin = "2,2,2,2" IsClippedToBounds="True">
+
+                                <StackLayout>
+
+                                    <ffimageloading:CachedImage 
+                                   Source="{Binding MessageImage_GetImageURL}"
+                                    LoadingPlaceholder= "wait48.png"
+                                    ErrorPlaceholder= "error48.png"
+                                    CacheDuration= "50"
+                                    
+                                    RetryCount= "7"
+                                    RetryDelay= "600"
+                                    DownsampleToViewSize = "true"
+                                    Aspect="AspectFit"
+                                    /><!--CacheKeyFactory="{Binding MessageImage_KeyName} "-->
+                                    <!--<Image  BackgroundColor="LightGray" x:Name="imageMsgMain" Aspect="AspectFit" VerticalOptions="Start"   Source="{Binding MessageImage_GetImageURL}"/>-->
+                                    <Label Text="{Binding MessageImage_GetImageText}" FontSize="Micro" />
+                                </StackLayout>
+                                <!--https://www.rec.uk.com/__data/assets/image/0003/316083/REC-Web-Header-Banners-Compliance-test.jpg-->
+                                <!--<WebView  x:Name="WebViewName" Source="{Binding Data , Converter={StaticResource HtmlSourceConverter}}"  MinimumHeightRequest="50"   HeightRequest="100"></WebView>-->
+                                <!--"https://www.freibad-eckbusch.de/wp-content/uploads/2016/03/avatar-1577909_640.png"-->
+                            </Frame>
+                            <Frame CornerRadius="5" OutlineColor="LightGray" Grid.Row="0" Grid.RowSpan="2" Padding="0" Margin = "2,2,2,2" >
+                                <Image  x:Name="uimage" Aspect="AspectFit" VerticalOptions="Start" Source="{Binding ImageURL}"/>
+                            </Frame>
+                            <!--BackgroundColor="Honeydew"-->
+
+                            <!--<Label Text="{Binding WebViewName.Width}" BackgroundColor="Gold" Grid.Row="3" Grid.Column="0"  FontSize="Micro" />-->
+
+                            <Frame CornerRadius="5" OutlineColor="LightGray" Grid.Row="2" Grid.Column="0"  Grid.ColumnSpan="3" BackgroundColor="LightYellow" Padding="0" Margin = "2,2,2,2" >
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Автор:"   FontSize="Micro" />
+                                    <Label Text="{Binding userCreater}"   FontSize="Micro" />
+                                    <Label Text="#1"   FontSize="Micro" />
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+                    </ViewCell.View>
+                </ViewCell>
+            </DataTemplate>
+            
+            <DataTemplate x:Key="messgeInfoTemplate">
+                <ViewCell>
+                    <Label Text="I'm a retweet MessgeInfoTemplate" />
+                </ViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="messgeGPSTemplate">
+                <ViewCell>
+                    <Label Text="I'm a retweet MessgeGPSTemplate" />
+                </ViewCell>
+            </DataTemplate>
+            <!--<local:MessageTemplateSelector x:Key="MessageTemplateSelector"
+                ValidTemplate="{StaticResource MessgeTextTemplate}"
+                InvalidTemplate="{StaticResource MessgeImageTemplate}" />-->
+
+            <!--<MessageTemplateSelector />-->
+                             <!--NormalTweetTemplate="{StaticResource NormalTweetTemplate}"
+                             PromotedTweetTemplate="{StaticResource PromotedTweetTemplate}"
+                             RetweetTemplate="{StaticResource RetweetTemplate}"-->
+            <local:MessageTemplateSelector x:Key="messageTemplateSelector"
+                                           MessgeTextTemplate="{StaticResource messgeTextTemplate}"
+                                           MessgeImageTemplate="{StaticResource messgeImageTemplate}"
+                                           MessgeImageTemplateMy="{StaticResource messgeImageTemplateMy}"
+                                           MessgeGPSTemplate="{StaticResource messgeGPSTemplate}"
+                                           MessgeInfoTemplate="{StaticResource messgeInfoTemplate}"
+                                           MessgeTextTemplateMy="{StaticResource messgeTextTemplateMy}"
+                                           
+                                           >
+                
+            </local:MessageTemplateSelector>
+        </ResourceDictionary>
+
+    </ContentPage.Resources>
+    <Page.Resources>
+        <DataTemplate x:FieldModifier="MultiChat" x:Key="Forum">
+            <ViewCell IsEnabled="False">
+                <ViewCell.View>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition  Height="35" ></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition Height="25" ></RowDefinition>
+                            <!--<RowDefinition Height="45" ></RowDefinition>-->
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Frame CornerRadius="5" OutlineColor="LightGray"   Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"  Grid.RowSpan="2" BackgroundColor="White" Padding="0" Margin = "2,2,2,2" IsClippedToBounds="True">
+                            <!--   <Label Text="{Binding Data}"  FontSize="Small" />        WidthRequest="1000"      -->
+                            <WebView  x:Name="WebViewName" Source="{Binding Data , Converter={StaticResource HtmlSourceConverter}}"  MinimumHeightRequest="50"   HeightRequest="100"></WebView>
+                            <!--"https://www.freibad-eckbusch.de/wp-content/uploads/2016/03/avatar-1577909_640.png"-->
+                        </Frame>
+                        <Frame CornerRadius="5" OutlineColor="LightGray" Grid.Row="0" Grid.RowSpan="2" Padding="0" Margin = "2,2,2,2" >
+                            <Image  x:Name="uimage" Aspect="AspectFit" VerticalOptions="Start" Source="{Binding ImageURL}"/>
+                        </Frame>
+                        <!--BackgroundColor="Honeydew"-->
+
+                        <!--<Label Text="{Binding WebViewName.Width}" BackgroundColor="Gold" Grid.Row="3" Grid.Column="0"  FontSize="Micro" />-->
+
+                        <Frame CornerRadius="5" OutlineColor="LightGray" Grid.Row="2" Grid.Column="0"  Grid.ColumnSpan="3" BackgroundColor="LightYellow" Padding="0" Margin = "2,2,2,2" >
+                            <Label Text="{Binding userCreater}"   FontSize="Micro" />
+                        </Frame>
+                    </Grid>
+                </ViewCell.View>
+            </ViewCell>
+
+            
+        </DataTemplate>
+        <DataTemplate x:FieldModifier="MultiChat" x:Key="Chat">
+            <ViewCell >
+
+               <!--IsEnabled="False"-->
+                <ViewCell.View>
+                    <Grid>
+                        <!--<Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition Height="25" ></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>-->
+                        
+                        <!--
+                        <AutoWebView>
+                            <AutoWebView.Source>
+                                <HtmlWebViewSource Html="{Binding}"/>
+                            </AutoWebView.Source>
+                        </AutoWebView>
+                        -->
+                        <!--Grid.Row="0" Grid.Column="0" HeightRequest="5"-->
+                  
+                        <WebView Source="{Binding Data , Converter={StaticResource HtmlSourceConverter}}" />
+                        <!--<Frame CornerRadius="5" OutlineColor="LightGray"    Grid.ColumnSpan="3"  BackgroundColor="White" Padding="0" Margin = "2,2,2,2" IsClippedToBounds="True"></Frame>-->
+                            <!--   <Label Text="{Binding Data}"  FontSize="Small" />        WidthRequest="1000"      -->
+                            
+                            <!--<WebView Source="{Binding Data , Converter={StaticResource HtmlSourceConverter}}"  MinimumHeightRequest="50"   HeightRequest="100"></WebView>-->
+                            <!--"https://www.freibad-eckbusch.de/wp-content/uploads/2016/03/avatar-1577909_640.png"-->
+                        
+                        
+                        <!--BackgroundColor="Honeydew"-->
+
+
+
+                        <!--<Frame CornerRadius="5" OutlineColor="LightGray" Grid.Row="1" Grid.Column="0"  Grid.ColumnSpan="3" BackgroundColor="LightYellow" Padding="0" Margin = "2,2,2,2" >
+                            <Label Text="{Binding userCreater}"   FontSize="Micro" />
+                        </Frame>-->
+                    </Grid>
+                </ViewCell.View>
+            </ViewCell>
+
+
+        </DataTemplate>
+    </Page.Resources>
+
+    <Grid Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+
+
+       
+      <ListView  Grid.Row="0" x:Name="MyListView" 
+            ItemsSource="{Binding ItemsMsgs}" 
+           
+            SeparatorVisibility="None"
+         
+            ItemAppearing="OnItemAppearing"
+            ItemTemplate="{StaticResource messageTemplateSelector}"
+            HasUnevenRows="True"   
+            SelectionMode="None" 
+            IsGroupingEnabled="false" CachingStrategy="RecycleElement"
+                 >
+         
+           <!--  
+          Scrolled="MyListView_Scrolled"
+          r7 ItemTapped="MyListView_ItemTapped"
+            ItemDisappearing="onItemDisAppearing" 
+
+          
+          
+          
+                 ItemSelected="{Binding  SelectedItemMsg, Mode=TwoWay}"
+                            ItemSelected="OnSelectedMessage"
+                     -->
+            <!--<ListView.GestureRecognizers>
+                <TapGestureRecognizer Tapped="onFrameCitizenReporterTappedListItems" NumberOfTapsRequired="2" />
+            </ListView.GestureRecognizers>-->
+            <!--<ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Label HorizontalOptions="Center"  Text="{Binding userCreater}"></Label>
+                    </ViewCell>
+                    
+                </DataTemplate>
+            </ListView.ItemTemplate>-->
+        </ListView>
+ <!--<StackLayout x:Name="stackLayout_ChatMessages" >
+        </StackLayout>-->
+
+        <Grid Grid.Column="0" Grid.Row="1" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="40" />
+                <!--<ColumnDefinition Width="Auto" />-->
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!--RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.5,Constant=-250}"-->
+            <Frame Grid.Column="0" Grid.Row="0" CornerRadius="5" Margin="0" x:Name="MyEditText"  Padding="0" BorderColor="Gray" IsVisible="True" >
+                <StackLayout   Orientation="Horizontal"  HorizontalOptions="StartAndExpand" Margin="0" Padding="1"  >
+                    <ScrollView>
+                        <converters:CustomEditor IsTextPredictionEnabled="False"  
+                                                BackgroundColor="Transparent"  
+                                                Placeholder="Сообщение"  
+                                                Keyboard="Chat" 
+                                                PlaceholderColor="Olive" 
+                                                FontSize="Small" 
+                                                x:Name="MyEditTexBox"  
+                                                AutoSize="TextChanges"  
+                                                TextColor="Black" 
+                                                Completed="MyEditText_Completed" 
+                                                TextChanged="MyEditTexBox_TextChanged"   
+                                                HorizontalOptions="Start"  
+                                                VerticalOptions="StartAndExpand"
+                                                WidthRequest="500"
+                                                Text="">
+                        </converters:CustomEditor>
+
+   <!--
+
+                        <Entry  IsTextPredictionEnabled="False"  BackgroundColor="Transparent"  Placeholder="Сообщение"   PlaceholderColor="Olive" FontSize="Small" x:Name="MyEditTexBox"    TextColor="Black" 
+                 Completed="MyEditText_Completed" TextChanged="MyEditTexBox_TextChanged" HeightRequest="25" WidthRequest="250" VerticalOptions="FillAndExpand"></Entry>
+-->
+
+                    </ScrollView>
+                    <!--<Grid> WidthRequest="48"  HeightRequest="48" 
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                   
+                </Grid>-->
+                </StackLayout>
+
+            </Frame>
+            <StackLayout   Orientation="Horizontal"   HorizontalOptions="Start" WidthRequest="40" Margin="0" Padding="0"  Grid.Row="0" Grid.Column="1"  >
+                <Button WidthRequest="40"  VerticalOptions="End" FontSize="Small" HorizontalOptions="Start"  BackgroundColor="Transparent" ImageSource="unspalsh32.png" x:Name="buttonFoto"                     Clicked="ButtonFoto_Clicked"                  />
+                <Button  WidthRequest="40" VerticalOptions="End" FontSize="Small"  HorizontalOptions="Start" BackgroundColor="Transparent" ImageSource="plane32.png" x:Name="buttonSend"    IsVisible="True"                 Clicked="ButtonSend_Clicked"                  />
+            </StackLayout>
+        </Grid>
+        
+
+
+        <!--<RelativeLayout>
+
+            <Button BackgroundColor="Green" x:Name="buttonGreen" Text = "+"
+               RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1,Constant=-100}"
+               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1,Constant=-150}"
+               CornerRadius="15"  WidthRequest="40"  HeightRequest="40"
+                    Clicked="ButtonGreen_Clicked"  />
+
+
+
+            --><!--RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1,Constant=-250}"-->
+            <!--https://bettereducation.com.au/forum/it.aspx?g=posts&t=7755-->
+            <!--<Button BackgroundColor="Red" x:Name="button" Text = "Button"    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=.15,Constant=0}" />-->
+
+            <!--AutoSize="TextChanges"-->
+
+            <!--VerticalOptions="StartAndExpand" HorizontalOptions="StartAndExpand"-->
+            <!--RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=-30}"-->
+            <!--RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=-15}"
+                   RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=-75}"-->
+            <!--RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=.15,Constant=100}"-->
+            <!--<Button 
+                x:Name="AddButton"
+                HorizontalOptions="End"
+                VerticalOptions="End"
+                WidthRequest="100"
+                HeightRequest="100"
+                CornerRadius="5"
+                Text="+"
+                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=-35}"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=-35}" />--><!--
+
+
+        </RelativeLayout>-->
+        <ActivityIndicator IsRunning="{Binding isBusyLoadPage}"></ActivityIndicator>
+    </Grid>
+    
+    
+</ContentPage>
+<!--<ListView.ItemContainerStyle>
+            <Style TargetType="ListViewItem">
+                <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+            </Style>
+        </ListView.ItemContainerStyle>-->
+<!--Built in Cells   HasUnevenRows  ="True"-->
+
+<!--  <TextCell Text="{Binding .}"></TextCell>
+               <Label Text="5" 
+                   FontSize="Medium" 
+                   VerticalTextAlignment="Center" 
+                   VerticalOptions="Center"/>
+                <StackLayout Padding="10,5,10,5"   
+                         Orientation="Horizontal" 
+                         BackgroundColor="White"  >
+                    <Image Source=""  {Binding Data}
+                   HeightRequest="25" 
+                   WidthRequest="25" 
+                   Aspect="Fill" />
+                 
+                </StackLayout>-->
+
+<!--
+                <Frame CornerRadius="10"  
+       OutlineColor="Red" 
+       Padding="0">
+                    
+                    
+                    
+                    
+                    
+                    <Label Text="{Binding Data}"/>
+                    
+                    <custom:RoundedCornerView RoundedCornerRadius="12" Margin="11,5.5,11,5.5" VerticalOptions="FillAndExpand" >
+                        <StackLayout Orientation="Vertical" BackgroundColor="White" Padding="11" >
+                            <Label Text="{Binding WardName}".../>
+                        </StackLayout>
+                        </custom:RoundedCornerView> 
+                </Frame>-->
+
+<!--<TextCell Text="{Binding Data}" />-->
+
+<!--Custom View Cells-->
+<!--
+    <ListView.ItemTemplate>
+      <DataTemplate>
+        <ViewCell>
+          <StackLayout>
+            <Label Text="{Binding Text}" 
+                   Style="{DynamicResource ListItemTextStyle}" />
+            <Label Text="{Binding Detail}" 
+                   Style="{DynamicResource ListItemDetailTextStyle}"/>
+          </StackLayout>
+        </ViewCell>
+      </DataTemplate>
+    </ListView.ItemTemplate>
+    -->

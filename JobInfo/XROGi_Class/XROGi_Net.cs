@@ -69,6 +69,10 @@ namespace JobInfo
         public event OnErrorConnecedDelegate OnErrorConneced = delegate { };
 
 
+        public delegate void OnErrorAsyncFunctionRunDelegate(Exception err, string Message);
+        public event OnErrorAsyncFunctionRunDelegate OnErrorAsyncFunctionRun = delegate { };
+
+
 
         public delegate void OnSendCompleatDelegate(string Message);
         public event OnSendCompleatDelegate OnSendCompleat = delegate { };
@@ -101,8 +105,20 @@ namespace JobInfo
 
             #endregion            this.url = url;
 
-            ws_url = url.Replace("http:", "ws:") + "ChatHandler.ashx";
-            service_url = url.Replace("ws:", "http:") + "GetUserInfo.asmx";
+            ws_url = url.Replace("http:", "ws:") ;
+            if (ws_url.EndsWith("/"))
+            {
+                ws_url += "ChatHandler.ashx";
+            }
+            else
+            {
+                ws_url=  ws_url.Replace("GetUserInfo.asmx", "ChatHandler.ashx");
+            }
+            service_url = url.Replace("ws:", "http:");
+            if (service_url.EndsWith("/"))
+            {
+                service_url += "GetUserInfo.asmx";
+            }
             serverUri = new Uri(ws_url);    //"ws://jobinfo/xml/ChatHandler.ashx"
                                             //ws://localhost:53847/ChatHandler.ashx
             cts = new CancellationTokenSource();
@@ -115,19 +131,32 @@ namespace JobInfo
 
         private GetUserInfo GetService(string v)
         {
-            GetUserInfo ui;
+            GetUserInfo ui=null;
             //   if (ui == null)
+            if (ws_socket != null
+          //      && ws_socket.IsConnected == true
+                )
+
             {
-                Console.WriteLine(v + " GetService. Create New");
+                Console.WriteLine("GetService. Create New for Method "+v);
                 ui = new JobInfo.WS_JobInfo.GetUserInfo();
+                
+                ui.Timeout = 100* 1000; 
                 ui.Url = service_url;// @"http://jobinfo/xml/xml/GetUserInfo.asmx";
             }
+            
+   //         else
+    //            throw new ChatDisconnectedException();
+
 
             return ui;
         }
         private GetUserInfo GetService(string v, List<object> param)
         {
             GetUserInfo ui = GetService(v);
+            Console.WriteLine("GetService. Create New for Method " + v+ " params= " + GetParamString(param));
+            ui.Timeout = 100 * 1000;
+            ui.Url = service_url;// @"http://jobinfo/xml/xml/GetUserInfo.asmx";
             //    Console.WriteLine(v + " GetService. Create New " + GetParamString (param) );
             return ui;
         }
@@ -309,9 +338,8 @@ namespace JobInfo
             try
             {
 
-                List<object> param = new List<object>(); param.Add(token_Counter); param.Add(users);  
-
-                WS_JobInfo.GetUserInfo ws = GetService("GetMessages", param);
+                List<object> param = new List<object>(); param.Add(token_Counter); param.Add(users);
+                WS_JobInfo.GetUserInfo ws = GetService(MethodBase.GetCurrentMethod().Name, param);
                 UserStatus[] h = ws.User_GetUsersStatus(tokenId, token_Counter, users );
                 return h;
             }
@@ -331,7 +359,7 @@ namespace JobInfo
                 List<object> param = new List<object>(); param.Add(token_Counter); param.Add(chatid); param.Add(id);
                 //if (tokenId < 0) return;
 
-                WS_JobInfo.GetUserInfo ws = GetService("Message_Shown", param);
+                WS_JobInfo.GetUserInfo ws = GetService(MethodBase.GetCurrentMethod().Name, param);
                 //WS_JobInfo.Obj[] h =
                 ws.Message_ShownAsync(tokenId, token_Counter, chatid, id, TypeShown);
                 ws.Message_ShownCompleted += Message_ShownCompleted;
@@ -345,7 +373,11 @@ namespace JobInfo
 
         private void Message_ShownCompleted(object sender, AsyncCompletedEventArgs e)
         {
-            // throw new NotImplementedException();
+            if (e.Error != null)
+                OnErrorAsyncFunctionRun(e.Error, MethodBase.GetCurrentMethod().Name);
+            //if (e.Error!=null)
+            //throw new ChatWsFunctionException(e.Error, MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name);
+
         }
 
         internal WS_JobInfo.Obj[] GetMessages(long tokenId, long token_Counter, long parentChatId, long currentPosition, int CountDelta)
@@ -356,7 +388,7 @@ namespace JobInfo
 
                 List<object> param = new List<object>(); param.Add(token_Counter); param.Add(parentChatId); param.Add(currentPosition);
 
-                WS_JobInfo.GetUserInfo ws = GetService("GetMessages", param);
+                WS_JobInfo.GetUserInfo ws = GetService(MethodBase.GetCurrentMethod().Name, param);
                 WS_JobInfo.Obj[] h = ws.Message_GetList(tokenId, token_Counter, parentChatId, currentPosition, 0, CountDelta);
                 return h;
             }
@@ -374,7 +406,7 @@ namespace JobInfo
 
                 List<object> param = new List<object>(); param.Add(token_Counter); param.Add(ObjId);
 
-                WS_JobInfo.GetUserInfo ws = GetService("Message_GetStatus", param);
+                WS_JobInfo.GetUserInfo ws = GetService(MethodBase.GetCurrentMethod().Name, param);
                 WS_JobInfo.ObjStatus[] h = ws.Message_GetStatus(tokenId, token_Counter, ObjId);
                 return h;
             }
@@ -393,7 +425,7 @@ namespace JobInfo
 
                 List<object> param = new List<object>(); param.Add(token_Counter); param.Add(ObjId);
 
-                WS_JobInfo.GetUserInfo ws = GetService("Message_GetStatusHistory", param);
+                WS_JobInfo.GetUserInfo ws = GetService(MethodBase.GetCurrentMethod().Name, param);
                 view_ObjStatus_HistoryInfo[] h = ws.Message_GetStatusHistory(tokenId, token_Counter, ObjId);
                 return h;
             }
@@ -410,7 +442,7 @@ namespace JobInfo
             try
             {
                 List<object> param = new List<object>(); param.Add(token_Counter);
-                WS_JobInfo.GetUserInfo ws = GetService("GetStatusInfos", param);
+                WS_JobInfo.GetUserInfo ws = GetService(MethodBase.GetCurrentMethod().Name, param);
                 WS_JobInfo.StatusInfo[] h = ws.Spravka_GetStatus(tokenId, token_Counter);
                 return h;
             }
@@ -421,7 +453,7 @@ namespace JobInfo
             return null;
         }
 
-        internal void Message_SetStatus(long tokenId, long token_Counter, int ObjId, int Status)
+        internal ObjStatus[] Message_SetStatus(long tokenId, long token_Counter, int ObjId, int Status)
         {
             if (tokenId < 0) throw new ChatDisconnectedException();
             try
@@ -429,18 +461,18 @@ namespace JobInfo
 
                 List<object> param = new List<object>(); param.Add(token_Counter); param.Add(ObjId);
 
-                WS_JobInfo.GetUserInfo ws = GetService("Message_SetStatus", param);
-                ws.Message_SetStatus(tokenId, token_Counter, ObjId, Status);
-                return;
+                WS_JobInfo.GetUserInfo ws = GetService(MethodBase.GetCurrentMethod().Name, param);
+                ObjStatus[] ret = ws.Message_SetStatus(tokenId, token_Counter, ObjId, Status);
+                return ret;
             }
             catch (Exception err)
             {
                 throw new ChatWsFunctionException(err, MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name);
             }
-            return;
+            return null;
         }
 
-        internal WS_JobInfo.Obj[] Message_GetListArray(long tokenId, long token_Counter, int parentChatId, int[] msgids)
+        async internal Task<WS_JobInfo.Obj[]> Message_GetListArray(long tokenId, long token_Counter, int parentChatId, int[] msgids)
         {
             if (tokenId < 0)
                 throw new ChatDisconnectedException();
@@ -450,9 +482,14 @@ namespace JobInfo
 
                 List<object> param = new List<object>(); param.Add(token_Counter); param.Add(parentChatId); param.Add(s);
 
-                WS_JobInfo.GetUserInfo ws = GetService("Message_GetListArray", param);
+                WS_JobInfo.GetUserInfo ws = GetService(MethodBase.GetCurrentMethod().Name, param);
                 ws.Message_GetListArrayCompleted += Ws_Message_GetListArrayCompleted;
-                ws.Message_GetListArrayAsync(tokenId, token_Counter, parentChatId, msgids);
+
+             //   await Task.Run(() => {
+                    ws.Message_GetListArrayAsync(tokenId, token_Counter, parentChatId, msgids);
+             //   });
+               
+                
                 //                WS_JobInfo.Obj[] h = ws.Message_GetListArray(tokenId, token_Counter, parentChatId, msgids);
 
                 //                return h;
@@ -464,10 +501,37 @@ namespace JobInfo
             return null;
         }
 
+        internal string [] Get_Setup_Params()
+        {
+            //if (tokenId < 0) throw new ChatDisconnectedException();
+            try
+            {
+
+              List<object> param = new List<object>();// param.Add(token_Counter); param.Add(ObjId);
+
+                WS_JobInfo.GetUserInfo ws = GetService(MethodBase.GetCurrentMethod().Name, param);
+                return ws.Setup_Params("");
+                
+            }
+            catch (ChatDisconnectedException err)
+            {
+                throw err;
+            }
+            catch (Exception err)
+            {
+                throw new ChatWsFunctionException(err, MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name);
+            }
+            
+            return null;
+        }
+
         private void Ws_Message_GetListArrayCompleted(object sender, Message_GetListArrayCompletedEventArgs e)
         {
             if (e.Error != null)
             {
+                if (e.Error != null)
+                    OnErrorAsyncFunctionRun(e.Error, MethodBase.GetCurrentMethod().Name);
+
                 throw new ChatWsFunctionException(e.Error, MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name);
 
                 return;
@@ -479,7 +543,63 @@ namespace JobInfo
             }
         }
 
-        internal void Message_GetListIDs(long tokenId, long token_Counter, int parentChatId, int AfterPosition, bool b_Now)
+        internal void Message_GetListIDs(long tokenId, long token_Counter, int parentChatId, int ObjId, int direction, int maxCount, bool b_Now)
+        {
+            if (tokenId < 0) throw new ChatDisconnectedException();
+            try
+            {
+                if (ObjId == 0)
+                {}
+                List<object> param = new List<object>(); param.Add(token_Counter); param.Add(parentChatId); param.Add(ObjId);
+                WS_JobInfo.GetUserInfo ws = GetService(MethodBase.GetCurrentMethod().Name, param);
+                if (b_Now == false)
+                {
+                    // ws.Message_GetListIDs_V2Completed += Ws_Message_GetListIDs_V2Completed;
+                    // ws.Message_GetListIDs_V2Async(tokenId, token_Counter, parentChatId, ObjId);
+                    ws.Message_GetListIDs_V3Completed += Ws_Message_GetListIDs_V3Completed;
+                    ws.Message_GetListIDs_V3Async(tokenId, token_Counter, parentChatId, ObjId, direction, maxCount);
+
+                }
+                else
+                {
+                    asyncReturn_MessagesIDs ret =
+                    ws.Message_GetListIDs_V3(tokenId, token_Counter, parentChatId, ObjId, direction, maxCount);
+                    int[] h = ret.ListObjID;
+
+                    //Передать результаты
+                    onMessage_GetListID(parentChatId, h);
+                }
+
+            }
+            catch (Exception err)
+            {
+                throw new ChatWsFunctionException(err, MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name);
+            }
+            //   return null;
+        }
+
+        private void Ws_Message_GetListIDs_V3Completed(object sender, Message_GetListIDs_V3CompletedEventArgs e)
+        {
+            ///if (temp_ChatId != 0)
+            {
+                //                int _f = temp_ChatId;                temp_ChatId = 0;
+                if (e != null || e.Result != null || e.Result.ErrorCount == 0)
+                {
+                    //Передать результаты
+                    onMessage_GetListID(e.Result.InParam_chatid, e.Result.ListObjID);
+                }
+                else
+                {
+
+                }
+                if (e.Error != null)
+                    OnErrorAsyncFunctionRun(e.Error, MethodBase.GetCurrentMethod().Name);
+
+                //temp_ChatId = 0;
+            }
+        }
+
+        internal void Message_GetListIDs_v2(long tokenId, long token_Counter, int parentChatId, int AfterPosition, bool b_Now)
         {
             if (tokenId < 0) throw new ChatDisconnectedException();
             try
@@ -496,7 +616,7 @@ namespace JobInfo
                 }
                 List<object> param = new List<object>(); param.Add(token_Counter); param.Add(parentChatId); param.Add(AfterPosition);
 
-                WS_JobInfo.GetUserInfo ws = GetService("Message_GetListIDs", param);
+                WS_JobInfo.GetUserInfo ws = GetService(MethodBase.GetCurrentMethod().Name, param);
                 //       
                 if (b_Now == false)
                 {
@@ -524,7 +644,6 @@ namespace JobInfo
             }
             //   return null;
         }
-
         private void Ws_Message_GetListIDs_V2Completed(object sender, Message_GetListIDs_V2CompletedEventArgs e)
         {
             ///if (temp_ChatId != 0)
@@ -541,6 +660,8 @@ namespace JobInfo
 
                 //temp_ChatId = 0;
             }
+            if (e.Error != null)
+                OnErrorAsyncFunctionRun(e.Error, MethodBase.GetCurrentMethod().Name);
 
         }
 
@@ -563,6 +684,8 @@ namespace JobInfo
                 //  temp_ChatId = 0;
             }
 
+            if (e.Error != null)
+                OnErrorAsyncFunctionRun(e.Error, MethodBase.GetCurrentMethod().Name);
 
         }
 
@@ -572,7 +695,7 @@ namespace JobInfo
             try
             {
 
-                WS_JobInfo.GetUserInfo ws = GetService("ChatList");
+                WS_JobInfo.GetUserInfo ws = GetService(MethodBase.GetCurrentMethod().Name);
                 WS_JobInfo.Obj[] h = ws.Chat_GetList(tokenId, token_Counter, parentChatId);
                 return h;
             }
@@ -589,7 +712,7 @@ namespace JobInfo
             try
             {
 
-                WS_JobInfo.GetUserInfo ws = GetService("ChatList");
+                WS_JobInfo.GetUserInfo ws = GetService(MethodBase.GetCurrentMethod().Name);
                 WS_JobInfo.Obj[] h = ws.Chat_Get(tokenId, token_Counter, ChatId);
                 if (h != null)
                     return h.FirstOrDefault();
@@ -606,7 +729,7 @@ namespace JobInfo
             try
             {
 
-                WS_JobInfo.GetUserInfo ws = GetService("ChatList");
+                WS_JobInfo.GetUserInfo ws = GetService(MethodBase.GetCurrentMethod().Name);
                 WS_JobInfo.Obj[] h = ws.Chat_GetList_PublicByType(tokenId, token_Counter, parentChatId, sgTypeId);
                 return h;
             }
@@ -653,6 +776,7 @@ namespace JobInfo
                     ws_socket.OnConneced += onWSConnected;
                     ws_socket.OnIncomeMessage += OnWSIncomeMessage;
                     ws_socket.OnDisConneced += onWSDisConnected;
+                    ws_socket.OnExceptionError += Ws_socket_OnExceptionError;
                     Task<bool> bb = ws_socket.ConnectAsync(serverUri.ToString(), true);
 
                 }
@@ -690,6 +814,11 @@ namespace JobInfo
 
         }
 
+        private void Ws_socket_OnExceptionError(Exception error)
+        {
+            OnErrorConneced(error, error.Message.ToString());
+        }
+
         private void onWSDisConnected()
         {
             OnDisconneced(null);
@@ -701,7 +830,7 @@ namespace JobInfo
             if (tokenId < 0) throw new ChatDisconnectedException();
             try
             {
-                WS_JobInfo.GetUserInfo ws = GetService("Message_Image_Get");
+                WS_JobInfo.GetUserInfo ws = GetService(MethodBase.GetCurrentMethod().Name);
                 ws.Message_GetFileCompleted += Ws_Message_GetFileCompleted; ;
                 ws.Message_GetFileAsync(tokenId, token_Counter, objId, guid, TypeImage);
             }
@@ -717,6 +846,9 @@ namespace JobInfo
             if (e != null)
                 if (e.Result != null)
                     OnMessage_GetFileAsync(e.Result, e.Result.InParam_ObjId, e.Result.Data);
+            if (e.Error != null)
+                OnErrorAsyncFunctionRun(e.Error, MethodBase.GetCurrentMethod().Name);
+
         }
 
         internal byte[] Message_Image_Get(long tokenId, long token_Counter, int objId, string guid, int TypeImage)
@@ -726,7 +858,7 @@ namespace JobInfo
             try
             {
 
-                WS_JobInfo.GetUserInfo ws = GetService("Message_Image_Get");
+                WS_JobInfo.GetUserInfo ws = GetService(MethodBase.GetCurrentMethod().Name);
                 return ws.Message_Image_Get(tokenId, token_Counter, objId, guid, TypeImage);
 
             }
@@ -823,6 +955,11 @@ namespace JobInfo
                         //          double totalMill = (new TimeSpan(DateTime.Now.Ticks)).TotalMilliseconds;
                         //           long ddd = Convert.ToInt64(totalMill);
                         //  ArraySegment<byte> bytesToSend = SendString(d.toXml());
+
+
+                        string test = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><cmd xmlns=\"http://localhost/xrogi\" pid=\"5168\" clientname=\"ru.svod_int.Ji\" vers=\"2\" name=\"gettoken\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"><user name=\"09A5EEAA-E57B-4422-82CA-65B2AC7DE565\"><device name=\"Blackview BV6000S_RU\" OSVersion=\"Android 7.0\" devicetype=\"Physical\"><Token_Counter>1</Token_Counter></device></user></cmd>\"";
+
+//                        string u_cs = test; // this_user.toXml();//d.toXml()
                         string u_cs = this_user.toXml();//d.toXml()
 
                         try
@@ -1104,13 +1241,14 @@ namespace JobInfo
             try
             {
 
-                WS_JobInfo.GetUserInfo ws = GetService("MessageAdd");
+                WS_JobInfo.GetUserInfo ws = GetService(MethodBase.GetCurrentMethod().Name);
                 int id = ws.Message_Add(tokenId, token_Counter, parentChatId, text);
 
             }
             catch (Exception err)
             {
-                throw new ChatWsFunctionException(err, MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name);
+                if (err != null)
+                    OnErrorAsyncFunctionRun(err, MethodBase.GetCurrentMethod().Name);
 
             }
 
@@ -1126,22 +1264,28 @@ namespace JobInfo
             {
 
 
-                WS_JobInfo.GetUserInfo ws = GetService("Get_UserList");
+                WS_JobInfo.GetUserInfo ws = GetService(MethodBase.GetCurrentMethod().Name);
 
                 ws.User_GetListAllCompleted += Ws_User_GetListAllCompleted;
+
+
                 ws.User_GetListAllAsync(tokenId, token_Counter);
-                return;// 
+                
+              //  return;// 
 
             }
             catch (Exception err)
             {
                 throw new ChatWsFunctionException(err, MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name);
             }
+            
 
         }
 
         private void Ws_User_GetListAllCompleted(object sender, User_GetListAllCompletedEventArgs e)
         {
+            if (e.Error != null)
+                OnErrorAsyncFunctionRun(e.Error, MethodBase.GetCurrentMethod().Name);
 
             OnUser_GetListAllAsync(sender, e);
         }
@@ -1154,7 +1298,7 @@ namespace JobInfo
             {
 
 
-                WS_JobInfo.GetUserInfo ws = GetService("Get_UserList");
+                WS_JobInfo.GetUserInfo ws = GetService(MethodBase.GetCurrentMethod().Name);
                 return ws.User_GetListAll(tokenId, token_Counter);
 
             }
@@ -1175,7 +1319,7 @@ namespace JobInfo
             {
 
 
-                WS_JobInfo.GetUserInfo ws = GetService("Get_UserList");
+                WS_JobInfo.GetUserInfo ws = GetService(MethodBase.GetCurrentMethod().Name);
 
                 return ws.User_Get(tokenId, token_Counter, UserId);
 
@@ -1196,7 +1340,7 @@ namespace JobInfo
 
                 byte[] b = ImageToByteArray(image1);
 
-                WS_JobInfo.GetUserInfo ws = GetService("Add_Image");
+                WS_JobInfo.GetUserInfo ws = GetService(MethodBase.GetCurrentMethod().Name);
 
                 ws.Message_Image_Add(tokenId, token_Counter, objId, b, "jpg", comment);
 
@@ -1222,7 +1366,7 @@ namespace JobInfo
             try
             {
 
-                WS_JobInfo.GetUserInfo ws = GetService("MessageAdd");
+                WS_JobInfo.GetUserInfo ws = GetService(MethodBase.GetCurrentMethod().Name);
                 ws.Message_AddSmile(tokenId, token_Counter, parentChatId, text);
 
             }
@@ -1240,7 +1384,7 @@ namespace JobInfo
             try
             {
 
-                WS_JobInfo.GetUserInfo ws = GetService("Chat_Add");
+                WS_JobInfo.GetUserInfo ws = GetService(MethodBase.GetCurrentMethod().Name);
                 int h = ws.Chat_Add(tokenId, token_Counter, parentChatId, sgTypeId, nameChat, ChatComment);
                 return h;
             }
@@ -1258,7 +1402,7 @@ namespace JobInfo
             try
             {
 
-                WS_JobInfo.GetUserInfo ws = GetService("Chat_CreateAndSubscribe");
+                WS_JobInfo.GetUserInfo ws = GetService(MethodBase.GetCurrentMethod().Name);
                 int h = ws.Chat_CreateAndSubscribe(tokenId, token_Counter, parentChatId, sgTypeId, nameChat, ChatComment, users);
                 return h;
             }
@@ -1297,7 +1441,7 @@ namespace JobInfo
             try
             {
 
-                WS_JobInfo.GetUserInfo ws = GetService("GetTypeChatList");
+                WS_JobInfo.GetUserInfo ws = GetService(MethodBase.GetCurrentMethod().Name);
                 WS_JobInfo.ChatTypes[] h = ws.Chat_GetTypes(TokenId, Token_Counter);
                 return h;
             } catch (Exception err)
@@ -1314,7 +1458,7 @@ namespace JobInfo
             try
             {
 
-                WS_JobInfo.GetUserInfo ws = GetService("Chat_Rename");
+                WS_JobInfo.GetUserInfo ws = GetService(MethodBase.GetCurrentMethod().Name);
                 // WS_JobInfo.ChatTypes[] h =
                 ws.Chat_Rename(TokenId, Token_Counter, id, newName);
 
@@ -1333,7 +1477,7 @@ namespace JobInfo
             try
             {
 
-                WS_JobInfo.GetUserInfo ws = GetService("Chat_CreateLink");
+                WS_JobInfo.GetUserInfo ws = GetService(MethodBase.GetCurrentMethod().Name);
                 // WS_JobInfo.ChatTypes[] h =
                 ws.Chat_CreateLink(TokenId, Token_Counter, NewParentChatId, CurrentChatId);
 
@@ -1351,7 +1495,7 @@ namespace JobInfo
             try
             {
 
-                WS_JobInfo.GetUserInfo ws = GetService("Chat_CreateLink");
+                WS_JobInfo.GetUserInfo ws = GetService(MethodBase.GetCurrentMethod().Name);
                 // WS_JobInfo.ChatTypes[] h =
                 ws.Chat_CreateMainLink(TokenId, Token_Counter, NewParentChatId, CurrentChatId);
 
@@ -1370,7 +1514,7 @@ namespace JobInfo
             try
             {
 
-                WS_JobInfo.GetUserInfo ws = GetService("User_GetSelf");
+                WS_JobInfo.GetUserInfo ws = GetService(MethodBase.GetCurrentMethod().Name);
                 // WS_JobInfo.ChatTypes[] h =
                 WS_JobInfo.User user = ws.User_GetSelf(tokenId, token_Counter);
                 return user;
@@ -1392,7 +1536,7 @@ namespace JobInfo
                 List<object> param = new List<object>(); param.Add(token_Counter); param.Add(userId); 
                 //if (tokenId < 0) return;
 
-                WS_JobInfo.GetUserInfo ws = GetService("User_GetFoto", param);
+                WS_JobInfo.GetUserInfo ws = GetService(MethodBase.GetCurrentMethod().Name, param);
                
                 byte[] res =     ws.User_GetFoto(tokenId, token_Counter,  userId,1);
                 return res;
@@ -1409,7 +1553,7 @@ namespace JobInfo
             try
             {
 
-                WS_JobInfo.GetUserInfo ws = GetService("User_SetParameter");
+                WS_JobInfo.GetUserInfo ws = GetService(MethodBase.GetCurrentMethod().Name);
                 // WS_JobInfo.ChatTypes[] h =
                 ws.User_SetParameter(tokenId, token_Counter
                        , userId
@@ -1434,7 +1578,7 @@ namespace JobInfo
             try
             {
 
-                WS_JobInfo.GetUserInfo ws = GetService("Chat_SetPublic");
+                WS_JobInfo.GetUserInfo ws = GetService(MethodBase.GetCurrentMethod().Name);
                 // WS_JobInfo.ChatTypes[] h =
                 ws.Chat_SetPublic(tokenId, token_Counter
                        , chatId
@@ -1456,7 +1600,7 @@ namespace JobInfo
             try
             {
 
-                WS_JobInfo.GetUserInfo ws = GetService("User_SetParameter");
+                WS_JobInfo.GetUserInfo ws = GetService(MethodBase.GetCurrentMethod().Name);
                 // WS_JobInfo.ChatTypes[] h =
              fn_GetUserParametersResult [] ret =    ws.User_GetParameters(tokenId, token_Counter
                        , userId
@@ -1492,7 +1636,7 @@ namespace JobInfo
             try
             {
 
-                WS_JobInfo.GetUserInfo ws = GetService("Chat_Selected");
+                WS_JobInfo.GetUserInfo ws = GetService(MethodBase.GetCurrentMethod().Name);
                 // WS_JobInfo.ChatTypes[] h =
               int ret = ws.Chat_GetSelected(TokenId, token_Counter);
 
@@ -1513,7 +1657,7 @@ namespace JobInfo
             try
             {
            
-                WS_JobInfo.GetUserInfo ws = GetService("Chat_Selected");
+                WS_JobInfo.GetUserInfo ws = GetService(MethodBase.GetCurrentMethod().Name);
                 // WS_JobInfo.ChatTypes[] h =
                 ws.Chat_Selected (TokenId, token_Counter, chatid);
 
@@ -1544,7 +1688,7 @@ namespace JobInfo
             try
             {
                 
-                WS_JobInfo.GetUserInfo ws = GetService("Chat_GetMyStatistic");
+                WS_JobInfo.GetUserInfo ws = GetService(MethodBase.GetCurrentMethod().Name);
                 UserChatInfo cui = ws.Chat_GetMyStatistic(TokenId, token_Counter, chatId);
                 return cui;
             }
@@ -1657,7 +1801,7 @@ namespace JobInfo
             try
             {
               
-                WS_JobInfo.GetUserInfo ws = GetService("Chat_GetUserList");
+                WS_JobInfo.GetUserInfo ws = GetService(MethodBase.GetCurrentMethod().Name);
                  ws.Chat_SubscribeUser(tokenId, token_Counter, chatid, user.UserId,  typeSubscribe);
                 return true;
             }
@@ -1674,7 +1818,7 @@ namespace JobInfo
             try
             {
 
-                WS_JobInfo.GetUserInfo ws = GetService("Chat_UnSubscribeUser");
+                WS_JobInfo.GetUserInfo ws = GetService(MethodBase.GetCurrentMethod().Name);
                 ws.Chat_UnSubscribeUser(tokenId, token_Counter, chatid, user.UserId, typeSubscribe);
                 return true;
             }
@@ -1690,7 +1834,7 @@ namespace JobInfo
             try
             {
                
-                WS_JobInfo.GetUserInfo ws = GetService("Chat_GetUserList");
+                WS_JobInfo.GetUserInfo ws = GetService(MethodBase.GetCurrentMethod().Name);
                 WS_JobInfo.User[] cui = ws.Chat_GetUsers(tokenId, token_Counter, objId);
                 return cui;
             }
@@ -1707,7 +1851,7 @@ namespace JobInfo
             try
             {
            
-                WS_JobInfo.GetUserInfo ws = GetService("User_FindFull");
+                WS_JobInfo.GetUserInfo ws = GetService(MethodBase.GetCurrentMethod().Name);
                 WS_JobInfo.User[] cui = ws.User_FindFull(tokenId, token_Counter, text);
                 return cui;
             }
@@ -1723,7 +1867,7 @@ namespace JobInfo
             try
             {
                 
-                WS_JobInfo.GetUserInfo ws = GetService("Chat_AddCorporative");
+                WS_JobInfo.GetUserInfo ws = GetService(MethodBase.GetCurrentMethod().Name);
                 string cui = ws.Chat_AddCorporative(tokenId, token_Counter, obj_ou.Guid);
                 return cui;
             }
@@ -1740,7 +1884,7 @@ namespace JobInfo
             try
             {
                  
-                WS_JobInfo.GetUserInfo ws = GetService("OU_GetUserList");
+                WS_JobInfo.GetUserInfo ws = GetService(MethodBase.GetCurrentMethod().Name);
                 WS_JobInfo.User[] cui = ws.OU_GetUsers(tokenId, token_Counter, guid);
                  
                 return cui;
@@ -1760,7 +1904,7 @@ namespace JobInfo
             try
             {
       
-                WS_JobInfo.GetUserInfo ws = GetService("Chat_GetListCorporate");
+                WS_JobInfo.GetUserInfo ws = GetService(MethodBase.GetCurrentMethod().Name);
                 WS_JobInfo.Obj[] cui = ws.Chat_GetListCorporate(TokenId, token_Counter, root);
                 return cui;
             }
@@ -1885,7 +2029,7 @@ namespace JobInfo
         {
             try
             {
-                WS_JobInfo.GetUserInfo ws = GetService("Job_Leave"); 
+                WS_JobInfo.GetUserInfo ws = GetService(MethodBase.GetCurrentMethod().Name); 
                 //WS_JobInfo.ChatTypes[] h = 
                     ws.Chat_Leave(tokenId, token_Counter, ChatId);
                

@@ -69,7 +69,7 @@ namespace JobInfo.XROGi_Extensions
             else
             {
 
-                wb.Navigate(@"C:\Temp\chat\1.html");
+           //     wb.Navigate(@"C:\Temp\chat\1.html");
                 while (wb.ReadyState != WebBrowserReadyState.Complete)
                 {
                     //Debug.WriteLine("Loading loop..");
@@ -217,7 +217,7 @@ namespace JobInfo.XROGi_Extensions
             else
             {
 
-                wb.Navigate(@"C:\Temp\chat\1.html");
+             //   wb.Navigate(@"C:\Temp\chat\1.html");
                 while (wb.ReadyState != WebBrowserReadyState.Complete)
                 {
                     //Debug.WriteLine("Loading loop..");

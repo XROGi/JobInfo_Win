@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Ji.Views.SvodInfMasterDetailPage"
+             xmlns:pages="clr-namespace:Ji.Views">
+    <MasterDetailPage.Master>
+        <pages:MenuPage />
+        <!--<pages:SvodInfMasterDetailPageMaster x:Name="MasterPage" />-->
+        <!--<ContentPage Title="☰" BackgroundColor="Red">
+            <StackLayout BackgroundColor="#B2EC5D">
+                <StackLayout Margin="25,10,25,0" Padding="0,15,0,15">
+                    <Image  Margin="10" BackgroundColor="Accent" Aspect="AspectFill" Source="Enrich.png"></Image>
+                </StackLayout>
+                <ListView x:Name="navigationDrawerList"  
+                  RowHeight="60"  
+                  SeparatorVisibility="None"  
+                  ItemSelected="OnMenuSelected"  
+                  BackgroundColor="#A3C1AD">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout VerticalOptions="FillAndExpand"  
+                                 Orientation="Horizontal"  
+                                 Padding="20,10,0,10"  
+                                 Spacing="20">
+
+                                    <Image Source="{Binding Icon}"  
+                                     WidthRequest="30"  
+                                     HeightRequest="30"  
+                                     VerticalOptions="Center" />
+                                    <Label Text="{Binding Title}"  
+                                     FontSize="Medium"  
+                                     VerticalOptions="Center"  
+                                     TextColor="Black"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </ContentPage>-->
+    </MasterDetailPage.Master>
+  <MasterDetailPage.Detail>
+    <NavigationPage>
+      <x:Arguments>
+        <pages:MainTabbedPage />
+                
+                <!--<NavigationPage>
+                    <x:Arguments>
+                        <local:HomeTabbedPage/>
+                    </x:Arguments>
+                </NavigationPage>-->
+            </x:Arguments>
+    </NavigationPage>
+  </MasterDetailPage.Detail>
+</MasterDetailPage>

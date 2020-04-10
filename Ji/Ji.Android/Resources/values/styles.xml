@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <resources>
 
+	<!--https://docs.microsoft.com/ru-ru/xamarin/android/user-interface/material-theme
+	<style name="MyTheme" parent="@android:style/Theme.Holo.Light.DarkActionBar">
+		<item name="android:dropDownListViewStyle">#5F7081</item>
+		<item name="android:actionMenuTextColor">#FF4081</item>
+	</style>
+	-->
   <style name="MainTheme" parent="MainTheme.Base">
+	  <item name="android:actionMenuTextColor">#FF4081</item> http://qaru.site/questions/6741859/change-color-of-toolbaritem-in-xaml
   </style>
   <!-- Base theme applied no matter what API -->
   <style name="MainTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -9,9 +16,15 @@
     <item name="windowNoTitle">true</item>
     <!--We will be using the toolbar so no need to show ActionBar-->
     <item name="windowActionBar">false</item>
+    
     <!-- Set theme colors from http://www.google.com/design/spec/style/color.html#color-color-palette -->
-    <!-- colorPrimary is used for the default action bar background -->
-    <item name="colorPrimary">#2196F3</item>
+    <!-- colorPrimary is used for the default action bar background
+    
+    00ACFF
+    -->
+    <item name="colorPrimary">#FFAD00</item>
+
+
     <!-- colorPrimaryDark is used for the status bar -->
     <item name="colorPrimaryDark">#1976D2</item>
     <!-- colorAccent is used as the default value for colorControlActivated
@@ -22,9 +35,18 @@
     <item name="windowActionModeOverlay">true</item>
 
     <item name="android:datePickerDialogTheme">@style/AppCompatDialogStyle</item>
-  </style>
+	  <item name="android:actionMenuTextColor">#FF4081</item> <!--http://qaru.site/questions/6741859/change-color-of-toolbaritem-in-xaml-->
 
+
+   
+  </style>
+	 
   <style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">
     <item name="colorAccent">#FF4081</item>
+	  <item name="android:actionMenuTextColor">#FF4081</item> http://qaru.site/questions/6741859/change-color-of-toolbaritem-in-xaml
+  </style>
+  
+  <style name="MyTabTextStyle" parent="Base.Widget.Design.TabLayout">
+    <item name="android:textSize">8sp</item>
   </style>
 </resources>

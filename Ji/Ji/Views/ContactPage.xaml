@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             mc:Ignorable="d"
+           Title=""
+             x:Class="Ji.Views.ContactPage">
+    <ContentPage.Content>
+        <StackLayout   Orientation="Vertical" >
+            <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition  Height="Auto"></RowDefinition>
+                    <RowDefinition  Height="Auto"></RowDefinition>
+            
+            </Grid.RowDefinitions>
+            <d:Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+             </d:Grid.ColumnDefinitions>
+
+            <!--<StackLayout Grid.Row="0" Grid.Column="1">
+                <Label  BackgroundColor="Red" TextColor="Yellow" Text="Welcome to Xamarin.Forms! 1234 "
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            </StackLayout>-->
+                <Grid>
+                    <Grid.RowDefinitions      Height="150"                   ></Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="70"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="70"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Frame WidthRequest="150" HorizontalOptions="Center" CornerRadius="75"
+               
+                  BackgroundColor="LightGray" Margin="0"   
+                        Padding="0" IsClippedToBounds="True"
+                  Grid.Row="0" Grid.Column="1" 
+                  >
+                        <ffimageloading:CachedImage HorizontalOptions="Center"    Source="{Binding ImageURL}"
+                                    LoadingPlaceholder= "wait48.png"
+                                    ErrorPlaceholder= "error48.png"
+                                    CacheDuration= "0"
+                                    CacheType="None"
+                                    RetryCount= "3"
+                                    RetryDelay= "600"
+                                    DownsampleToViewSize = "true"
+                                    Aspect="AspectFill"
+                                    WidthRequest="150"
+                                    />
+
+                    </Frame>
+                    <StackLayout Grid.Column="2" >
+                        <Button Text="&#9733;" Clicked="Button_Clicked_Favorit" IsVisible="{Binding bFavorite}" BackgroundColor="Transparent" FontSize="25" TextColor="#9b2800" WidthRequest="70" HeightRequest="70"></Button>
+                        <Button Text="&#9734;" Clicked="Button_Clicked_NotFavorit" IsVisible="{Binding bNotFavorite}" BackgroundColor="Transparent" FontSize="25" TextColor="#9b2800" WidthRequest="70" HeightRequest="70"></Button>
+                    </StackLayout>
+                    <!--<Switch IsVisible="False" Grid.Column="2" WidthRequest="30" HeightRequest="30" IsToggled="true" >
+                         
+                    </Switch>-->
+                        
+                        
+                </Grid>
+          <!---->
+                
+            <!--<Image Grid.Row="0" Grid.Column="0" Source="{Binding ImageURL}" HeightRequest="25"  Aspect="AspectFit"   >
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer    CommandParameter="{Binding .}" />
+                </Image.GestureRecognizers>
+            </Image>-->
+            <!--<Label Grid.Row="0" Grid.Column="1" Text="{Binding Item.Text}" FontSize="Small"/>-->
+    
+                <!--<Label  Text="123434"  BackgroundColor="Red" TextColor="Yellow" />-->
+                <Label HorizontalOptions="Center" d:Text="Смирнов Игорь"   Grid.Row="1" Grid.Column="0" Text="{Binding FIO}" FontAttributes="Bold"  FontSize="20"  LineBreakMode="WordWrap" HorizontalTextAlignment="Center" TextColor="#000000"/>
+                <Label HorizontalOptions="Center" d:Text="ведущий программист"        Grid.Row="2" Grid.Column="0" Text="{Binding Skill}"  FontSize="18" LineBreakMode="WordWrap" HorizontalTextAlignment="Center" TextColor="#000000"/>
+                <Label HorizontalOptions="Center"  d:Text="УКЗ"  FontAttributes="Bold"  Grid.Row="3" Grid.Column="0" Text="{Binding OU}"  FontSize="14" LineBreakMode="WordWrap" HorizontalTextAlignment="Center" TextColor="#000000"/>
+               
+                
+        </Grid>
+
+             <Grid HorizontalOptions="Center" IsClippedToBounds="True" >
+                <Grid.RowDefinitions>
+                    <RowDefinition  Height="45"></RowDefinition>
+                    <RowDefinition Height="25"></RowDefinition>
+                </Grid.RowDefinitions>
+                <d:Grid.ColumnDefinitions>
+                    <ColumnDefinition ></ColumnDefinition>
+                    <ColumnDefinition ></ColumnDefinition>
+                </d:Grid.ColumnDefinitions>
+
+                <ImageButton Clicked="Button_Clicked" BackgroundColor="#9b2800" Grid.Row="0" Grid.Column="0"   Margin="0"  Aspect="AspectFill"     
+                             Source="ButtonContactSendMessage512x512.png"      HorizontalOptions="Center"    VerticalOptions="Center" />
+                <ImageButton Clicked="Button_Clicked_1" BackgroundColor="#9b2800" Grid.Row="0" Grid.Column="1"  Margin="0"  Aspect="AspectFill"   
+                             Source="ButtonContactCall512x512.png"      HorizontalOptions="Center"    VerticalOptions="Center" />
+            
+                <Label  Text="Написать"  Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" FontSize="12" LineBreakMode="WordWrap" TextColor="#9b2800"/>
+                <Label  Text="Позвонить" Grid.Row="1" Grid.Column="1" HorizontalOptions="Center"  FontSize="12" LineBreakMode="WordWrap" TextColor="#9b2800"/>
+
+            </Grid>
+ <!--
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+
+                <Image WidthRequest="70" HeightRequest="70" BackgroundColor="#9b2800"   Margin="0"  Aspect="AspectFill"      Source="ButtonContactSendMessage512x512.png"      HorizontalOptions="Center"    VerticalOptions="Center" />
+                <Image WidthRequest="70" HeightRequest="70" BackgroundColor="#9b2800"   Margin="0"  Aspect="AspectFill"      Source="ButtonContactCall512x512.png"      HorizontalOptions="Center"    VerticalOptions="Center" />
+
+            </StackLayout> -->
+
+            <!--<Label  Text="{Binding GetMobilePhone}"  FontSize="Micro" LineBreakMode="WordWrap" TextColor="Blue"/>-->
+            <!--<Label  Text="{Binding GetParamsList}"  FontSize="Micro" LineBreakMode="WordWrap" TextColor="Blue"/>-->
+            <!--<Image  Opacity="20" BackgroundColor="Aqua" Margin="0"  Aspect="AspectFill"      Source="ButtonContactCall512x512.png"      HorizontalOptions="Center"    VerticalOptions="Center" />-->
+
+        <ListView ItemsSource="{Binding GetParamsList}" HasUnevenRows="True" SeparatorVisibility="Default" >
+                <!--<ListView.Header>
+                    <DataTemplate>
+                        <ViewCell>
+                            
+                                <Label FontAttributes="Bold" Text="-">
+
+                                </Label>
+                               
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.Header>-->
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Vertical">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label FontAttributes="Bold" FontSize="12"  TextColor="Black" Text="{Binding ParamName}">
+
+                                    </Label>
+                                    <!--<Label FontAttributes="Bold" Text=":"> </Label>-->
+                                </StackLayout>
+                                <Label FontSize="20"  TextColor="Black" Text="{Binding ParamValue}">
+
+                                </Label>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>    <!---->
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

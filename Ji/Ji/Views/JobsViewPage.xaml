@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Ji.Views.JobsViewPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Primary">#00AC6B</Color>
+            <Color x:Key="Accent">#20815D</Color>
+            <Color x:Key="LightTextColor">#999999</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <!--<ToolbarItem x:Name="StatusConnectIcon" IconImageSource="logo.png" Text="test"  Clicked="StatusConnectIcon_Clicked" > </ToolbarItem>-->
+        <ToolbarItem  IconImageSource="ButtonAddTask512x512.png" Clicked="AddItem_Clicked" />
+        <!--<ToolbarItem Text="Clear" Clicked="ClearItem_Clicked" />-->
+    </ContentPage.ToolbarItems>
+    <!--<resources>
+
+        <style name="MyTheme.Light" parent="@android:style/Theme.Holo.Light.DarkActionBar">
+            <item name="android:actionModeBackground">@color/ActionModeColor</item>
+        </style>
+    </resources>-->
+
+    <StackLayout  BackgroundColor="#FFAD00">
+       
+        
+        <StackLayout x:Name="FilterPanel" IsVisible="False" Orientation="Vertical">
+
+            <SearchBar x:Name="filterTextBox" HeightRequest="40"
+           Placeholder="Введите текст для поиска..."        
+                       TextChanged="OnFilterTextChanged" 
+            BackgroundColor="LightYellow"/>
+            
+            <!--<CarouselView x:Name="TheCarousel" >
+                <CarouselView.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Hey...</x:String>
+                        <x:String>Psssst...!</x:String>
+                        <x:String>Did you check out...</x:String>
+                        <x:String>The awesome new CarouselView</x:String>
+                        <x:String>In Xamarin.Forms 4.4?!</x:String>
+                        <x:String>🎠 🎉</x:String>
+                    </x:Array>
+                </CarouselView.ItemsSource>
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                            <Label Text="{Binding .}" HorizontalTextAlignment="Center" FontSize="Title" />
+                            <Label Text="Test" HorizontalTextAlignment="Center" FontSize="Title" />
+
+                        </StackLayout>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>-->
+
+            <!--<StackLayout Orientation="Horizontal">
+                <CheckBox  IsChecked="true" />
+                <Label Text="Мне" TextColor="White" VerticalTextAlignment="Center"/>
+                --><!--<VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Color"
+                            Value="Red" />
+                            </VisualState.Setters>
+                        </VisualState>
+
+                        <VisualState x:Name="IsChecked">
+                            <VisualState.Setters>
+                                <Setter Property="Color"
+                            Value="Green" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>--><!--
+
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <CheckBox IsChecked="true" />
+                <Label Text="От меня"  TextColor="White" VerticalTextAlignment="Center"/>
+                --><!--<VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Color"
+                            Value="Red" />
+                            </VisualState.Setters>
+                        </VisualState>
+
+                        <VisualState x:Name="IsChecked">
+                            <VisualState.Setters>
+                                <Setter Property="Color"
+                            Value="Green" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>--><!--
+
+            </StackLayout>-->
+
+            <!--<StackLayout 
+                    Orientation="Horizontal">
+                <Image  
+                      WidthRequest="24" HeightRequest="24"
+                        IsVisible="{Binding IsMySelected , Mode=TwoWay}"
+                        Source="rbc2.png" 
+                        />
+                <Image 
+                      WidthRequest="24" HeightRequest="24"
+                        IsVisible="{Binding IsMyUnselected, Mode=TwoWay}"
+                        Source="rbuc2.png"  
+                        />
+               
+             --><!--    <Image
+                        HeightRequest="18"
+                        IsVisible="{Binding IsUnselected}"
+                      Source="ButtonApply512x512.png" 
+                        WidthRequest="18"/>
+               <Image
+                        HeightRequest="18"
+                        IsVisible="{Binding IsUnselected}"
+                        Source="RadioBoxChecked512x512.png"  
+                        WidthRequest="18"/>
+                <Image
+                        HeightRequest="18"
+                        IsVisible="{Binding IsUnselected}"
+                        Source="RadioBoxNotChecked512x512.png"
+                        WidthRequest="18"/>--><!--
+                <Label VerticalTextAlignment="Center" TextColor="White" 
+                        Margin="8,0,0,0"
+                        Text="Мне"/>
+            </StackLayout>
+            
+            <StackLayout 
+                    Orientation="Horizontal">
+                <Image 
+                      WidthRequest="24" HeightRequest="24"
+                        IsVisible="{Binding IsFromMySelected , Mode=TwoWay}"
+                        Source="rbc2.png"  
+                        >
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="radioButton_Clicked"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image 
+                      WidthRequest="24" HeightRequest="24"
+                        IsVisible="{Binding IsFromUnselected , Mode=TwoWay}"
+                        Source="rbuc2.png" 
+                        >
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="radioButton_Clicked"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+
+                --><!--    <Image
+                        HeightRequest="18"
+                        IsVisible="{Binding IsUnselected}"
+                      Source="ButtonApply512x512.png" 
+                        WidthRequest="18"/>
+               <Image
+                        HeightRequest="18"
+                        IsVisible="{Binding IsUnselected}"
+                        Source="RadioBoxChecked512x512.png"  
+                        WidthRequest="18"/>
+                <Image
+                        HeightRequest="18"
+                        IsVisible="{Binding IsUnselected}"
+                        Source="RadioBoxNotChecked512x512.png"
+                        WidthRequest="18"/>--><!--
+                <Label VerticalTextAlignment="Center" TextColor="White" 
+                        Margin="8,0,0,0"
+                        Text="От меня"/>
+            </StackLayout>-->
+
+            <StackLayout Orientation="Horizontal">
+                <CheckBox />
+                <Label Text="Только с пометкой 'Срочно'" VerticalOptions="Center"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <CheckBox />
+                <Label BackgroundColor="#FFAD00" Text="Скрыть выполненные задачи" VerticalOptions="Center"/>
+            </StackLayout>
+        </StackLayout>
+
+        <StackLayout BackgroundColor="#F57D00" Orientation="Vertical">
+            <ListView x:Name="ItemsListView"
+                ItemsSource="{Binding ChatItems, Mode=TwoWay}"
+                VerticalOptions="FillAndExpand"
+                HasUnevenRows="true"
+                RefreshCommand="{Binding LoadItemsCommand}"
+                IsPullToRefreshEnabled="true"
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                CachingStrategy="RecycleElement"
+                ItemAppearing="OnItemAppearing"
+                ItemSelected="OnItemSelected"
+                ItemTapped="ItemsListView_ItemTapped"
+                SelectionMode="None">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.ContextActions >
+                            <MenuItem Clicked="OnChatInfo"  CommandParameter="{Binding .}" Text="Настройки чата" IconImageSource="setup.png" />
+                            <MenuItem Clicked="OnChatLeave"  CommandParameter="{Binding .}" Text="Удалить чат" IconImageSource="delete48.png" />
+                            <MenuItem Clicked="OnChatOpen"   CommandParameter="{Binding .}" Text="Открыть чат" IconImageSource="todo48.png" IsDestructive="True" />
+                        </ViewCell.ContextActions>
+
+                        <StackLayout Padding="10">
+                            <!--<StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer CommandParameter="{Binding .}" />
+                                -->
+                            <!-- Command="{Binding OnClickableLabel}"  Tapped="OnTapped"-->
+                            <!--
+                            </StackLayout.GestureRecognizers>-->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50" />
+                                    <ColumnDefinition Width="250*" />
+                                    <ColumnDefinition Width="60" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50" />
+                                </Grid.RowDefinitions>
+                                <Image Grid.Row="0" Grid.Column="0" Source="{Binding ImageUrl}" HeightRequest="25"   Aspect="AspectFit"   ></Image>
+                                <!--<Label Grid.Row="0" Grid.Column="1" Text="{Binding Item.Text}" FontSize="Small"/>-->
+                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding Text}"  FontSize="Small" LineBreakMode="TailTruncation"/>
+
+
+                                <Label Grid.Row="0" Grid.Column="2" Text="{Binding Path=CountNewMessage}"  VerticalOptions="Center"  HorizontalOptions="End" TextColor="Green" FontSize="Small" LineBreakMode="TailTruncation"/>
+                                <!--<Label Text="{Binding Text}"  LineBreakMode="NoWrap"  Style="{DynamicResource ListItemTextStyle}"      FontSize="16" />-->
+
+                                <!--<WebView x:Name="webView"   Grid.Row="0" Grid.Column="2" WidthRequest="70" HeightRequest="70"  Source="http://www.xamarin.com" />-->
+                            </Grid>
+
+                            <!--<Image Source="xamarin_logo.png" HeightRequest="25"   Aspect="AspectFit"  ></Image>-->
+
+                            <!--<Label Text="{Binding Description}" 
+                                LineBreakMode="NoWrap"
+                                Style="{DynamicResource ListItemDetailTextStyle}"
+                                FontSize="13" />-->
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </StackLayout>
+
+    <!--<ListView x:Name="ListView_Jobs"
+            ItemsSource="{Binding Items}"
+            ItemTapped="Handle_ItemTapped"
+            CachingStrategy="RecycleElement">
+    <d:ListView.ItemsSource>
+        <x:Array Type="{x:Type x:String}">
+                <x:String>Сейчас, у Вас, оперативных задач нет</x:String>
+        </x:Array>
+    </d:ListView.ItemsSource>
+    --><!--Built in Cells--><!--
+    <ListView.ItemTemplate>
+        <DataTemplate>
+            <TextCell Text="{Binding .}" d:Text="{Binding .}" />
+        </DataTemplate>
+    </ListView.ItemTemplate>-->
+    
+    <!--Custom View Cells-->
+    <!--
+    <ListView.ItemTemplate>
+      <DataTemplate>
+        <ViewCell>
+          <StackLayout>
+            <Label Text="{Binding Text}" 
+                   d:Text="{Binding .}"
+                   Style="{DynamicResource ListItemTextStyle}" />
+            <Label Text="{Binding Detail}" 
+                   d:Text="Detail"
+                   Style="{DynamicResource ListItemDetailTextStyle}"/>
+          </StackLayout>
+        </ViewCell>
+      </DataTemplate>
+    </ListView.ItemTemplate>
+   </ListView>  -->
+ 
+</ContentPage>

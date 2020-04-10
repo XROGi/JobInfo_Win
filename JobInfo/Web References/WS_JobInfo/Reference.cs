@@ -29,6 +29,12 @@ namespace JobInfo.WS_JobInfo {
     [System.Web.Services.WebServiceBindingAttribute(Name="GetUserInfoSoap", Namespace="http://localhost/xrogi")]
     public partial class GetUserInfo : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
+        private System.Threading.SendOrPostCallback Setup_ParamsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Parking_Test1OperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Parking_CancelTiketOperationCompleted;
+        
         private System.Threading.SendOrPostCallback GetConnetedTokensOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetTokensOperationCompleted;
@@ -37,13 +43,17 @@ namespace JobInfo.WS_JobInfo {
         
         private System.Threading.SendOrPostCallback AboutOperationCompleted;
         
+        private System.Threading.SendOrPostCallback AboutEncrOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback @__now__OperationCompleted;
+        
         private System.Threading.SendOrPostCallback ClearSessionOperationCompleted;
         
         private System.Threading.SendOrPostCallback Chat_RenameOperationCompleted;
         
-        private System.Threading.SendOrPostCallback Chat_GetMyStatisticOperationCompleted;
+        private System.Threading.SendOrPostCallback Chat_GetStatisticOperationCompleted;
         
-        private System.Threading.SendOrPostCallback Chat_GetMyStatistic_oldOperationCompleted;
+        private System.Threading.SendOrPostCallback Chat_GetMyStatisticOperationCompleted;
         
         private System.Threading.SendOrPostCallback Chat_UnSubscribeUserOperationCompleted;
         
@@ -105,11 +115,15 @@ namespace JobInfo.WS_JobInfo {
         
         private System.Threading.SendOrPostCallback Message_SetStatusOperationCompleted;
         
+        private System.Threading.SendOrPostCallback Message_GetPageOperationCompleted;
+        
         private System.Threading.SendOrPostCallback Message_GetListArrayOperationCompleted;
         
         private System.Threading.SendOrPostCallback Message_GetListIDsOperationCompleted;
         
         private System.Threading.SendOrPostCallback Message_GetListIDs_V2OperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Message_GetListIDs_V3OperationCompleted;
         
         private System.Threading.SendOrPostCallback Message_GetLinksOperationCompleted;
         
@@ -180,6 +194,15 @@ namespace JobInfo.WS_JobInfo {
         }
         
         /// <remarks/>
+        public event Setup_ParamsCompletedEventHandler Setup_ParamsCompleted;
+        
+        /// <remarks/>
+        public event Parking_Test1CompletedEventHandler Parking_Test1Completed;
+        
+        /// <remarks/>
+        public event Parking_CancelTiketCompletedEventHandler Parking_CancelTiketCompleted;
+        
+        /// <remarks/>
         public event GetConnetedTokensCompletedEventHandler GetConnetedTokensCompleted;
         
         /// <remarks/>
@@ -192,16 +215,22 @@ namespace JobInfo.WS_JobInfo {
         public event AboutCompletedEventHandler AboutCompleted;
         
         /// <remarks/>
+        public event AboutEncrCompletedEventHandler AboutEncrCompleted;
+        
+        /// <remarks/>
+        public event @__now__CompletedEventHandler @__now__Completed;
+        
+        /// <remarks/>
         public event ClearSessionCompletedEventHandler ClearSessionCompleted;
         
         /// <remarks/>
         public event Chat_RenameCompletedEventHandler Chat_RenameCompleted;
         
         /// <remarks/>
-        public event Chat_GetMyStatisticCompletedEventHandler Chat_GetMyStatisticCompleted;
+        public event Chat_GetStatisticCompletedEventHandler Chat_GetStatisticCompleted;
         
         /// <remarks/>
-        public event Chat_GetMyStatistic_oldCompletedEventHandler Chat_GetMyStatistic_oldCompleted;
+        public event Chat_GetMyStatisticCompletedEventHandler Chat_GetMyStatisticCompleted;
         
         /// <remarks/>
         public event Chat_UnSubscribeUserCompletedEventHandler Chat_UnSubscribeUserCompleted;
@@ -294,6 +323,9 @@ namespace JobInfo.WS_JobInfo {
         public event Message_SetStatusCompletedEventHandler Message_SetStatusCompleted;
         
         /// <remarks/>
+        public event Message_GetPageCompletedEventHandler Message_GetPageCompleted;
+        
+        /// <remarks/>
         public event Message_GetListArrayCompletedEventHandler Message_GetListArrayCompleted;
         
         /// <remarks/>
@@ -301,6 +333,9 @@ namespace JobInfo.WS_JobInfo {
         
         /// <remarks/>
         public event Message_GetListIDs_V2CompletedEventHandler Message_GetListIDs_V2Completed;
+        
+        /// <remarks/>
+        public event Message_GetListIDs_V3CompletedEventHandler Message_GetListIDs_V3Completed;
         
         /// <remarks/>
         public event Message_GetLinksCompletedEventHandler Message_GetLinksCompleted;
@@ -346,6 +381,109 @@ namespace JobInfo.WS_JobInfo {
         
         /// <remarks/>
         public event Hash_UpdateCompletedEventHandler Hash_UpdateCompleted;
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://localhost/xrogi/Setup_Params", RequestNamespace="http://localhost/xrogi", ResponseNamespace="http://localhost/xrogi", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string[] Setup_Params(string clientname) {
+            object[] results = this.Invoke("Setup_Params", new object[] {
+                        clientname});
+            return ((string[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Setup_ParamsAsync(string clientname) {
+            this.Setup_ParamsAsync(clientname, null);
+        }
+        
+        /// <remarks/>
+        public void Setup_ParamsAsync(string clientname, object userState) {
+            if ((this.Setup_ParamsOperationCompleted == null)) {
+                this.Setup_ParamsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSetup_ParamsOperationCompleted);
+            }
+            this.InvokeAsync("Setup_Params", new object[] {
+                        clientname}, this.Setup_ParamsOperationCompleted, userState);
+        }
+        
+        private void OnSetup_ParamsOperationCompleted(object arg) {
+            if ((this.Setup_ParamsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Setup_ParamsCompleted(this, new Setup_ParamsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://localhost/xrogi/Parking_Test1", RequestNamespace="http://localhost/xrogi", ResponseNamespace="http://localhost/xrogi", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public ParkResult Parking_Test1(long tiket, long nmessage, string Data) {
+            object[] results = this.Invoke("Parking_Test1", new object[] {
+                        tiket,
+                        nmessage,
+                        Data});
+            return ((ParkResult)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Parking_Test1Async(long tiket, long nmessage, string Data) {
+            this.Parking_Test1Async(tiket, nmessage, Data, null);
+        }
+        
+        /// <remarks/>
+        public void Parking_Test1Async(long tiket, long nmessage, string Data, object userState) {
+            if ((this.Parking_Test1OperationCompleted == null)) {
+                this.Parking_Test1OperationCompleted = new System.Threading.SendOrPostCallback(this.OnParking_Test1OperationCompleted);
+            }
+            this.InvokeAsync("Parking_Test1", new object[] {
+                        tiket,
+                        nmessage,
+                        Data}, this.Parking_Test1OperationCompleted, userState);
+        }
+        
+        private void OnParking_Test1OperationCompleted(object arg) {
+            if ((this.Parking_Test1Completed != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Parking_Test1Completed(this, new Parking_Test1CompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://localhost/xrogi/Parking_CancelTiket", RequestNamespace="http://localhost/xrogi", ResponseNamespace="http://localhost/xrogi", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public ParkResult Parking_CancelTiket(long tiket, long nmessage, string Data, string out_Who, string Out_CarType, string Out_CarNumber, string Out_Reason) {
+            object[] results = this.Invoke("Parking_CancelTiket", new object[] {
+                        tiket,
+                        nmessage,
+                        Data,
+                        out_Who,
+                        Out_CarType,
+                        Out_CarNumber,
+                        Out_Reason});
+            return ((ParkResult)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Parking_CancelTiketAsync(long tiket, long nmessage, string Data, string out_Who, string Out_CarType, string Out_CarNumber, string Out_Reason) {
+            this.Parking_CancelTiketAsync(tiket, nmessage, Data, out_Who, Out_CarType, Out_CarNumber, Out_Reason, null);
+        }
+        
+        /// <remarks/>
+        public void Parking_CancelTiketAsync(long tiket, long nmessage, string Data, string out_Who, string Out_CarType, string Out_CarNumber, string Out_Reason, object userState) {
+            if ((this.Parking_CancelTiketOperationCompleted == null)) {
+                this.Parking_CancelTiketOperationCompleted = new System.Threading.SendOrPostCallback(this.OnParking_CancelTiketOperationCompleted);
+            }
+            this.InvokeAsync("Parking_CancelTiket", new object[] {
+                        tiket,
+                        nmessage,
+                        Data,
+                        out_Who,
+                        Out_CarType,
+                        Out_CarNumber,
+                        Out_Reason}, this.Parking_CancelTiketOperationCompleted, userState);
+        }
+        
+        private void OnParking_CancelTiketOperationCompleted(object arg) {
+            if ((this.Parking_CancelTiketCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Parking_CancelTiketCompleted(this, new Parking_CancelTiketCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://localhost/xrogi/GetConnetedTokens", RequestNamespace="http://localhost/xrogi", ResponseNamespace="http://localhost/xrogi", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -464,6 +602,60 @@ namespace JobInfo.WS_JobInfo {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://localhost/xrogi/AboutEncr", RequestNamespace="http://localhost/xrogi", ResponseNamespace="http://localhost/xrogi", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string AboutEncr() {
+            object[] results = this.Invoke("AboutEncr", new object[0]);
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void AboutEncrAsync() {
+            this.AboutEncrAsync(null);
+        }
+        
+        /// <remarks/>
+        public void AboutEncrAsync(object userState) {
+            if ((this.AboutEncrOperationCompleted == null)) {
+                this.AboutEncrOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAboutEncrOperationCompleted);
+            }
+            this.InvokeAsync("AboutEncr", new object[0], this.AboutEncrOperationCompleted, userState);
+        }
+        
+        private void OnAboutEncrOperationCompleted(object arg) {
+            if ((this.AboutEncrCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.AboutEncrCompleted(this, new AboutEncrCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://localhost/xrogi/__now__", RequestNamespace="http://localhost/xrogi", ResponseNamespace="http://localhost/xrogi", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string @__now__() {
+            object[] results = this.Invoke("__now__", new object[0]);
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void @__now__Async() {
+            this.@__now__Async(null);
+        }
+        
+        /// <remarks/>
+        public void @__now__Async(object userState) {
+            if ((this.@__now__OperationCompleted == null)) {
+                this.@__now__OperationCompleted = new System.Threading.SendOrPostCallback(this.On__now__OperationCompleted);
+            }
+            this.InvokeAsync("__now__", new object[0], this.@__now__OperationCompleted, userState);
+        }
+        
+        private void On__now__OperationCompleted(object arg) {
+            if ((this.@__now__Completed != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.@__now__Completed(this, new @__now__CompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://localhost/xrogi/ClearSession", RequestNamespace="http://localhost/xrogi", ResponseNamespace="http://localhost/xrogi", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public string ClearSession() {
             object[] results = this.Invoke("ClearSession", new object[0]);
@@ -526,6 +718,37 @@ namespace JobInfo.WS_JobInfo {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://localhost/xrogi/Chat_GetStatistic", RequestNamespace="http://localhost/xrogi", ResponseNamespace="http://localhost/xrogi", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public asyncReturn_Statistic Chat_GetStatistic(long tiket, long nmessage) {
+            object[] results = this.Invoke("Chat_GetStatistic", new object[] {
+                        tiket,
+                        nmessage});
+            return ((asyncReturn_Statistic)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Chat_GetStatisticAsync(long tiket, long nmessage) {
+            this.Chat_GetStatisticAsync(tiket, nmessage, null);
+        }
+        
+        /// <remarks/>
+        public void Chat_GetStatisticAsync(long tiket, long nmessage, object userState) {
+            if ((this.Chat_GetStatisticOperationCompleted == null)) {
+                this.Chat_GetStatisticOperationCompleted = new System.Threading.SendOrPostCallback(this.OnChat_GetStatisticOperationCompleted);
+            }
+            this.InvokeAsync("Chat_GetStatistic", new object[] {
+                        tiket,
+                        nmessage}, this.Chat_GetStatisticOperationCompleted, userState);
+        }
+        
+        private void OnChat_GetStatisticOperationCompleted(object arg) {
+            if ((this.Chat_GetStatisticCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Chat_GetStatisticCompleted(this, new Chat_GetStatisticCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://localhost/xrogi/Chat_GetMyStatistic", RequestNamespace="http://localhost/xrogi", ResponseNamespace="http://localhost/xrogi", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public UserChatInfo Chat_GetMyStatistic(long tiket, long nmessage, long ObjId) {
             object[] results = this.Invoke("Chat_GetMyStatistic", new object[] {
@@ -555,39 +778,6 @@ namespace JobInfo.WS_JobInfo {
             if ((this.Chat_GetMyStatisticCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.Chat_GetMyStatisticCompleted(this, new Chat_GetMyStatisticCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://localhost/xrogi/Chat_GetMyStatistic_old", RequestNamespace="http://localhost/xrogi", ResponseNamespace="http://localhost/xrogi", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public tbl_ChatUserInfo Chat_GetMyStatistic_old(long tiket, long nmessage, long ObjId) {
-            object[] results = this.Invoke("Chat_GetMyStatistic_old", new object[] {
-                        tiket,
-                        nmessage,
-                        ObjId});
-            return ((tbl_ChatUserInfo)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void Chat_GetMyStatistic_oldAsync(long tiket, long nmessage, long ObjId) {
-            this.Chat_GetMyStatistic_oldAsync(tiket, nmessage, ObjId, null);
-        }
-        
-        /// <remarks/>
-        public void Chat_GetMyStatistic_oldAsync(long tiket, long nmessage, long ObjId, object userState) {
-            if ((this.Chat_GetMyStatistic_oldOperationCompleted == null)) {
-                this.Chat_GetMyStatistic_oldOperationCompleted = new System.Threading.SendOrPostCallback(this.OnChat_GetMyStatistic_oldOperationCompleted);
-            }
-            this.InvokeAsync("Chat_GetMyStatistic_old", new object[] {
-                        tiket,
-                        nmessage,
-                        ObjId}, this.Chat_GetMyStatistic_oldOperationCompleted, userState);
-        }
-        
-        private void OnChat_GetMyStatistic_oldOperationCompleted(object arg) {
-            if ((this.Chat_GetMyStatistic_oldCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Chat_GetMyStatistic_oldCompleted(this, new Chat_GetMyStatistic_oldCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1638,6 +1828,41 @@ namespace JobInfo.WS_JobInfo {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://localhost/xrogi/Message_GetPage", RequestNamespace="http://localhost/xrogi", ResponseNamespace="http://localhost/xrogi", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public asyncReturn_Messages Message_GetPage(long tiket, long nmessage, int ChatObjId, int PageNumber) {
+            object[] results = this.Invoke("Message_GetPage", new object[] {
+                        tiket,
+                        nmessage,
+                        ChatObjId,
+                        PageNumber});
+            return ((asyncReturn_Messages)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Message_GetPageAsync(long tiket, long nmessage, int ChatObjId, int PageNumber) {
+            this.Message_GetPageAsync(tiket, nmessage, ChatObjId, PageNumber, null);
+        }
+        
+        /// <remarks/>
+        public void Message_GetPageAsync(long tiket, long nmessage, int ChatObjId, int PageNumber, object userState) {
+            if ((this.Message_GetPageOperationCompleted == null)) {
+                this.Message_GetPageOperationCompleted = new System.Threading.SendOrPostCallback(this.OnMessage_GetPageOperationCompleted);
+            }
+            this.InvokeAsync("Message_GetPage", new object[] {
+                        tiket,
+                        nmessage,
+                        ChatObjId,
+                        PageNumber}, this.Message_GetPageOperationCompleted, userState);
+        }
+        
+        private void OnMessage_GetPageOperationCompleted(object arg) {
+            if ((this.Message_GetPageCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Message_GetPageCompleted(this, new Message_GetPageCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://localhost/xrogi/Message_GetListArray", RequestNamespace="http://localhost/xrogi", ResponseNamespace="http://localhost/xrogi", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public asyncReturn_Messages Message_GetListArray(long tiket, long nmessage, int ParentObjId, int[] ListId) {
             object[] results = this.Invoke("Message_GetListArray", new object[] {
@@ -1739,6 +1964,45 @@ namespace JobInfo.WS_JobInfo {
             if ((this.Message_GetListIDs_V2Completed != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.Message_GetListIDs_V2Completed(this, new Message_GetListIDs_V2CompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://localhost/xrogi/Message_GetListIDs_V3", RequestNamespace="http://localhost/xrogi", ResponseNamespace="http://localhost/xrogi", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public asyncReturn_MessagesIDs Message_GetListIDs_V3(long tiket, long nmessage, int ParentObjId, int ObjId, int Direction, int nMaxCount) {
+            object[] results = this.Invoke("Message_GetListIDs_V3", new object[] {
+                        tiket,
+                        nmessage,
+                        ParentObjId,
+                        ObjId,
+                        Direction,
+                        nMaxCount});
+            return ((asyncReturn_MessagesIDs)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Message_GetListIDs_V3Async(long tiket, long nmessage, int ParentObjId, int ObjId, int Direction, int nMaxCount) {
+            this.Message_GetListIDs_V3Async(tiket, nmessage, ParentObjId, ObjId, Direction, nMaxCount, null);
+        }
+        
+        /// <remarks/>
+        public void Message_GetListIDs_V3Async(long tiket, long nmessage, int ParentObjId, int ObjId, int Direction, int nMaxCount, object userState) {
+            if ((this.Message_GetListIDs_V3OperationCompleted == null)) {
+                this.Message_GetListIDs_V3OperationCompleted = new System.Threading.SendOrPostCallback(this.OnMessage_GetListIDs_V3OperationCompleted);
+            }
+            this.InvokeAsync("Message_GetListIDs_V3", new object[] {
+                        tiket,
+                        nmessage,
+                        ParentObjId,
+                        ObjId,
+                        Direction,
+                        nMaxCount}, this.Message_GetListIDs_V3OperationCompleted, userState);
+        }
+        
+        private void OnMessage_GetListIDs_V3OperationCompleted(object arg) {
+            if ((this.Message_GetListIDs_V3Completed != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Message_GetListIDs_V3Completed(this, new Message_GetListIDs_V3CompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -2273,29 +2537,125 @@ namespace JobInfo.WS_JobInfo {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://localhost/xrogi")]
-    public partial class ChatUser {
+    public partial class ParkResult {
         
-        private string nameField;
+        private string statusField;
         
-        private string loginField;
+        private string parkingNumberField;
+        
+        private System.DateTime dateInField;
+        
+        private string place_InField;
+        
+        private System.DateTime dateOutField;
+        
+        private int out_Who_UserIdField;
+        
+        private string out_WhoField;
+        
+        private string out_ReasonField;
+        
+        private string out_CarTypeField;
+        
+        private string out_CarNumberField;
         
         /// <remarks/>
-        public string Name {
+        public string Status {
             get {
-                return this.nameField;
+                return this.statusField;
             }
             set {
-                this.nameField = value;
+                this.statusField = value;
             }
         }
         
         /// <remarks/>
-        public string Login {
+        public string ParkingNumber {
             get {
-                return this.loginField;
+                return this.parkingNumberField;
             }
             set {
-                this.loginField = value;
+                this.parkingNumberField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime DateIn {
+            get {
+                return this.dateInField;
+            }
+            set {
+                this.dateInField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Place_In {
+            get {
+                return this.place_InField;
+            }
+            set {
+                this.place_InField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime DateOut {
+            get {
+                return this.dateOutField;
+            }
+            set {
+                this.dateOutField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int Out_Who_UserId {
+            get {
+                return this.out_Who_UserIdField;
+            }
+            set {
+                this.out_Who_UserIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Out_Who {
+            get {
+                return this.out_WhoField;
+            }
+            set {
+                this.out_WhoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Out_Reason {
+            get {
+                return this.out_ReasonField;
+            }
+            set {
+                this.out_ReasonField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Out_CarType {
+            get {
+                return this.out_CarTypeField;
+            }
+            set {
+                this.out_CarTypeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Out_CarNumber {
+            get {
+                return this.out_CarNumberField;
+            }
+            set {
+                this.out_CarNumberField = value;
             }
         }
     }
@@ -2567,6 +2927,8 @@ namespace JobInfo.WS_JobInfo {
         
         private string errorStringField;
         
+        private int directionField;
+        
         /// <remarks/>
         public int[] ListObjID {
             get {
@@ -2616,6 +2978,16 @@ namespace JobInfo.WS_JobInfo {
                 this.errorStringField = value;
             }
         }
+        
+        /// <remarks/>
+        public int Direction {
+            get {
+                return this.directionField;
+            }
+            set {
+                this.directionField = value;
+            }
+        }
     }
     
     /// <remarks/>
@@ -2631,6 +3003,8 @@ namespace JobInfo.WS_JobInfo {
         private int inParam_chatidField;
         
         private int inParam_useridField;
+        
+        private int inParam_PageNumField;
         
         private int errorCountField;
         
@@ -2663,6 +3037,16 @@ namespace JobInfo.WS_JobInfo {
             }
             set {
                 this.inParam_useridField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int InParam_PageNum {
+            get {
+                return this.inParam_PageNumField;
+            }
+            set {
+                this.inParam_PageNumField = value;
             }
         }
         
@@ -2722,6 +3106,10 @@ namespace JobInfo.WS_JobInfo {
         private string userCreaterField;
         
         private int[] usersInChatField;
+        
+        private int messageNumField;
+        
+        private int pageNumField;
         
         /// <remarks/>
         public int sgClassId {
@@ -2860,6 +3248,26 @@ namespace JobInfo.WS_JobInfo {
             }
             set {
                 this.usersInChatField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int MessageNum {
+            get {
+                return this.messageNumField;
+            }
+            set {
+                this.messageNumField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int PageNum {
+            get {
+                return this.pageNumField;
+            }
+            set {
+                this.pageNumField = value;
             }
         }
     }
@@ -3413,6 +3821,8 @@ namespace JobInfo.WS_JobInfo {
         
         private System.Nullable<int> personalChatIdField;
         
+        private string[] paramsField;
+        
         /// <remarks/>
         public int UserId {
             get {
@@ -3484,6 +3894,16 @@ namespace JobInfo.WS_JobInfo {
                 this.personalChatIdField = value;
             }
         }
+        
+        /// <remarks/>
+        public string[] Params {
+            get {
+                return this.paramsField;
+            }
+            set {
+                this.paramsField = value;
+            }
+        }
     }
     
     /// <remarks/>
@@ -3550,125 +3970,6 @@ namespace JobInfo.WS_JobInfo {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://localhost/xrogi")]
-    public partial class tbl_ChatUserInfo {
-        
-        private int chatUserInfoIdField;
-        
-        private int chatIdField;
-        
-        private int userIdField;
-        
-        private int startShownObjIdField;
-        
-        private int lastShownObjIdField;
-        
-        private int lastObjIdField;
-        
-        private int countNewField;
-        
-        private System.Nullable<System.DateTime> dbField;
-        
-        private System.Nullable<System.DateTime> deField;
-        
-        /// <remarks/>
-        public int ChatUserInfoId {
-            get {
-                return this.chatUserInfoIdField;
-            }
-            set {
-                this.chatUserInfoIdField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int ChatId {
-            get {
-                return this.chatIdField;
-            }
-            set {
-                this.chatIdField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int UserId {
-            get {
-                return this.userIdField;
-            }
-            set {
-                this.userIdField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int StartShownObjId {
-            get {
-                return this.startShownObjIdField;
-            }
-            set {
-                this.startShownObjIdField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int LastShownObjId {
-            get {
-                return this.lastShownObjIdField;
-            }
-            set {
-                this.lastShownObjIdField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int LastObjId {
-            get {
-                return this.lastObjIdField;
-            }
-            set {
-                this.lastObjIdField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int CountNew {
-            get {
-                return this.countNewField;
-            }
-            set {
-                this.countNewField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<System.DateTime> db {
-            get {
-                return this.dbField;
-            }
-            set {
-                this.dbField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<System.DateTime> de {
-            get {
-                return this.deField;
-            }
-            set {
-                this.deField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3062.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://localhost/xrogi")]
     public partial class UserChatInfo {
         
         private int chatUserInfoIdField;
@@ -3686,6 +3987,12 @@ namespace JobInfo.WS_JobInfo {
         private int countNewField;
         
         private int countShownEndObjIdField;
+        
+        private int pageLastObjField;
+        
+        private int pageLastShownObjField;
+        
+        private System.DateTime lastObjIdDateCreateField;
         
         /// <remarks/>
         public int ChatUserInfoId {
@@ -3766,6 +4073,36 @@ namespace JobInfo.WS_JobInfo {
                 this.countShownEndObjIdField = value;
             }
         }
+        
+        /// <remarks/>
+        public int PageLastObj {
+            get {
+                return this.pageLastObjField;
+            }
+            set {
+                this.pageLastObjField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int PageLastShownObj {
+            get {
+                return this.pageLastShownObjField;
+            }
+            set {
+                this.pageLastShownObjField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime LastObjIdDateCreate {
+            get {
+                return this.lastObjIdDateCreateField;
+            }
+            set {
+                this.lastObjIdDateCreateField = value;
+            }
+        }
     }
     
     /// <remarks/>
@@ -3774,7 +4111,79 @@ namespace JobInfo.WS_JobInfo {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://localhost/xrogi")]
-    public abstract partial class WebSocket {
+    public partial class asyncReturn_Statistic {
+        
+        private UserChatInfo[] listChatStatisticField;
+        
+        private int inParam_useridField;
+        
+        private System.DateTime dtsField;
+        
+        private System.DateTime dteField;
+        
+        private int errorCountField;
+        
+        private string errorStringField;
+        
+        /// <remarks/>
+        public UserChatInfo[] ListChatStatistic {
+            get {
+                return this.listChatStatisticField;
+            }
+            set {
+                this.listChatStatisticField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int InParam_userid {
+            get {
+                return this.inParam_useridField;
+            }
+            set {
+                this.inParam_useridField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime dts {
+            get {
+                return this.dtsField;
+            }
+            set {
+                this.dtsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime dte {
+            get {
+                return this.dteField;
+            }
+            set {
+                this.dteField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int ErrorCount {
+            get {
+                return this.errorCountField;
+            }
+            set {
+                this.errorCountField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ErrorString {
+            get {
+                return this.errorStringField;
+            }
+            set {
+                this.errorStringField = value;
+            }
+        }
     }
     
     /// <remarks/>
@@ -3785,21 +4194,13 @@ namespace JobInfo.WS_JobInfo {
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://localhost/xrogi")]
     public partial class ConnectInfo {
         
-        private WebSocket clientWSField;
-        
         private Token tokenField;
         
-        private int[] chatsField;
+        private int selected_ChatIdField;
         
-        /// <remarks/>
-        public WebSocket clientWS {
-            get {
-                return this.clientWSField;
-            }
-            set {
-                this.clientWSField = value;
-            }
-        }
+        private int selected_Chat_MaxObjIdField;
+        
+        private int[] chatsField;
         
         /// <remarks/>
         public Token token {
@@ -3808,6 +4209,26 @@ namespace JobInfo.WS_JobInfo {
             }
             set {
                 this.tokenField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int Selected_ChatId {
+            get {
+                return this.selected_ChatIdField;
+            }
+            set {
+                this.selected_ChatIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int Selected_Chat_MaxObjId {
+            get {
+                return this.selected_Chat_MaxObjIdField;
+            }
+            set {
+                this.selected_Chat_MaxObjIdField = value;
             }
         }
         
@@ -3836,8 +4257,6 @@ namespace JobInfo.WS_JobInfo {
         
         private int reConectedCountField;
         
-        private string src_xmlField;
-        
         private string loginUserField;
         
         private string dev_nameField;
@@ -3845,6 +4264,8 @@ namespace JobInfo.WS_JobInfo {
         private string pIDField;
         
         private string clientnameField;
+        
+        private string clientversField;
         
         private long token_IdField;
         
@@ -3879,16 +4300,6 @@ namespace JobInfo.WS_JobInfo {
             }
             set {
                 this.reConectedCountField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string src_xml {
-            get {
-                return this.src_xmlField;
-            }
-            set {
-                this.src_xmlField = value;
             }
         }
         
@@ -3933,6 +4344,16 @@ namespace JobInfo.WS_JobInfo {
         }
         
         /// <remarks/>
+        public string clientvers {
+            get {
+                return this.clientversField;
+            }
+            set {
+                this.clientversField = value;
+            }
+        }
+        
+        /// <remarks/>
         public long Token_Id {
             get {
                 return this.token_IdField;
@@ -3959,6 +4380,117 @@ namespace JobInfo.WS_JobInfo {
             }
             set {
                 this.userIdField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3062.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://localhost/xrogi")]
+    public partial class ChatUser {
+        
+        private string nameField;
+        
+        private string loginField;
+        
+        /// <remarks/>
+        public string Name {
+            get {
+                return this.nameField;
+            }
+            set {
+                this.nameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Login {
+            get {
+                return this.loginField;
+            }
+            set {
+                this.loginField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
+    public delegate void Setup_ParamsCompletedEventHandler(object sender, Setup_ParamsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Setup_ParamsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Setup_ParamsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
+    public delegate void Parking_Test1CompletedEventHandler(object sender, Parking_Test1CompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Parking_Test1CompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Parking_Test1CompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public ParkResult Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((ParkResult)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
+    public delegate void Parking_CancelTiketCompletedEventHandler(object sender, Parking_CancelTiketCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Parking_CancelTiketCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Parking_CancelTiketCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public ParkResult Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((ParkResult)(this.results[0]));
             }
         }
     }
@@ -4069,6 +4601,58 @@ namespace JobInfo.WS_JobInfo {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
+    public delegate void AboutEncrCompletedEventHandler(object sender, AboutEncrCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class AboutEncrCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal AboutEncrCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
+    public delegate void @__now__CompletedEventHandler(object sender, @__now__CompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class @__now__CompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal @__now__CompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
     public delegate void ClearSessionCompletedEventHandler(object sender, ClearSessionCompletedEventArgs e);
     
     /// <remarks/>
@@ -4121,6 +4705,32 @@ namespace JobInfo.WS_JobInfo {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
+    public delegate void Chat_GetStatisticCompletedEventHandler(object sender, Chat_GetStatisticCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Chat_GetStatisticCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Chat_GetStatisticCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public asyncReturn_Statistic Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((asyncReturn_Statistic)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
     public delegate void Chat_GetMyStatisticCompletedEventHandler(object sender, Chat_GetMyStatisticCompletedEventArgs e);
     
     /// <remarks/>
@@ -4141,32 +4751,6 @@ namespace JobInfo.WS_JobInfo {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((UserChatInfo)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
-    public delegate void Chat_GetMyStatistic_oldCompletedEventHandler(object sender, Chat_GetMyStatistic_oldCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Chat_GetMyStatistic_oldCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Chat_GetMyStatistic_oldCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public tbl_ChatUserInfo Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((tbl_ChatUserInfo)(this.results[0]));
             }
         }
     }
@@ -4711,6 +5295,32 @@ namespace JobInfo.WS_JobInfo {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
+    public delegate void Message_GetPageCompletedEventHandler(object sender, Message_GetPageCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Message_GetPageCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Message_GetPageCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public asyncReturn_Messages Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((asyncReturn_Messages)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
     public delegate void Message_GetListArrayCompletedEventHandler(object sender, Message_GetListArrayCompletedEventArgs e);
     
     /// <remarks/>
@@ -4774,6 +5384,32 @@ namespace JobInfo.WS_JobInfo {
         private object[] results;
         
         internal Message_GetListIDs_V2CompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public asyncReturn_MessagesIDs Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((asyncReturn_MessagesIDs)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
+    public delegate void Message_GetListIDs_V3CompletedEventHandler(object sender, Message_GetListIDs_V3CompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Message_GetListIDs_V3CompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Message_GetListIDs_V3CompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

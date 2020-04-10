@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:xaml="http://xamarin.com/schemas/2014/forms"
+
+   
+          
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Ji.Views.MainContactsTabbedPage"
+             Title="Контакты"
+          
+     
+            HeightRequest="15" 
+            BackgroundColor="#e15600" 
+         BarBackgroundColor="#e15600"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+
+            android:TabbedPage.BarItemColor="LightGray"
+            android:TabbedPage.BarSelectedItemColor="White"
+           
+            >
+    <!--
+      SelectedTabColor="Yellow"
+       BarTextColor="Blue"
+            UnselectedTextColor="Green"
+            UnselectedTabColor="Black"
+            BarBackgroundColor="Transparent" 
+    
+    
+    <TabbedPage.ToolbarItems>
+      
+        
+        <ToolbarItem  IconImageSource="Button_Filter_512x512.png" Clicked="FilterButtonClick" />
+        
+    </TabbedPage.ToolbarItems>--> 
+
+
+</TabbedPage>

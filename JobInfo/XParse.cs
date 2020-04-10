@@ -19,12 +19,17 @@ namespace JobInfo
             }
         }
 
-
+        [Obsolete]
         internal static string ParseMessageToHtml(string xml)
         {
             try
             {
                 string input = xml;// "<?xml version=\"1.0\"?> ...";
+
+                //!!! Isolation https://stackoverflow.com/questions/10363174/use-local-images-in-webbrowser-control
+           
+                //string URL = "file://" + Windows.Storage.ApplicationData.Current.LocalFolder.Path + "\\folder\\filename.png";
+
                 string output;
 
                 XslCompiledTransform xslt = new XslCompiledTransform();
@@ -60,6 +65,19 @@ namespace JobInfo
 
                     }
                 }
+
+                if (output.Contains("^_^"))
+                {
+                }
+                string our_ret    = WpfEmoticons.Controls.EmoticonsHelper.ReplaceEmoticToHTMLLink(output);
+                if (our_ret != output)
+                {
+                    output = our_ret;
+                }
+                    string name = Environment.CurrentDirectory + @"\images\emoticons\" + "01.png";
+            //    output = output.Replace("^_^", "<img src=\"" + name + "\"/>");
+            ///    output = output.Replace(":)", "<img src=\"" + name + "\"/>");
+
                 return output;
             }catch (Exception err)
             {

@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Ji.Views.MessageInfoPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" ></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Text="Сообщение создано:" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+                <ListView Grid.Row="1" x:Name="MessageInfoCreated" >
+                    <!--ItemsSource="ChatsHistory"-->
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.View >
+                                    <Label HorizontalTextAlignment="End" Text="!!1!"   FontSize="Default" Margin="3" >
+                                    </Label>
+                                </ViewCell.View>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Label Grid.Row="2" Text="Создатель:"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+                <Label Grid.Row="3" Text="Создал сообщение: Смирнов И.Ю."  VerticalOptions="CenterAndExpand"   HorizontalOptions="StartAndExpand" />
+                <Label Grid.Row="4" Text="Когда создано:"  VerticalOptions="CenterAndExpand"  HorizontalOptions="CenterAndExpand" />
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

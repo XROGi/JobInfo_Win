@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Ji.Models
+﻿namespace Ji.Models
 {
     public class Item
     {

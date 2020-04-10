@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Ji.Views.MessagePopupMenuView"
+                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 >
+    <StackLayout Orientation="Vertical" VerticalOptions="Center"
+                 BackgroundColor="White"
+                 HorizontalOptions="Center"
+                 Spacing="24"
+                 Padding="24"
+                 Margin="12"
+                 HeightRequest="200"
+                 >
+     
+            <ListView ItemSelected="ListView_ItemSelected" ItemTapped="ListView_ItemTapped"><!--https://www.youtube.com/watch?v=dOU0Qei3Qlk-->
+                <ListView.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Ответить</x:String>
+                    <x:String>Создать задачу</x:String>
+                        <x:String>Информация</x:String>
+                </x:Array>
+                    </ListView.ItemsSource>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Label Text="{Binding .}" ></Label>
+                            <!--<ViewCell.ContextActions>
+                                <MenuItem Text="Edit"
+                                    IconImageSource="icon.png"
+                                    Command="{Binding Source={x:Reference contentPage}, Path=BindingContext.EditCommand}"
+                                    CommandParameter="{Binding .}"/>
+                                <MenuItem Text="Delete"
+                                    Command="{Binding Source={x:Reference contentPage}, Path=BindingContext.DeleteCommand}"
+                                    CommandParameter="{Binding .}"/>
+                            </ViewCell.ContextActions>-->
+                        </ViewCell>
+                      
+                    </DataTemplate>
+                </ListView.ItemTemplate><!---->
+            </ListView>
+        <Button VerticalOptions="Start" Text="Отмена" Clicked="Button_Clicked"></Button>
+      
+    </StackLayout>
+</pages:PopupPage>

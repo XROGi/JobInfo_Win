@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="JI" Class="DomainDataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=ghp-sql;Initial Catalog=JI;Persist Security Info=True;User ID=QR_Domain" SettingsObjectName="JobInfo.Properties.Settings" SettingsPropertyName="JIConnectionString" Provider="System.Data.SqlClient" />
+  <Function Name="dbo.proc_TokenReq_Add" Method="proc_TokenReq_Add">
+    <Parameter Name="userid" Type="System.Int32" DbType="Int" />
+    <ElementType Name="proc_TokenReq_AddResult">
+      <Column Name="" Member="Column1" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>

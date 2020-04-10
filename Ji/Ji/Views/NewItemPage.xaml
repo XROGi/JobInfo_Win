@@ -2,20 +2,31 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Ji.Views.NewItemPage"
-             Title="New Item">
+             Title="Создание новой группы">
     
-    <ContentPage.ToolbarItems>
+    <!--<ContentPage.ToolbarItems>
         <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked" />
         <ToolbarItem Text="Save" Clicked="Save_Clicked" />
-    </ContentPage.ToolbarItems>
+    </ContentPage.ToolbarItems>-->
     
     <ContentPage.Content>
-        <StackLayout Spacing="20" Padding="15">
-            <Label Text="Text" FontSize="Medium" />
-            <Entry Text="{Binding Item.Text}" FontSize="Small" />
-            <Label Text="Description" FontSize="Medium" />
-            <Editor Text="{Binding Item.Description}" FontSize="Small" Margin="0" />
-        </StackLayout>
+        <Grid VerticalOptions="Fill">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackLayout Spacing="20" Padding="15" Grid.Row="0">
+                <!--<Label Text="Введите название группы" FontSize="Medium" />-->
+                <Entry x:Name="GroupName" Placeholder="Введите название группы*" Text="{Binding Item.Text}" FontSize="Small" />
+                <!--<Label FontSize="Medium" />-->
+                <Editor  x:Name="GroupInfo"  Placeholder="Описание группы"  Text="{Binding Item.Description}" FontSize="Small" Margin="0" />
+                <!--<Label Text="Тип группы" FontSize="Medium" />-->
+            </StackLayout>
+            <Button Text="Далее" Clicked="Button_Clicked" Grid.Row="1" VerticalOptions="EndAndExpand"/>
+            <!--<Button Text="Назад" Clicked="Button_Clicked" Grid.Row="2" VerticalOptions="EndAndExpand"/>-->
+        </Grid>
+        
     </ContentPage.Content>
     
 </ContentPage>

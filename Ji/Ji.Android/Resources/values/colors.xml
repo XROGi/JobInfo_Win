@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="launcher_background">#FFFFFF</color>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+  <color name="colorPrimary">#3F51B5</color>
+  <color name="colorPrimary2">#FF51B5</color>
+  
+  <color name="colorPrimaryDark">#303F9F</color>
+  <color name="colorAccent">#FF4081</color>
+  <color name="colorMyGreen">#CCFFE5</color>
+  <!--
+  <color name="NavigationPrimary">#FFAD00</color>  
+  <color name="NavigationPrimaryTo">#E04300</color>
+-->
+  
+  <color name="ListViewHighlighted">#A8A8A8</color>
+  
+  <color name="tabBarUnselected">#80ffffff</color>
+  <color name="tabBarSelected">#ffffff</color>
+  
 </resources>

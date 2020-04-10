@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="XWpfControlLibrary.UserControl1"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+         
+             xmlns:local="clr-namespace:XWpfControlLibrary"
+             xmlns:controls="clr-namespace:WpfEmoticons.Controls"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <Image x:Key="images01" Source="images\emoticons\01.png"/>
+        <Image x:Key="images02" Source="images\emoticons\02.png"/>
+        <Image x:Key="images03" Source="images\emoticons\03.png"/>
+        <Image x:Key="images04" Source="images\emoticons\04.png"/>
+        <Image x:Key="images05" Source="images\emoticons\05.png"/>
+        <Image x:Key="images06" Source="images\emoticons\06.png"/>
+        <Image x:Key="images07" Source="images\emoticons\07.png"/>
+        <Image x:Key="images08" Source="images\emoticons\08.png"/>
+        <Image x:Key="images09" Source="images\emoticons\09.png"/>
+        <Image x:Key="images10" Source="images\emoticons\10.png"/>
+        <Image x:Key="images11" Source="images\emoticons\11.png"/>
+        <Image x:Key="images12" Source="images\emoticons\12.png"/>
+        <Image x:Key="images13" Source="images\emoticons\13.png"/>
+        <Image x:Key="images14" Source="images\emoticons\14.png"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width="32"/>
+            <ColumnDefinition Width="32"/>
+            <ColumnDefinition Width="32"/>
+            <ColumnDefinition Width="32"/>
+            <ColumnDefinition Width="32"/>
+            <ColumnDefinition Width="32"/>
+            <ColumnDefinition Width="32"/>
+            <ColumnDefinition Width="32"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+
+        <Button Grid.Row="0" Grid.Column="2"    Name="b1" HorizontalAlignment="Left"  VerticalAlignment="Bottom" Width="30" Height="29" Click="Button_Click" Tag="01"   Content="{StaticResource  images01 }" Focusable="False"/>
+        <Button Grid.Row="0" Grid.Column="3"  x:Name="b2" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="30" Height="29" Click="Button_Click" Tag="02"   Content="{StaticResource  images02}" Focusable="False"/>
+        <Button Grid.Row="0" Grid.Column="4"  x:Name="b3" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="30" Height="29" Click="Button_Click" Tag="03"   Content="{StaticResource  images03}" Focusable="False"/>
+        <Button Grid.Row="0" Grid.Column="5"  x:Name="b4" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="30" Height="29" Click="Button_Click" Tag="04"   Content="{StaticResource  images04}" Focusable="False"/>
+        <Button Grid.Row="0" Grid.Column="6"  x:Name="b5" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="30" Height="29" Click="Button_Click" Tag="05"   Content="{StaticResource  images05}" Focusable="False"/>
+        <Button Grid.Row="0" Grid.Column="7"  x:Name="b6" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="30" Height="29" Click="Button_Click" Tag="06"   Content="{StaticResource  images06}" Focusable="False"/>
+        <Button Grid.Row="0" Grid.Column="8"  x:Name="b7" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="30" Height="29" Click="Button_Click" Tag="07"   Content="{StaticResource  images07}" Focusable="False"/>
+        <Button Grid.Row="1" Grid.Column="2"  x:Name="b8" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="30" Height="29" Click="Button_Click" Tag="08"   Content="{StaticResource  images08}" Focusable="False"/>
+        <Button Grid.Row="1" Grid.Column="3"  x:Name="b9" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="30" Height="29" Click="Button_Click" Tag="09"   Content="{StaticResource  images09}" Focusable="False"/>
+        <Button Grid.Row="1" Grid.Column="4" x:Name="b10" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Height="29" Click="Button_Click" Tag="10"  Content="{StaticResource  images10}"   Focusable="False"/>
+        <Button Grid.Row="1" Grid.Column="5" x:Name="b11" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Height="29" Click="Button_Click" Tag="11"  Content="{StaticResource  images11}"   Focusable="False" />
+        <Button Grid.Row="1" Grid.Column="6" x:Name="b12" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Height="29" Click="Button_Click" Tag="12"  Content="{StaticResource  images12}"   Focusable="False"/>
+        <Button Grid.Row="1" Grid.Column="7" x:Name="b13" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Height="29" Click="Button_Click" Tag="13"  Content="{StaticResource  images13}" Focusable="False"/>
+        <Button Grid.Row="1" Grid.Column="8" x:Name="b14" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Height="29" Click="Button_Click" Tag="14"  Content="{StaticResource  images14}" Focusable="False"/>
+
+        <controls:TextBoxControl Grid.Column="0" Grid.Row="0" x:Name="tb1" AcceptsReturn="True" Grid.RowSpan="2"/>
+
+    </Grid>
+</UserControl>

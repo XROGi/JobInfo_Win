@@ -4,7 +4,7 @@
             xmlns:views="clr-namespace:Ji.Views"
             x:Class="Ji.Views.MainPage">
 
-    <MasterDetailPage.Master>
+<MasterDetailPage.Master>
         <views:MenuPage />
     </MasterDetailPage.Master>
 

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Ji.Views.TestTabbedPage">
+  <!--Pages can be added as references or inline-->
+    <ContentPage Title="Tab 1"  IconImageSource="user48.png" BackgroundColor="White"/>
+    <ContentPage Title="Tab 2" IconImageSource="http:\\194.190.100.194\2.jpg" BackgroundColor="Transparent" >
+        <StackLayout>
+            <Image Source="https://pbs.twimg.com/profile_images/793021684064419840/RjEjM6z5_400x400.jpg"   Aspect="AspectFill" VerticalOptions="End" HorizontalOptions="CenterAndExpand"></Image>
+            <Image Source="user48.png"   Aspect="AspectFill" VerticalOptions="End" HorizontalOptions="CenterAndExpand"></Image>
+            <Label Text="!!!!!!!!!12345646797603435" />
+        </StackLayout>
+    </ContentPage>
+    <ContentPage Title="Tab 3" BackgroundColor="White" IconImageSource="https://pbs.twimg.com/profile_images/793021684064419840/RjEjM6z5_400x400.jpg" />
+</TabbedPage>

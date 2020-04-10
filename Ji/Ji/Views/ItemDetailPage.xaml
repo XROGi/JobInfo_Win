@@ -4,11 +4,31 @@
              x:Class="Ji.Views.ItemDetailPage"
              Title="{Binding Title}">
 
+
+    <!--<Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="70" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="70*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150" />
+        </Grid.RowDefinitions>
+        <Image Grid.Row="0" Grid.Column="0" Source="xamarin_logo.png" HeightRequest="25"   Aspect="AspectFit"  ></Image>
+        <Label Grid.Row="0" Grid.Column="1" Text="{Binding Item.Text}" FontSize="Small"/>
+        <Label Grid.Row="0" Grid.Column="2" Text="Binding Item.Text" FontSize="Small"/>
+
+       
+    </Grid>-->
     <StackLayout Spacing="20" Padding="15">
-        <Label Text="Text1:" FontSize="Medium" />
+        
+        <Image Source="xamarin_logo.png" HeightRequest="25"   Aspect="AspectFit"  ></Image>
         <Label Text="{Binding Item.Text}" FontSize="Small"/>
-        <Label Text="Description2:" FontSize="Medium" />
-        <Label Text="{Binding Item.Description}" FontSize="Small"/>
+        <!--<Label Text="Binding Item.Text" FontSize="Small"/>-->
+
+
+        <!--<Label Text="Description2:" FontSize="Medium" />
+        <Label Text="{Binding Item.Description}" FontSize="Small"/>-->
     </StackLayout>
     
 </ContentPage>
